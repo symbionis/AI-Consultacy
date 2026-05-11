@@ -513,6 +513,11 @@
     ::selection { background: rgba(153, 125, 61, 0.25); color: var(--navy); }
   }
 </style>
+<script>
+  if (!sessionStorage.getItem('lang_override') && /^fr\b/i.test(navigator.language)) {
+    window.location.replace('/fr/');
+  }
+</script>
 </head>
 <body>
 
@@ -659,6 +664,10 @@
   }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
 
   document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+
+  document.querySelectorAll('.lang-switch a, .lang-switch-top a').forEach((a) => {
+    a.addEventListener('click', () => sessionStorage.setItem('lang_override', '1'));
+  });
 </script>
 
 </body>

@@ -425,6 +425,33 @@
     font-style: italic;
   }
 
+  .lang-switch-top {
+    position: fixed;
+    top: 1.25rem;
+    right: clamp(1.5rem, 5vw, 3rem);
+    z-index: 100;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  .lang-switch-top a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .lang-switch-top a:hover {
+    border-bottom-color: var(--gold);
+  }
+  .lang-switch-top .sep {
+    color: var(--muted);
+    margin: 0 0.5rem;
+  }
+  .lang-switch-top .current {
+    color: var(--muted);
+  }
+
   .lang-switch {
     margin-top: 2rem;
     font-size: 0.78rem;
@@ -488,6 +515,8 @@
 </style>
 </head>
 <body>
+
+<nav class="lang-switch-top"><a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span></nav>
 
 <section class="hero">
   <div class="label">Un cadre de réflexion</div>

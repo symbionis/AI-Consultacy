@@ -292,6 +292,11 @@ p {
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--grey);
+  margin-bottom: 0.75rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
 }
 
 /* ===== AUDIENCE LISTS (Section 4) ===== */

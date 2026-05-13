@@ -249,6 +249,176 @@ p {
   font-weight: 600;
 }
 
+/* ===== SHIFT SECTION (Section 2) ===== */
+
+.shift-columns {
+  display: grid;
+  grid-template-columns: 58% 42%;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (max-width: 768px) {
+  .shift-columns {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.shift-prose p {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  max-width: 620px;
+}
+
+.shift-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.framework-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--navy);
+  padding: clamp(1.75rem, 3vw, 2.25rem);
+  border-radius: 6px;
+}
+
+.framework-levels-kicker {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
+}
+
+.framework-levels-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.framework-level {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(244, 241, 234, 0.12);
+}
+
+.framework-level:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.framework-level-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.level-prefix {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.level-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+.level-marker {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.level-desc {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--cream);
+  opacity: 0.65;
+}
+
+.framework-level.level-shift {
+  border-left: 2px solid var(--gold);
+  padding-left: 0.85rem;
+  margin-left: -0.85rem;
+}
+
+.shift-transition {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--navy);
+  margin-top: 1.5rem;
+}
+
+.shift-closing {
+  margin-top: 1.25rem;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 1.5rem;
+}
+
+.shift-closing p {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--navy);
+  max-width: 620px;
+}
+
+.framework-link {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: 0.6rem;
+  transition: color 0.25s ease;
+}
+
+.framework-link:hover {
+  color: var(--navy);
+}
+
+.framework-return {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: color 0.25s ease;
+}
+
+.framework-return:hover {
+  color: inherit;
+}
+
 /* ===== THREE CARDS (Section 3) ===== */
 
 .three-cards {
@@ -272,7 +442,7 @@ p {
 }
 
 .card-label {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -316,7 +486,8 @@ p {
 }
 
 .audience-list h3 {
-  font-size: 0.72rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;

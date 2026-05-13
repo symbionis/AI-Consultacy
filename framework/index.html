@@ -398,6 +398,62 @@
     font-weight: 400;
   }
 
+  /* ===== COACHING CTA ===== */
+  .coaching-cta {
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 3rem);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .coaching-cta p {
+    font-size: 0.95rem;
+    color: var(--ice-dim);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+  }
+
+  .coaching-cta-btn {
+    display: inline-block;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--white);
+    background: #1B3A57;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .coaching-cta-btn:hover {
+    background: #244a6e;
+    transform: translateY(-1px);
+  }
+
+  .booking-section {
+    text-align: center;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3rem);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .booking-section p {
+    font-size: 1.1rem;
+    color: var(--ice);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .booking-section .cal-inline-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 400px;
+  }
+
   /* ===== FOOTER ===== */
   footer {
     padding: 4rem 1.5rem 5rem;
@@ -554,6 +610,11 @@
     </div>
 
   </div>
+
+  <div class="coaching-cta" data-reveal>
+    <p>See how this framework shapes the coaching practice.</p>
+    <a href="/#receive" class="coaching-cta-btn">What you receive →</a>
+  </div>
 </section>
 
 <div class="gap-wrap">
@@ -591,6 +652,11 @@
         </div>
       </div>
     </div>
+
+    <div class="coaching-cta" data-reveal>
+      <p>Discover your journey.</p>
+      <a href="/#process" class="coaching-cta-btn">How we start →</a>
+    </div>
   </div>
 </div>
 
@@ -613,8 +679,14 @@
   <p class="sting-text">Less clutter. <em>More presence.</em><br>That's the work.</p>
 </section>
 
+<div class="booking-section">
+  <p>Ready when you are.</p>
+  <div class="cal-inline-wrap" style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-connect"></div>
+</div>
+
 <footer>
   <p>If something here resonated, that's where the conversation continues.</p>
+  <p><a href="/#shift" class="framework-return" style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-size:0.9rem;color:var(--gold);text-decoration:none;margin-top:0.5rem;display:inline-block;">Back to the practice →</a></p>
   <p class="signature">Frank Sykes &middot; Geneva</p>
   <p class="lang-switch"><span class="current">EN</span><span class="sep">/</span><a href="/framework/fr/" hreflang="fr">FR</a></p>
 </footer>
@@ -630,6 +702,16 @@
   }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
 
   document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+
+  // Cal.com inline embed
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "connect", {origin:"https://app.cal.com"});
+  Cal.ns.connect("inline", {
+    elementOrSelector:"#my-cal-inline-connect",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "franksy/connect",
+  });
+  Cal.ns.connect("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 
 </body>

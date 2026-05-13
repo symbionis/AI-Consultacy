@@ -44,12 +44,32 @@
 
   /* ===== HERO ===== */
   .hero {
-    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-top: clamp(4rem, 10vw, 7rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
     position: relative;
+  }
+
+  /* ===== SPARKLE DIVIDER ===== */
+  .sparkle-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--gold);
+    opacity: 0.85;
+  }
+  .sparkle-divider .star {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+  .sparkle-divider .star.mid {
+    font-size: 1.35rem;
   }
   .hero::before {
     content: "";
@@ -509,38 +529,38 @@
     color: var(--muted);
   }
 
-  /* ===== LIGHT MODE ===== */
-  @media (prefers-color-scheme: light) {
-    :root {
-      --navy-deep: #FAF7F0;
-      --navy: #1E2761;
-      --navy-soft: #EBE7DC;
-      --ice: #2A2F4D;
-      --ice-dim: #6B6F8A;
-      --gold: #997D3D;
-      --gold-soft: #BA9A57;
-      --muted: #9A95A8;
-    }
-    body { background: var(--navy-deep); color: var(--ice); }
-    .hero h1, .section-title, .level-name, .sting-text { color: var(--navy); }
-    .hero h1 em, .sting-text em { color: var(--gold); }
-    .prose p strong, .reflection p strong { color: var(--navy); }
-    .level { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
-    .level:hover { border-color: rgba(153, 125, 61, 0.3); }
-    .gap-wrap { background: linear-gradient(180deg, var(--navy-deep) 0%, #F2EEE2 100%); }
-    .gap-card.stuck { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
-    .gap-card.stuck .gap-stat, .gap-card.stuck .gap-headline { color: var(--navy); }
-    .gap-card.stuck .gap-body { color: var(--ice); }
-    .gap-card.stuck .gap-sub { color: var(--ice-dim); }
-    .cost-block { background: rgba(153, 125, 61, 0.08); }
-    .cost-amount { color: var(--navy); }
-    .cost-desc { color: var(--ice); }
-    .reflection {
-      background: linear-gradient(180deg, var(--navy-deep) 0%, #F2EEE2 100%);
-    }
-    footer { border-top-color: rgba(42, 47, 77, 0.1); }
-    ::selection { background: rgba(153, 125, 61, 0.25); color: var(--navy); }
+  /* ===== LIGHT MODE (always on) ===== */
+  :root {
+    --navy-deep: #F4F1EA;
+    --navy: #1B3A57;
+    --navy-soft: #EEEAE0;
+    --ice: #2A2F4D;
+    --ice-dim: #6B6F8A;
+    --gold: #C9A24B;
+    --gold-soft: #997D3D;
+    --muted: #9A95A8;
   }
+  body { background: var(--navy-deep); color: var(--ice); }
+  .hero h1, .section-title, .level-name, .sting-text { color: var(--navy); }
+  .hero h1 em, .sting-text em { color: var(--gold); }
+  .prose p strong, .reflection p strong { color: var(--navy); }
+  .level { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
+  .level:hover { border-color: rgba(153, 125, 61, 0.3); }
+  .gap-wrap { background: linear-gradient(180deg, var(--navy-deep) 0%, #EEEAE0 100%); }
+  .gap-card.stuck { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
+  .gap-card.stuck .gap-stat, .gap-card.stuck .gap-headline { color: var(--navy); }
+  .gap-card.stuck .gap-body { color: var(--ice); }
+  .gap-card.stuck .gap-sub { color: var(--ice-dim); }
+  .gap-card.ahead .gap-stat, .gap-card.ahead .gap-headline { color: var(--navy); }
+  .gap-card.ahead .gap-sub, .gap-card.ahead .gap-body { color: var(--navy); opacity: 0.85; }
+  .cost-block { background: rgba(201, 162, 75, 0.08); }
+  .cost-amount { color: var(--navy); }
+  .cost-desc { color: var(--ice); }
+  .reflection {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, #EEEAE0 100%);
+  }
+  footer { border-top-color: rgba(42, 47, 77, 0.1); }
+  ::selection { background: rgba(201, 162, 75, 0.25); color: var(--navy); }
 </style>
 </head>
 <body>
@@ -548,13 +568,19 @@
 <section class="hero">
   <div class="label">Un cadre de réflexion</div>
   <h1>Les 5 Niveaux de <em>Maîtrise de l'IA.</em></h1>
-  <p class="sub">Cinq niveaux de maîtrise. Chacun plus avancé que le précédent — le bon, c'est celui qui correspond au travail devant vous.</p>
+  <p class="sub">Cinq niveaux de maîtrise. Chacun plus avancé que le précédent, et le bon, c'est celui qui correspond au travail devant vous.</p>
 </section>
+
+<div class="sparkle-divider" aria-hidden="true">
+  <span class="star">✦</span>
+  <span class="star mid">✦</span>
+  <span class="star">✦</span>
+</div>
 
 <section class="prose">
   <p>On nous présente l'IA comme une révolution. En réalité, ce que la plupart cherchent est plus discret : <strong>faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.</strong></p>
 
-  <p>Selon le travail qu'on fait, on est à un niveau ou à un autre — c'est normal. Le bon niveau dépend de ce que vous avez à faire. Mais plus on avance, plus ces outils deviennent une vraie part de votre façon de penser.</p>
+  <p>Selon le travail qu'on fait, on est à un niveau ou à un autre, c'est normal. Le bon niveau dépend de ce que vous avez à faire. Mais plus on avance, plus ces outils deviennent une vraie part de votre façon de penser.</p>
 </section>
 
 <section>
@@ -569,7 +595,7 @@
       <div class="level-content">
         <div class="level-name">De meilleures questions</div>
         <div class="level-headline">Utilisez l'IA plutôt que Google quand la réponse demande de réfléchir.</div>
-        <div class="level-desc">Pour tout ce qui demande du contexte, une comparaison, un peu de votre situation. Ce ne sont pas des faits à trouver — ce sont des questions à penser.</div>
+        <div class="level-desc">Pour tout ce qui demande du contexte, une comparaison, un peu de votre situation. Ce ne sont pas des faits à trouver, ce sont des questions à penser.</div>
       </div>
     </div>
 
@@ -578,7 +604,7 @@
       <div class="level-content">
         <div class="level-name">Plus léger</div>
         <div class="level-headline">Allégez le quotidien.</div>
-        <div class="level-desc">Dicter au lieu de taper. Vos réunions résumées toutes seules. Des conversations qui se souviennent de vos projets — pour reprendre où vous en étiez sans tout réexpliquer.</div>
+        <div class="level-desc">Dicter au lieu de taper. Vos réunions résumées toutes seules. Des conversations qui se souviennent de vos projets, pour reprendre où vous en étiez sans tout réexpliquer.</div>
       </div>
     </div>
 
@@ -587,7 +613,7 @@
       <div class="level-content">
         <div class="level-name">Partenaire de réflexion</div>
         <div class="level-headline">Un second esprit, à portée de main.</div>
-        <div class="level-desc">Pour les idées que vous portez. Pour les décisions qui mériteraient plus de temps qu'on ne leur en donne. Pour penser à voix haute, avec quelque chose qui écoute et qui répond. Ce travail-là n'exige pas toujours une personne — parfois, il suffit de la bonne attention.</div>
+        <div class="level-desc">Pour les idées que vous portez. Pour les décisions qui mériteraient plus de temps qu'on ne leur en donne. Pour penser à voix haute, avec quelque chose qui écoute et qui répond. Ce travail-là n'exige pas toujours une personne. Parfois, il suffit de la bonne attention.</div>
       </div>
     </div>
 
@@ -596,7 +622,7 @@
       <div class="level-content">
         <div class="level-name">Des outils à votre mesure</div>
         <div class="level-headline">Construisez vos propres outils.</div>
-        <div class="level-desc">Pas l'application générique que tout le monde utilise. Un outil pensé pour votre manière de faire — votre facturation, vos réservations, vos projets tels que vous les menez — sans savoir coder.</div>
+        <div class="level-desc">Pas l'application générique que tout le monde utilise. Un outil pensé pour votre manière de faire : votre facturation, vos réservations, vos projets tels que vous les menez. Sans savoir coder.</div>
       </div>
     </div>
 
@@ -605,7 +631,7 @@
       <div class="level-content">
         <div class="level-name">Agents personnels</div>
         <div class="level-headline">Un travail qui se fait tout seul.</div>
-        <div class="level-desc">Une IA qui observe, décide, agit en arrière-plan. Pas du pas-à-pas — elle tourne toute seule. Pour ce qui se répète et n'a pas besoin de vous pour avancer — juste de votre regard quand quelque chose sort de l'ordinaire.</div>
+        <div class="level-desc">Une IA qui observe, décide, agit en arrière-plan. Pas du pas-à-pas, elle tourne toute seule. Pour ce qui se répète et n'a pas besoin de vous pour avancer, juste de votre regard quand quelque chose sort de l'ordinaire.</div>
       </div>
     </div>
 
@@ -620,8 +646,8 @@
 <div class="gap-wrap">
   <div class="gap-inner">
     <div class="section-label">Repères</div>
-    <h2 class="section-title">Où en sont la plupart des gens — et là où ça devient intéressant.</h2>
-    <p class="section-lead">Deux rapports différents à l'IA. La plupart sont dans le premier — non pas que le second soit difficile, mais ils n'ont jamais vu à quoi ça ressemble de l'autre côté.</p>
+    <h2 class="section-title">Où en sont la plupart des gens, et là où ça devient intéressant.</h2>
+    <p class="section-lead">Deux rapports différents à l'IA. La plupart sont dans le premier, non pas que le second soit difficile, mais ils n'ont jamais vu à quoi ça ressemble de l'autre côté.</p>
 
     <div class="gap-grid">
       <div class="gap-card stuck" data-reveal>
@@ -635,7 +661,7 @@
         <div class="gap-stat">20%</div>
         <div class="gap-sub">travaillent avec l'IA</div>
         <div class="gap-headline">En ont fait un partenaire.</div>
-        <div class="gap-body">Elle garde le contexte de leurs projets. Résume leurs réunions. Pousse leur réflexion. Elle fait partie de leur façon de penser — pas juste quelque chose qu'on consulte de temps en temps.</div>
+        <div class="gap-body">Elle garde le contexte de leurs projets. Résume leurs réunions. Pousse leur réflexion. Elle fait partie de leur façon de penser, pas juste quelque chose qu'on consulte de temps en temps.</div>
       </div>
     </div>
 
@@ -644,7 +670,7 @@
       <div class="cost-items">
         <div class="cost-item">
           <div class="cost-amount">Plus d'espace</div>
-          <div class="cost-desc">Pas parce qu'on travaille moins — parce qu'on arrête de porter ce qui n'avait pas à l'être.</div>
+          <div class="cost-desc">Pas parce qu'on travaille moins, mais parce qu'on arrête de porter ce qui n'avait pas à l'être.</div>
         </div>
         <div class="cost-item">
           <div class="cost-amount">Les choses bougent</div>
@@ -667,11 +693,11 @@
 
     <p>Le basculement qui compte n'est pas entre N1 et N2. Il est au <strong>Niveau 3</strong>.</p>
 
-    <p>C'est là que l'IA cesse d'être un outil qu'on consulte et devient un véritable partenaire de réflexion. Là où les projets que vous portez rencontrent un second esprit. Là où les décisions que vous reportez se laissent enfin penser à voix haute — avec quelque chose qui écoute et qui répond.</p>
+    <p>C'est là que l'IA cesse d'être un outil qu'on consulte et devient un véritable partenaire de réflexion. Là où les projets que vous portez rencontrent un second esprit. Là où les décisions que vous reportez se laissent enfin penser à voix haute, avec quelque chose qui écoute et qui répond.</p>
 
-    <p>Le premier pas est souvent plus discret qu'on ne l'imagine. Mais ce qui change est d'une autre nature : <strong>pas «&nbsp;j'utilise mieux l'IA&nbsp;» — mais «&nbsp;je pense autrement&nbsp;».</strong></p>
+    <p>Le premier pas est souvent plus discret qu'on ne l'imagine. Mais ce qui change est d'une autre nature : <strong>pas «&nbsp;j'utilise mieux l'IA&nbsp;», mais «&nbsp;je pense autrement&nbsp;».</strong></p>
 
-    <p>Ce que ce travail veut dire concrètement : alléger une partie de ce que vous portez, faire avancer un projet qui attend depuis trop longtemps, et installer une vraie relation avec l'IA — pas un usage de temps en temps, mais une nouvelle façon de penser.</p>
+    <p>Ce que ce travail veut dire concrètement : alléger une partie de ce que vous portez, faire avancer un projet qui attend depuis trop longtemps, et installer une vraie relation avec l'IA, pas un usage de temps en temps, mais une nouvelle façon de penser.</p>
   </div>
 </div>
 
@@ -711,7 +737,21 @@
     config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
     calLink: "franksy/connect",
   });
-  Cal.ns.connect("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  Cal.ns.connect("ui", {
+    theme: "light",
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    cssVarsPerTheme: {
+      light: {
+        "cal-bg": "#F4F1EA",
+        "cal-bg-muted": "#EEEAE0",
+        "cal-bg-emphasis": "#EEEAE0",
+        "cal-brand": "#1B3A57",
+        "cal-text": "#1B3A57",
+        "cal-text-emphasis": "#1B3A57"
+      }
+    }
+  });
 </script>
 
 </body>

@@ -24,8 +24,6 @@
 
 <link rel="stylesheet" href="/styles.css">
 
-<!-- Cal.com embed loader -->
-<script defer src="https://app.cal.com/embed/embed.js"></script>
 </head>
 <body>
 
@@ -43,7 +41,7 @@
     <h1>La plupart des coachs IA vous apprennent à utiliser les outils. Moi, je vous aide à façonner un système qui fait tourner votre activité, et qui s'enrichit à chaque séance.</h1>
     <p class="sub">Coaching IA pour entrepreneurs et dirigeants de PME. Approche humaine. Livraison agentique. Un système qui vous reste.</p>
     <div class="hero-ctas">
-      <button class="btn-primary" data-cal-link="franksy/connect" data-cal-config='{"theme":"light"}'>Réserver un appel de 15 minutes</button>
+      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
       <a href="#process" class="link-secondary">Voir comment ça se passe</a>
     </div>
   </section>
@@ -138,6 +136,9 @@
     <blockquote class="calloutquote" style="margin-top: clamp(2.5rem, 5vw, 4rem);" data-reveal>
       C'est du coaching structurel, pas aspirationnel.
     </blockquote>
+    <div class="receive-cta" data-reveal>
+      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+    </div>
   </section>
 
   <!-- Section 4 — Who this is for -->
@@ -201,13 +202,10 @@
 </div>
       </div>
     </div>
-    <div class="steps-cta">
-      <button class="btn-primary" data-cal-link="franksy/connect" data-cal-config='{"theme":"light"}'>Réserver un appel de 15 minutes</button>
-    </div>
   </section>
 
   <!-- Section 6 — Cal.com booking -->
-  <section class="section-wide section-gap booking">
+  <section id="book" class="section-wide section-gap booking">
     <p class="booking-headline">Quand vous êtes prêt.</p>
     <div class="cal-inline-wrap" id="cal-inline"></div>
   </section>
@@ -263,23 +261,28 @@
   }
 
   // Cal.com inline embed
-  (function() {
-    function initCal() {
-      if (typeof Cal !== 'undefined') {
-        Cal('init', {origin: 'https://app.cal.com'});
-        Cal('inline', {
-          elementOrSelector: '#cal-inline',
-          calLink: 'franksy/connect',
-          config: {theme: 'light'}
-        });
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "connect", {origin:"https://app.cal.com"});
+  Cal.ns.connect("inline", {
+    elementOrSelector:"#cal-inline",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "franksy/connect",
+  });
+  Cal.ns.connect("ui", {
+    theme: "light",
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    cssVarsPerTheme: {
+      light: {
+        "cal-bg": "#F4F1EA",
+        "cal-bg-muted": "#EEEAE0",
+        "cal-bg-emphasis": "#EEEAE0",
+        "cal-brand": "#1B3A57",
+        "cal-text": "#1B3A57",
+        "cal-text-emphasis": "#1B3A57"
       }
     }
-    if (document.readyState === 'complete') {
-      initCal();
-    } else {
-      window.addEventListener('load', initCal);
-    }
-  })();
+  });
 </script>
 
 </body>

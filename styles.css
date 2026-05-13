@@ -601,15 +601,17 @@ p {
   font-size: 0.95rem;
 }
 
-.steps-cta {
+.steps-cta,
+.receive-cta {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  text-align: left;
 }
 
 /* ===== BOOKING (Section 6) ===== */
 
 .booking {
   text-align: center;
-  background: var(--card-bg);
+  background: var(--cream);
 }
 
 .booking-headline {
@@ -621,9 +623,10 @@ p {
 }
 
 .cal-inline-wrap {
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto;
-  min-height: 400px;
+  min-height: 720px;
+  background: var(--cream);
 }
 
 /* ===== ABOUT (Section 7) ===== */

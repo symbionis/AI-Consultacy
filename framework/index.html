@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 5 Levels of AI Fluency</title>
+<meta name="description" content="A reflective framework on the five levels of working with AI. Frank Sykes, Geneva.">
+<link rel="alternate" hreflang="en" href="/framework/">
+<link rel="alternate" hreflang="fr" href="/framework/fr/">
+
+<style>
+  :root {
+    --navy-deep: #0F1638;
+    --navy: #1E2761;
+    --navy-soft: #1A2050;
+    --ice: #D8E2F2;
+    --ice-dim: #95A3C9;
+    --gold: #C9A961;
+    --gold-soft: #A88B4F;
+    --white: #FFFFFF;
+    --muted: #6B7AA8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--navy-deep);
+    color: var(--ice);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+  }
+
+  ::selection { background: rgba(201, 169, 97, 0.3); color: var(--white); }
+
+  section {
+    padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3rem);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: clamp(4rem, 10vw, 7rem);
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+
+  .hero .sub {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ice-dim);
+    font-weight: 300;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+
+  /* ===== INTRO PROSE ===== */
+  .prose {
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .prose p {
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    color: var(--ice);
+    line-height: 1.75;
+    margin-bottom: 1.6rem;
+    max-width: 640px;
+    font-weight: 300;
+  }
+
+  .prose p strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    max-width: 600px;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--ice-dim);
+    max-width: 580px;
+    margin-bottom: 4rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ===== LEVELS ===== */
+  .levels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .level {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2.25rem 2.5rem;
+    background: rgba(30, 39, 97, 0.4);
+    border: 1px solid rgba(216, 226, 242, 0.08);
+    border-radius: 12px;
+    align-items: start;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 0.4s ease;
+  }
+  .level.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .level:hover {
+    border-color: rgba(201, 169, 97, 0.3);
+  }
+
+  .level-num {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    padding-top: 0.25em;
+  }
+
+  .level-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .level-name {
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+
+  .level-headline {
+    font-size: 1.1rem;
+    color: var(--ice);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .level-desc {
+    font-size: 0.96rem;
+    color: var(--ice-dim);
+    line-height: 1.7;
+    margin-top: 0.25rem;
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  @media (max-width: 600px) {
+    .level {
+      grid-template-columns: 60px 1fr;
+      gap: 1.2rem;
+      padding: 1.75rem 1.5rem;
+    }
+    .level-num { font-size: 1.3rem; }
+  }
+
+  /* ===== ORIENTATION (80/20) ===== */
+  .gap-wrap {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, #0a0f24 100%);
+    margin: 0;
+    max-width: none;
+    padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 3rem);
+  }
+  .gap-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .gap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 700px) { .gap-grid { grid-template-columns: 1fr; } }
+
+  .gap-card {
+    padding: 2.5rem;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .gap-card.visible { opacity: 1; transform: translateY(0); }
+  .gap-card.stuck {
+    background: rgba(30, 39, 97, 0.4);
+    border: 1px solid rgba(216, 226, 242, 0.08);
+  }
+  .gap-card.ahead {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+  }
+
+  .gap-stat {
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .gap-card.stuck .gap-stat { color: var(--ice); }
+  .gap-card.ahead .gap-stat { color: var(--navy-deep); }
+
+  .gap-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .gap-card.stuck .gap-sub { color: var(--ice-dim); }
+  .gap-card.ahead .gap-sub { color: var(--navy); opacity: 0.65; }
+
+  .gap-headline {
+    font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    margin-bottom: 1rem;
+  }
+  .gap-card.stuck .gap-headline { color: var(--white); }
+  .gap-card.ahead .gap-headline { color: var(--navy-deep); }
+
+  .gap-body {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .gap-card.stuck .gap-body { color: var(--ice); opacity: 0.85; }
+  .gap-card.ahead .gap-body { color: var(--navy); }
+
+  .cost-block {
+    margin: 3rem auto 0;
+    padding: 2rem 2.5rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(201, 169, 97, 0.05);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .cost-block.visible { opacity: 1; transform: translateY(0); }
+
+  .cost-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .cost-items { display: flex; flex-direction: column; gap: 1rem; }
+
+  .cost-item {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 1.25rem;
+    align-items: baseline;
+  }
+
+  .cost-amount {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+
+  .cost-desc {
+    color: var(--ice);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 600px) {
+    .cost-item { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+
+  /* ===== REFLECTION ===== */
+  .reflection {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, #0a0f24 100%);
+    margin: 0;
+    max-width: none;
+    padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .reflection-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .reflection p {
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    color: var(--ice);
+    line-height: 1.75;
+    margin-bottom: 1.6rem;
+    font-weight: 300;
+  }
+
+  .reflection p:last-child { margin-bottom: 0; }
+
+  .reflection p strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ===== STING ===== */
+  .sting {
+    text-align: center;
+    padding: clamp(7rem, 14vw, 11rem) clamp(1.5rem, 5vw, 3rem);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .sting-text {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .sting-text em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 4rem 1.5rem 5rem;
+    text-align: center;
+    border-top: 1px solid rgba(216, 226, 242, 0.08);
+    margin-top: 2rem;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer p {
+    font-size: 0.95rem;
+    color: var(--ice-dim);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+    font-weight: 300;
+  }
+
+  footer .signature {
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 1.2rem;
+    font-style: italic;
+  }
+
+  .lang-switch {
+    margin-top: 2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  .lang-switch a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .lang-switch a:hover {
+    border-bottom-color: var(--gold);
+  }
+
+  .lang-switch .sep {
+    color: var(--muted);
+    margin: 0 0.6rem;
+  }
+
+  .lang-switch .current {
+    color: var(--muted);
+  }
+
+  /* ===== LIGHT MODE ===== */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --navy-deep: #FAF7F0;
+      --navy: #1E2761;
+      --navy-soft: #EBE7DC;
+      --ice: #2A2F4D;
+      --ice-dim: #6B6F8A;
+      --gold: #997D3D;
+      --gold-soft: #BA9A57;
+      --muted: #9A95A8;
+    }
+    body { background: var(--navy-deep); color: var(--ice); }
+    .hero h1, .section-title, .level-name, .sting-text { color: var(--navy); }
+    .hero h1 em, .sting-text em { color: var(--gold); }
+    .prose p strong, .reflection p strong { color: var(--navy); }
+    .level { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
+    .level:hover { border-color: rgba(153, 125, 61, 0.3); }
+    .gap-wrap { background: linear-gradient(180deg, var(--navy-deep) 0%, #F2EEE2 100%); }
+    .gap-card.stuck { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
+    .gap-card.stuck .gap-stat, .gap-card.stuck .gap-headline { color: var(--navy); }
+    .gap-card.stuck .gap-body { color: var(--ice); }
+    .gap-card.stuck .gap-sub { color: var(--ice-dim); }
+    .cost-block { background: rgba(153, 125, 61, 0.08); }
+    .cost-amount { color: var(--navy); }
+    .cost-desc { color: var(--ice); }
+    .reflection {
+      background: linear-gradient(180deg, var(--navy-deep) 0%, #F2EEE2 100%);
+    }
+    footer { border-top-color: rgba(42, 47, 77, 0.1); }
+    ::selection { background: rgba(153, 125, 61, 0.25); color: var(--navy); }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="label">A reflective framework</div>
+  <h1>The 5 Levels of <em>AI Fluency.</em></h1>
+  <p class="sub">Five levels of fluency. Each more advanced than the last — and the right one depends on the work in front of you.</p>
+</section>
+
+<section class="prose">
+  <p>AI gets pitched as transformation. Most of what people actually want from it is quieter: <strong>a way to do the same work with less mental weight, and more room for what matters.</strong></p>
+
+  <p>Most people use AI at one level for some kinds of work, and another for others. That's normal — the right level depends on what you're trying to do. But the further you go, the more these tools become part of how you actually think.</p>
+</section>
+
+<section>
+  <div class="section-label">The five levels</div>
+  <h2 class="section-title">Each builds on what came before.</h2>
+  <p class="section-lead">Read them in order. The further you go, the more these tools shape how you work.</p>
+
+  <div class="levels">
+
+    <div class="level" data-reveal>
+      <div class="level-num">L1</div>
+      <div class="level-content">
+        <div class="level-name">Better questions</div>
+        <div class="level-headline">Use AI instead of search when the answer needs judgment.</div>
+        <div class="level-desc">For anything where the right answer depends on context, comparison, or your particular situation — not facts that can be looked up, but questions that need to be thought through.</div>
+      </div>
+    </div>
+
+    <div class="level" data-reveal>
+      <div class="level-num">L2</div>
+      <div class="level-content">
+        <div class="level-name">Less weight</div>
+        <div class="level-headline">Take some load off the daily work.</div>
+        <div class="level-desc">Voice notes instead of typing. Meetings captured so you don't have to write them up. Conversations that hold the context of your projects, so you can pick up where you left off without re-explaining everything from scratch.</div>
+      </div>
+    </div>
+
+    <div class="level" data-reveal>
+      <div class="level-num">L3</div>
+      <div class="level-content">
+        <div class="level-name">Thinking partner</div>
+        <div class="level-headline">A second mind, available when you need one.</div>
+        <div class="level-desc">For ideas you've been carrying. For decisions that deserve more thought than they're getting. For working things out, out loud, with something that listens and pushes back. The work doesn't always need a person — sometimes it just needs the right kind of attention.</div>
+      </div>
+    </div>
+
+    <div class="level" data-reveal>
+      <div class="level-num">L4</div>
+      <div class="level-content">
+        <div class="level-name">Tools that fit</div>
+        <div class="level-headline">Build things shaped to your work.</div>
+        <div class="level-desc">Not the generic app everyone uses. A tool designed for exactly how you actually operate — your invoicing, your bookings, your particular shape of project — without needing to know how to code.</div>
+      </div>
+    </div>
+
+    <div class="level" data-reveal>
+      <div class="level-num">L5</div>
+      <div class="level-content">
+        <div class="level-name">Personal agents</div>
+        <div class="level-headline">Work that takes care of itself.</div>
+        <div class="level-desc">AI that observes, decides, and acts in the background. Not assisting you turn by turn — running on its own. For the recurring work that doesn't need your attention to happen, just your judgment when something unusual comes up.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gap-wrap">
+  <div class="gap-inner">
+    <div class="section-label">Orientation</div>
+    <h2 class="section-title">Where most people are — and where it gets interesting.</h2>
+    <p class="section-lead">Two different relationships with AI. Most people are in the first one — not because the second is hard, but because they haven't seen what it looks like from the inside.</p>
+
+    <div class="gap-grid">
+      <div class="gap-card stuck" data-reveal>
+        <div class="gap-stat">80%</div>
+        <div class="gap-sub">of professionals</div>
+        <div class="gap-headline">Treat AI as a tool.</div>
+        <div class="gap-body">Use it occasionally, for one-off questions. Like a faster search engine. Helpful, but the work mostly stays the same shape, done in mostly the same way.</div>
+      </div>
+
+      <div class="gap-card ahead" data-reveal>
+        <div class="gap-stat">20%</div>
+        <div class="gap-sub">work alongside AI</div>
+        <div class="gap-headline">Treat AI as a thinking partner.</div>
+        <div class="gap-body">It holds the context of their projects. Captures their meetings. Pushes back on their ideas. It becomes part of how they think — not just something they consult.</div>
+      </div>
+    </div>
+
+    <div class="cost-block" data-reveal>
+      <div class="cost-label">What changes when you cross over</div>
+      <div class="cost-items">
+        <div class="cost-item">
+          <div class="cost-amount">More room</div>
+          <div class="cost-desc">Not because you work less — because you stop carrying what doesn't need carrying.</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-amount">Things move</div>
+          <div class="cost-desc">Projects you've been holding. Decisions you've been putting off. They start having a place to happen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reflection">
+  <div class="reflection-inner">
+    <div class="section-label">The shift</div>
+    <h2 class="section-title">Where the real shift happens.</h2>
+
+    <p>The meaningful shift isn't between L1 and L2. It's at <strong>Level 3</strong>.</p>
+
+    <p>This is where AI stops being a tool you reach for and becomes a thinking partner you work with. Where the projects you've been carrying meet a second mind. Where the decisions you've been putting off finally get worked through — out loud, with something that listens and pushes back.</p>
+
+    <p>The first step is usually quieter than people expect. But what changes is qualitative, not incremental: <strong>not "I use AI more" — "I think differently now."</strong></p>
+
+    <p>What this work usually looks like: clearing some of the clutter you've been carrying, activating one project that's been waiting, and building a real working relationship with AI as a thinking partner — not occasionally, but as part of how you actually think.</p>
+  </div>
+</div>
+
+<section class="sting">
+  <p class="sting-text">Less clutter. <em>More presence.</em><br>That's the work.</p>
+</section>
+
+<footer>
+  <p>If something here resonated, that's where the conversation continues.</p>
+  <p class="signature">Frank Sykes &middot; Geneva</p>
+  <p class="lang-switch"><span class="current">EN</span><span class="sep">/</span><a href="/framework/fr/" hreflang="fr">FR</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>

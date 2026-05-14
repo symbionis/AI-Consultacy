@@ -181,3 +181,51 @@ describe('U4 — about and framework pages (EN + FR)', () => {
     }
   });
 });
+
+describe('U5 — generated sitemap', () => {
+  const allRoutes = [
+    'https://symbionis.ac/',
+    'https://symbionis.ac/about/',
+    'https://symbionis.ac/framework/',
+    'https://symbionis.ac/fr/',
+    'https://symbionis.ac/fr/about/',
+    'https://symbionis.ac/fr/framework/',
+  ];
+
+  it('sitemap-index.xml references the URL set', () => {
+    expect(existsSync('dist/sitemap-index.xml')).toBe(true);
+    const index = readFileSync('dist/sitemap-index.xml', 'utf-8');
+    expect(index).toContain('sitemap-0.xml');
+  });
+
+  it('lists every page route', () => {
+    const sitemap = readFileSync('dist/sitemap-0.xml', 'utf-8');
+    for (const url of allRoutes) {
+      expect(sitemap).toContain(`<loc>${url}</loc>`);
+    }
+  });
+
+  it('emits en/fr hreflang alternates for each entry', () => {
+    const sitemap = readFileSync('dist/sitemap-0.xml', 'utf-8');
+    const entries = sitemap.match(/<url>.*?<\/url>/gs) ?? [];
+    expect(entries.length).toBe(allRoutes.length);
+    for (const entry of entries) {
+      expect(entry).toContain('hreflang="en"');
+      expect(entry).toContain('hreflang="fr"');
+    }
+  });
+
+  it('robots.txt points at the generated sitemap index', () => {
+    const robots = readFileSync('dist/robots.txt', 'utf-8');
+    expect(robots).toContain('Sitemap: https://symbionis.ac/sitemap-index.xml');
+  });
+
+  it('carries the Cloudflare edge config into the build output', () => {
+    expect(existsSync('dist/_headers')).toBe(true);
+    expect(existsSync('dist/_redirects')).toBe(true);
+    const redirects = readFileSync('dist/_redirects', 'utf-8');
+    // both legacy framework redirect rules are preserved
+    expect(redirects).toContain('/framework/fr/');
+    expect(redirects).toContain('/framework/fr/*');
+  });
+});

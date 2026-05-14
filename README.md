@@ -1,67 +1,108 @@
 # Symbionis — AI Coaching Practice
 
-Bilingual site (EN/FR) for Frank Sykes' AI coaching practice. Static HTML + CSS, no build step. Deployed to Cloudflare Pages on `symbionis.ac`.
+Bilingual site (EN/FR) for Frank Sykes' AI coaching practice. Built with
+[Astro](https://astro.build) (static output), deployed to Cloudflare Workers
+static assets on `symbionis.ac`.
+
+## Quick start
+
+```sh
+npm install
+npm run dev       # local dev server
+npm run build     # static build → dist/
+npm run preview   # preview the built site
+npm run check     # astro check (types + templates)
+npm test          # build, then run build-output assertion tests
+```
+
+Requires Node 22 (see `.nvmrc`).
 
 ## Structure
 
 ```
 .
-├── index.html              EN homepage (root)
-├── fr/
-│   └── index.html          FR homepage
-├── styles.css              Shared stylesheet
-├── favicon.svg             Gold "S" on navy
-├── og-image.png            Open Graph image (to be created)
-├── framework/              Legacy five-levels page
-│   ├── index.html          EN five-levels
-│   └── fr/
-│       └── index.html      FR five-levels
-├── _headers                Cloudflare Pages headers
-├── robots.txt
-├── sitemap.xml
-└── README.md
+├── astro.config.mjs        Astro config — i18n, sitemap, static output
+├── wrangler.jsonc          Cloudflare Workers static-assets config
+├── src/
+│   ├── pages/              One .astro file per route
+│   │   ├── index.astro         /            (EN home)
+│   │   ├── about.astro         /about/      (EN about)
+│   │   ├── framework.astro     /framework/  (EN five levels)
+│   │   └── fr/                 /fr/* mirror (FR pages)
+│   ├── layouts/Layout.astro   Shared <head>, nav, footer, scripts
+│   ├── components/            Nav, Footer, LangSwitch, CalEmbed
+│   ├── i18n/ui.ts             Shared UI strings + URL helpers
+│   ├── styles/
+│   │   ├── global.css         Home + about pages
+│   │   └── framework.css      Framework pages (own dark-theme design)
+│   └── content.config.ts      Reserved blog collection (see Blog, below)
+├── public/                 Served as-is: _headers, _redirects, robots.txt,
+│                           favicon.svg, lang.js, images
+└── tests/                  Build-output assertion tests (Vitest)
 ```
+
+## Internationalisation
+
+Uses Astro's built-in i18n: `en` is the default locale served unprefixed at
+`/`, `fr` is served under `/fr/`. Pages are authored per locale —
+`src/pages/about.astro` and `src/pages/fr/about.astro` — both rendering through
+the shared `Layout`, which generates the canonical link, reciprocal `hreflang`
+alternates (including `x-default`), Open Graph, Twitter, and JSON-LD tags from
+the page's `locale` and `pathKey` props.
 
 ## Editing content
 
-- **Text changes:** edit `index.html` (EN) or `fr/index.html` (FR) directly. No rebuild needed.
-- **Styles:** edit `styles.css` — shared by both language pages.
-- **FR pending copy:** search for `<!-- FR copy pending -->` in `fr/index.html` to find sections awaiting native French text.
+- **Text changes:** edit the relevant `.astro` file in `src/pages/`. EN and FR
+  are separate files.
+- **Shared chrome** (nav labels, footer): `src/i18n/ui.ts`.
+- **Styles:** `src/styles/global.css` (home + about) or
+  `src/styles/framework.css` (framework pages).
+- **FR pending copy:** search for `FR copy pending` in `src/pages/fr/` — these
+  are source-only comments marking sections awaiting native French text.
 
 ## Cal.com integration
 
-Two embed types, both powered by `embed.js` (loaded once via `<script defer>`):
+The `CalEmbed` component renders the Cal.com inline booking widget. The
+homepages use element id `cal-inline`; the framework pages use
+`my-cal-inline-connect`. To change the event, update `calLink` in
+`src/components/CalEmbed.astro`.
 
-- **Popover:** any `<button>` with `data-cal-link="franksy/connect"` opens the booking modal on click.
-- **Inline:** the `#cal-inline` container in Section 6 renders the booking widget directly on the page.
+## SEO
 
-To change the event slug, update `data-cal-link` attributes and the `calLink` value in the inline init script.
-
-## Fonts
-
-Source Serif 4 (serif headlines) and Inter (body) loaded from Google Fonts with `display=swap`. Non-render-blocking.
+`sitemap.xml` is generated at build time by `@astrojs/sitemap` (output:
+`sitemap-index.xml` + `sitemap-0.xml`) with `en`/`fr` `hreflang` alternates per
+URL. `x-default` is emitted in each page's HTML `<head>` rather than the
+sitemap. `robots.txt` (in `public/`) points at `sitemap-index.xml`.
 
 ## Deploy
 
-Cloudflare Pages, connected to this Git repo:
-- **Build command:** *(none)*
-- **Build output directory:** `/`
-- **Production branch:** `main` → `symbionis.ac`
-- **Preview branches:** auto-deploy to `*.pages.dev`
+Cloudflare Workers static assets — `wrangler.jsonc` serves the `dist/` build
+output. A build step is now required before deploy:
 
-## Adding Frank's portrait
+```sh
+npm run build
+npx wrangler deploy
+```
 
-1. Place the image at `frank-portrait.jpg` in the repo root (or `/public/` if the structure changes).
-2. In both `index.html` and `fr/index.html`, replace the `.portrait-placeholder` div with:
-   ```html
-   <img src="/frank-portrait.jpg" alt="Frank Sykes" class="portrait-img" width="560" height="700" loading="lazy">
-   ```
+Or connect the repo to **Cloudflare Workers Builds** so `npm run build` runs on
+every push to `main` → `symbionis.ac`.
+
+`public/_headers` and `public/_redirects` are copied into `dist/` and applied at
+the edge — security headers, cache rules (including an `immutable` rule for
+hashed `/_astro/*` assets), and the legacy `/framework/fr/` → `/fr/framework/`
+redirects.
+
+## Blog (planned)
+
+`src/content.config.ts` defines a reserved `blog` content collection for a
+follow-up plan: an [Outrank](https://www.outrank.so) API Webhook integration
+that publishes articles into `src/content/blog/`. Not yet wired up — the
+collection is intentionally empty.
 
 ## URLs
 
 | Path | Content |
 |---|---|
-| `/` | EN homepage |
-| `/fr/` | FR homepage |
-| `/framework/` | Legacy five-levels page (EN) |
-| `/framework/fr/` | Legacy five-levels page (FR) |
+| `/` · `/fr/` | Homepage |
+| `/about/` · `/fr/about/` | About Frank |
+| `/framework/` · `/fr/framework/` | The Five Levels of AI |

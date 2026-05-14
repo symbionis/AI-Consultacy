@@ -170,6 +170,15 @@ p {
   flex-wrap: wrap;
 }
 
+.hero-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--navy);
+  line-height: 1.6;
+  margin-top: 2.5rem;
+}
+
 /* ===== BUTTONS ===== */
 
 .btn-primary {

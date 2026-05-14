@@ -100,6 +100,13 @@ describe('U3 — homepages (EN + FR)', () => {
     );
   });
 
+  it('the FR homepage emits Open Graph locale tags for the FR locale', () => {
+    const og = (prop: string) =>
+      dist('fr/index.html').querySelector(`meta[property="${prop}"]`)?.getAttribute('content');
+    expect(og('og:locale')).toBe('fr_FR');
+    expect(og('og:locale:alternate')).toBe('en_US');
+  });
+
   it('EN and FR homepages carry reciprocal hreflang alternates', () => {
     for (const path of ['index.html', 'fr/index.html']) {
       expectReciprocalHreflang(dist(path), 'https://symbionis.ac/', 'https://symbionis.ac/fr/');
@@ -114,6 +121,21 @@ describe('U3 — homepages (EN + FR)', () => {
       expect(html).toContain('app.cal.com/embed/embed.js');
       expect(html).toContain('franksy/connect');
     }
+  });
+
+  it('the lang-switch links to the other-locale homepage on each homepage', () => {
+    const checkSwitches = (path: string, href: string, hreflang: string) => {
+      const links = dist(path)
+        .querySelectorAll('.lang-switch a')
+        .map((a) => [a.getAttribute('href'), a.getAttribute('hreflang')]);
+      expect(links.length).toBeGreaterThan(0);
+      for (const [linkHref, linkHreflang] of links) {
+        expect(linkHref).toBe(href);
+        expect(linkHreflang).toBe(hreflang);
+      }
+    };
+    checkSwitches('index.html', '/fr/', 'fr');
+    checkSwitches('fr/index.html', '/', 'en');
   });
 
   it('the about-teaser link is locale-correct on each homepage', () => {
@@ -161,9 +183,20 @@ describe('U4 — about and framework pages (EN + FR)', () => {
     }
   });
 
-  it('about pages mark the active nav link with aria-current', () => {
-    for (const path of ['about/index.html', 'fr/about/index.html']) {
+  it('about and framework pages mark exactly one active nav link with aria-current', () => {
+    for (const path of [
+      'about/index.html',
+      'fr/about/index.html',
+      'framework/index.html',
+      'fr/framework/index.html',
+    ]) {
       expect(dist(path).querySelectorAll('.site-nav a[aria-current="page"]').length).toBe(1);
+    }
+  });
+
+  it('homepages mark no nav link with aria-current', () => {
+    for (const path of ['index.html', 'fr/index.html']) {
+      expect(dist(path).querySelectorAll('.site-nav a[aria-current="page"]').length).toBe(0);
     }
   });
 });
@@ -188,6 +221,17 @@ describe('U5 — generated sitemap', () => {
       expect(entry).toContain('hreflang="en"');
       expect(entry).toContain('hreflang="fr"');
     }
+
+    // For a known route pair, assert the alternates carry the correct
+    // reciprocal href — not just that the hreflang attribute is present.
+    const aboutEntry = entries.find((e) => e.includes('<loc>https://symbionis.ac/about/</loc>'));
+    expect(aboutEntry).toBeDefined();
+    expect(aboutEntry).toContain(
+      '<xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/about/"/>',
+    );
+    expect(aboutEntry).toContain(
+      '<xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/about/"/>',
+    );
   });
 
   it('robots.txt points at the generated sitemap index', () => {
@@ -200,8 +244,10 @@ describe('U5 — generated sitemap', () => {
     expect(existsSync('dist/_headers')).toBe(true);
     expect(existsSync('dist/_redirects')).toBe(true);
     const redirects = readFileSync('dist/_redirects', 'utf-8');
-    // both legacy framework redirect rules are preserved
-    expect(redirects).toContain('/framework/fr/');
-    expect(redirects).toContain('/framework/fr/*');
+    // both legacy framework redirect rules are preserved — matched as whole
+    // rule lines so neither can be dropped without failing the test (the bare
+    // rule is a substring of the wildcard rule).
+    expect(redirects).toMatch(/^\/framework\/fr\/\s+\/fr\/framework\/\s+301/m);
+    expect(redirects).toMatch(/^\/framework\/fr\/\*\s+\/fr\/framework\/\s+301/m);
   });
 });

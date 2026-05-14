@@ -1,19 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { FRANK_REF } from '../i18n/ui';
+import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
 import '../styles/global.css';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   ...FRANK_REF,
-  url: 'https://symbionis.ac/about/',
-  image: 'https://symbionis.ac/frank-sykes.jpg',
+  url: pageUrl('en', 'about'),
+  image: `${SITE}/frank-sykes.jpg`,
   jobTitle: 'AI coach',
   email: 'frank@syks.co',
   sameAs: ['https://linkedin.com/in/franksykes'],
   worksFor: {
     '@type': 'ProfessionalService',
-    '@id': 'https://symbionis.ac/#practice',
+    '@id': `${SITE}/#practice`,
     name: 'Symbionis',
   },
 };

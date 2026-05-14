@@ -1,16 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalEmbed from '../components/CalEmbed.astro';
-import { FRANK_REF } from '../i18n/ui';
+import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
 import '../styles/global.css';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  '@id': 'https://symbionis.ac/#practice',
+  '@id': `${SITE}/#practice`,
   name: 'Symbionis',
-  url: 'https://symbionis.ac/',
-  image: 'https://symbionis.ac/og-image.png',
+  url: pageUrl('en', ''),
+  image: `${SITE}/og-image.png`,
   description: 'AI coaching for entrepreneurs and small teams.',
   email: 'frank@syks.co',
   areaServed: 'Worldwide',

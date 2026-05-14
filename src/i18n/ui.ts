@@ -7,6 +7,9 @@
 
 export type Locale = 'en' | 'fr';
 
+/** Locale-agnostic page identifier — the closed set of routes the site chrome knows about. */
+export type PathKey = '' | 'about' | 'framework';
+
 export const SITE = 'https://symbionis.ac';
 
 export const ui = {
@@ -28,14 +31,14 @@ export function otherLocale(locale: Locale): Locale {
 }
 
 /** Root-relative path for a page in a given locale, e.g. ('fr', 'about') → '/fr/about/'. */
-export function pagePath(locale: Locale, pathKey: string): string {
+export function pagePath(locale: Locale, pathKey: PathKey): string {
   const prefix = locale === 'fr' ? '/fr/' : '/';
   const suffix = pathKey ? `${pathKey}/` : '';
   return `${prefix}${suffix}`;
 }
 
 /** Absolute URL for a page in a given locale, used for canonical / hreflang / og:url. */
-export function pageUrl(locale: Locale, pathKey: string): string {
+export function pageUrl(locale: Locale, pathKey: PathKey): string {
   return `${SITE}${pagePath(locale, pathKey)}`;
 }
 
@@ -43,6 +46,6 @@ export function pageUrl(locale: Locale, pathKey: string): string {
  *  (framework pages) across the page JSON-LD blocks. */
 export const FRANK_REF = {
   '@type': 'Person',
-  '@id': 'https://symbionis.ac/about/#frank',
+  '@id': `${SITE}/about/#frank`,
   name: 'Frank Sykes',
 } as const;

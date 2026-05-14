@@ -35,6 +35,18 @@ export default defineConfig({
           fr: 'fr',
         },
       },
+      // The i18n option emits en/fr alternates but no x-default and no lastmod.
+      // Add both so the generated sitemap matches the alternate coverage of the
+      // old hand-maintained sitemap.xml: x-default points at the EN URL, and
+      // lastmod is stamped at build time.
+      serialize(item) {
+        const enLink = item.links?.find((l) => l.lang === 'en');
+        if (item.links && enLink && !item.links.some((l) => l.lang === 'x-default')) {
+          item.links.push({ lang: 'x-default', url: enLink.url });
+        }
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
     }),
   ],
 });

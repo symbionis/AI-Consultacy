@@ -2,11 +2,11 @@
 // The EN / FR switch shown in the nav and footer. The link points at the
 // current page's counterpart in the other locale — `lang.js` reads the
 // `hreflang` attribute to remember an explicit choice.
-import { pagePath, otherLocale, type Locale } from '../i18n/ui';
+import { pagePath, otherLocale, type Locale, type PathKey } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
-  pathKey: string;
+  pathKey: PathKey;
 }
 
 const { locale, pathKey } = Astro.props;

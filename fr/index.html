@@ -3,670 +3,331 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Les 5 Niveaux de Maîtrise de l'IA</title>
-<meta name="description" content="Un cadre de réflexion sur les cinq niveaux de travail avec l'IA. Frank Sykes, Genève.">
-<link rel="alternate" hreflang="en" href="/">
-<link rel="alternate" hreflang="fr" href="/fr/">
+<title>Symbionis — Coaching IA pour entrepreneurs et petites équipes</title>
+<meta name="description" content="Coaching IA pour entrepreneurs et petites équipes. Moins de poids, plus de place, un second esprit qui pense avec vous, sans bousculer votre travail.">
+<link rel="canonical" href="https://symbionis.ac/fr/">
+<link rel="alternate" hreflang="en" href="https://symbionis.ac/">
+<link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/">
+<link rel="alternate" hreflang="x-default" href="https://symbionis.ac/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script src="/lang.js" defer></script>
 
-<style>
-  :root {
-    --navy-deep: #0F1638;
-    --navy: #1E2761;
-    --navy-soft: #1A2050;
-    --ice: #D8E2F2;
-    --ice-dim: #95A3C9;
-    --gold: #C9A961;
-    --gold-soft: #A88B4F;
-    --white: #FFFFFF;
-    --muted: #6B7AA8;
-  }
+<!-- Open Graph -->
+<meta property="og:title" content="Symbionis — Coaching IA pour entrepreneurs et petites équipes">
+<meta property="og:description" content="Coaching IA pour entrepreneurs et petites équipes. Moins de poids, plus de place, un second esprit qui pense avec vous, sans bousculer votre travail.">
+<meta property="og:url" content="https://symbionis.ac/fr/">
+<meta property="og:image" content="https://symbionis.ac/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: var(--navy-deep);
-    color: var(--ice);
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 300;
-  }
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Symbionis — Coaching IA pour entrepreneurs et petites équipes">
+<meta name="twitter:description" content="Coaching IA pour entrepreneurs et petites équipes. Moins de poids, plus de place, un second esprit qui pense avec vous, sans bousculer votre travail.">
+<meta name="twitter:image" content="https://symbionis.ac/og-image.png">
 
-  ::selection { background: rgba(201, 169, 97, 0.3); color: var(--white); }
-
-  section {
-    padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3rem);
-    max-width: 760px;
-    margin: 0 auto;
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://symbionis.ac/#practice",
+  "name": "Symbionis",
+  "url": "https://symbionis.ac/",
+  "image": "https://symbionis.ac/og-image.png",
+  "description": "Coaching IA pour les entrepreneurs et les petites équipes.",
+  "email": "frank@syks.co",
+  "areaServed": "Worldwide",
+  "availableLanguage": ["en", "fr"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Geneva",
+    "addressCountry": "CH"
+  },
+  "founder": {
+    "@type": "Person",
+    "@id": "https://symbionis.ac/about/#frank",
+    "name": "Frank Sykes"
   }
-
-  /* ===== HERO ===== */
-  .hero {
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: clamp(4rem, 10vw, 7rem);
-    position: relative;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--gold);
-    opacity: 0.7;
-  }
-
-  .label {
-    font-size: 0.72rem;
-    font-weight: 400;
-    letter-spacing: 0.32em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    font-style: italic;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.08;
-    color: var(--white);
-    margin-bottom: 2rem;
-    max-width: 700px;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--gold);
-  }
-
-  .hero .sub {
-    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-    color: var(--ice-dim);
-    font-weight: 300;
-    max-width: 540px;
-    line-height: 1.6;
-  }
-
-  /* ===== INTRO PROSE ===== */
-  .prose {
-    padding-top: clamp(3rem, 6vw, 5rem);
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-  }
-
-  .prose p {
-    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-    color: var(--ice);
-    line-height: 1.75;
-    margin-bottom: 1.6rem;
-    max-width: 640px;
-    font-weight: 300;
-  }
-
-  .prose p strong {
-    color: var(--white);
-    font-weight: 500;
-  }
-
-  /* ===== SECTION HEADER ===== */
-  .section-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.32em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    font-style: italic;
-    font-weight: 400;
-  }
-
-  .section-title {
-    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin-bottom: 1.25rem;
-    max-width: 600px;
-  }
-
-  .section-lead {
-    font-size: 1.05rem;
-    color: var(--ice-dim);
-    max-width: 580px;
-    margin-bottom: 4rem;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* ===== LEVELS ===== */
-  .levels {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .level {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 2rem;
-    padding: 2.25rem 2.5rem;
-    background: rgba(30, 39, 97, 0.4);
-    border: 1px solid rgba(216, 226, 242, 0.08);
-    border-radius: 12px;
-    align-items: start;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
-                transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
-                border-color 0.4s ease;
-  }
-  .level.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .level:hover {
-    border-color: rgba(201, 169, 97, 0.3);
-  }
-
-  .level-num {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--gold);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    padding-top: 0.25em;
-  }
-
-  .level-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  .level-name {
-    font-size: 1.45rem;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: -0.015em;
-    line-height: 1.25;
-  }
-
-  .level-headline {
-    font-size: 1.1rem;
-    color: var(--ice);
-    line-height: 1.5;
-    font-weight: 400;
-  }
-
-  .level-desc {
-    font-size: 0.96rem;
-    color: var(--ice-dim);
-    line-height: 1.7;
-    margin-top: 0.25rem;
-    font-weight: 300;
-    max-width: 560px;
-  }
-
-  @media (max-width: 600px) {
-    .level {
-      grid-template-columns: 60px 1fr;
-      gap: 1.2rem;
-      padding: 1.75rem 1.5rem;
-    }
-    .level-num { font-size: 1.3rem; }
-  }
-
-  /* ===== ORIENTATION (80/20) ===== */
-  .gap-wrap {
-    background: linear-gradient(180deg, var(--navy-deep) 0%, #0a0f24 100%);
-    margin: 0;
-    max-width: none;
-    padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 3rem);
-  }
-  .gap-inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-  .gap-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  @media (max-width: 700px) { .gap-grid { grid-template-columns: 1fr; } }
-
-  .gap-card {
-    padding: 2.5rem;
-    border-radius: 12px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1),
-                transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-  .gap-card.visible { opacity: 1; transform: translateY(0); }
-  .gap-card.stuck {
-    background: rgba(30, 39, 97, 0.4);
-    border: 1px solid rgba(216, 226, 242, 0.08);
-  }
-  .gap-card.ahead {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
-  }
-
-  .gap-stat {
-    font-size: clamp(3rem, 7vw, 4.5rem);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-  }
-  .gap-card.stuck .gap-stat { color: var(--ice); }
-  .gap-card.ahead .gap-stat { color: var(--navy-deep); }
-
-  .gap-sub {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    margin-bottom: 1.75rem;
-    font-style: italic;
-    font-weight: 400;
-  }
-  .gap-card.stuck .gap-sub { color: var(--ice-dim); }
-  .gap-card.ahead .gap-sub { color: var(--navy); opacity: 0.65; }
-
-  .gap-headline {
-    font-size: clamp(1.3rem, 2.2vw, 1.55rem);
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
-    margin-bottom: 1rem;
-  }
-  .gap-card.stuck .gap-headline { color: var(--white); }
-  .gap-card.ahead .gap-headline { color: var(--navy-deep); }
-
-  .gap-body {
-    font-size: 0.98rem;
-    line-height: 1.65;
-    font-weight: 300;
-  }
-  .gap-card.stuck .gap-body { color: var(--ice); opacity: 0.85; }
-  .gap-card.ahead .gap-body { color: var(--navy); }
-
-  .cost-block {
-    margin: 3rem auto 0;
-    padding: 2rem 2.5rem;
-    border-left: 2px solid var(--gold);
-    background: rgba(201, 169, 97, 0.05);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  .cost-block.visible { opacity: 1; transform: translateY(0); }
-
-  .cost-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.25rem;
-    font-style: italic;
-    font-weight: 400;
-  }
-
-  .cost-items { display: flex; flex-direction: column; gap: 1rem; }
-
-  .cost-item {
-    display: grid;
-    grid-template-columns: 170px 1fr;
-    gap: 1.25rem;
-    align-items: baseline;
-  }
-
-  .cost-amount {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--white);
-    font-style: italic;
-    letter-spacing: -0.01em;
-  }
-
-  .cost-desc {
-    color: var(--ice);
-    font-weight: 300;
-    line-height: 1.65;
-  }
-
-  @media (max-width: 600px) {
-    .cost-item { grid-template-columns: 1fr; gap: 0.4rem; }
-  }
-
-  /* ===== REFLECTION ===== */
-  .reflection {
-    background: linear-gradient(180deg, var(--navy-deep) 0%, #0a0f24 100%);
-    margin: 0;
-    max-width: none;
-    padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3rem);
-  }
-
-  .reflection-inner {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .reflection p {
-    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-    color: var(--ice);
-    line-height: 1.75;
-    margin-bottom: 1.6rem;
-    font-weight: 300;
-  }
-
-  .reflection p:last-child { margin-bottom: 0; }
-
-  .reflection p strong {
-    color: var(--white);
-    font-weight: 500;
-  }
-
-  /* ===== STING ===== */
-  .sting {
-    text-align: center;
-    padding: clamp(7rem, 14vw, 11rem) clamp(1.5rem, 5vw, 3rem);
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .sting-text {
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    max-width: 580px;
-    margin: 0 auto;
-  }
-
-  .sting-text em {
-    font-style: italic;
-    color: var(--gold);
-    font-weight: 400;
-  }
-
-  /* ===== FOOTER ===== */
-  footer {
-    padding: 4rem 1.5rem 5rem;
-    text-align: center;
-    border-top: 1px solid rgba(216, 226, 242, 0.08);
-    margin-top: 2rem;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  footer p {
-    font-size: 0.95rem;
-    color: var(--ice-dim);
-    line-height: 1.6;
-    margin-bottom: 0.4rem;
-    font-weight: 300;
-  }
-
-  footer .signature {
-    font-size: 0.85rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-top: 1.2rem;
-    font-style: italic;
-  }
-
-  .lang-switch-top {
-    position: fixed;
-    top: 1.25rem;
-    right: clamp(1.5rem, 5vw, 3rem);
-    z-index: 100;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-style: italic;
-  }
-  .lang-switch-top a {
-    color: var(--gold);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-  .lang-switch-top a:hover {
-    border-bottom-color: var(--gold);
-  }
-  .lang-switch-top .sep {
-    color: var(--muted);
-    margin: 0 0.5rem;
-  }
-  .lang-switch-top .current {
-    color: var(--muted);
-  }
-
-  .lang-switch {
-    margin-top: 2rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-style: italic;
-  }
-
-  .lang-switch a {
-    color: var(--gold);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-
-  .lang-switch a:hover {
-    border-bottom-color: var(--gold);
-  }
-
-  .lang-switch .sep {
-    color: var(--muted);
-    margin: 0 0.6rem;
-  }
-
-  .lang-switch .current {
-    color: var(--muted);
-  }
-
-  /* ===== LIGHT MODE ===== */
-  @media (prefers-color-scheme: light) {
-    :root {
-      --navy-deep: #FAF7F0;
-      --navy: #1E2761;
-      --navy-soft: #EBE7DC;
-      --ice: #2A2F4D;
-      --ice-dim: #6B6F8A;
-      --gold: #997D3D;
-      --gold-soft: #BA9A57;
-      --muted: #9A95A8;
-    }
-    body { background: var(--navy-deep); color: var(--ice); }
-    .hero h1, .section-title, .level-name, .sting-text { color: var(--navy); }
-    .hero h1 em, .sting-text em { color: var(--gold); }
-    .prose p strong, .reflection p strong { color: var(--navy); }
-    .level { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
-    .level:hover { border-color: rgba(153, 125, 61, 0.3); }
-    .gap-wrap { background: linear-gradient(180deg, var(--navy-deep) 0%, #F2EEE2 100%); }
-    .gap-card.stuck { background: var(--white); border-color: rgba(42, 47, 77, 0.06); }
-    .gap-card.stuck .gap-stat, .gap-card.stuck .gap-headline { color: var(--navy); }
-    .gap-card.stuck .gap-body { color: var(--ice); }
-    .gap-card.stuck .gap-sub { color: var(--ice-dim); }
-    .cost-block { background: rgba(153, 125, 61, 0.08); }
-    .cost-amount { color: var(--navy); }
-    .cost-desc { color: var(--ice); }
-    .reflection {
-      background: linear-gradient(180deg, var(--navy-deep) 0%, #F2EEE2 100%);
-    }
-    footer { border-top-color: rgba(42, 47, 77, 0.1); }
-    ::selection { background: rgba(153, 125, 61, 0.25); color: var(--navy); }
-  }
-</style>
-<script>
-  if (!sessionStorage.getItem('lang_override') && !/^fr\b/i.test(navigator.language)) {
-    window.location.replace('/');
-  }
+}
 </script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/styles.css">
+
 </head>
 <body>
 
-<nav class="lang-switch-top"><a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span></nav>
-
-<section class="hero">
-  <div class="label">Un cadre de réflexion</div>
-  <h1>Les 5 Niveaux de <em>Maîtrise de l'IA.</em></h1>
-  <p class="sub">Cinq niveaux de maîtrise. Chacun plus avancé que le précédent — le bon, c'est celui qui correspond au travail devant vous.</p>
-</section>
-
-<section class="prose">
-  <p>On nous présente l'IA comme une révolution. En réalité, ce que la plupart cherchent est plus discret : <strong>faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.</strong></p>
-
-  <p>Selon le travail qu'on fait, on est à un niveau ou à un autre — c'est normal. Le bon niveau dépend de ce que vous avez à faire. Mais plus on avance, plus ces outils deviennent une vraie part de votre façon de penser.</p>
-</section>
-
-<section>
-  <div class="section-label">Les cinq niveaux</div>
-  <h2 class="section-title">Chacun s'appuie sur le précédent.</h2>
-  <p class="section-lead">Lisez-les dans l'ordre. Plus vous avancez, plus ces outils transforment votre manière de travailler.</p>
-
-  <div class="levels">
-
-    <div class="level" data-reveal>
-      <div class="level-num">N1</div>
-      <div class="level-content">
-        <div class="level-name">De meilleures questions</div>
-        <div class="level-headline">Utilisez l'IA plutôt que Google quand la réponse demande de réfléchir.</div>
-        <div class="level-desc">Pour tout ce qui demande du contexte, une comparaison, un peu de votre situation. Ce ne sont pas des faits à trouver — ce sont des questions à penser.</div>
-      </div>
+<header class="site-nav">
+  <a href="/fr/" class="nav-logo">Symbionis</a>
+  <div class="nav-right">
+    <nav class="nav-links">
+      <a href="/fr/about/">À propos</a>
+      <a href="/fr/framework/">Framework</a>
+    </nav>
+    <div class="lang-switch">
+      <a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span>
     </div>
-
-    <div class="level" data-reveal>
-      <div class="level-num">N2</div>
-      <div class="level-content">
-        <div class="level-name">Plus léger</div>
-        <div class="level-headline">Allégez le quotidien.</div>
-        <div class="level-desc">Dicter au lieu de taper. Vos réunions résumées toutes seules. Des conversations qui se souviennent de vos projets — pour reprendre où vous en étiez sans tout réexpliquer.</div>
-      </div>
-    </div>
-
-    <div class="level" data-reveal>
-      <div class="level-num">N3</div>
-      <div class="level-content">
-        <div class="level-name">Partenaire de réflexion</div>
-        <div class="level-headline">Un second esprit, à portée de main.</div>
-        <div class="level-desc">Pour les idées que vous portez. Pour les décisions qui mériteraient plus de temps qu'on ne leur en donne. Pour penser à voix haute, avec quelque chose qui écoute et qui répond. Ce travail-là n'exige pas toujours une personne — parfois, il suffit de la bonne attention.</div>
-      </div>
-    </div>
-
-    <div class="level" data-reveal>
-      <div class="level-num">N4</div>
-      <div class="level-content">
-        <div class="level-name">Des outils à votre mesure</div>
-        <div class="level-headline">Construisez vos propres outils.</div>
-        <div class="level-desc">Pas l'application générique que tout le monde utilise. Un outil pensé pour votre manière de faire — votre facturation, vos réservations, vos projets tels que vous les menez — sans savoir coder.</div>
-      </div>
-    </div>
-
-    <div class="level" data-reveal>
-      <div class="level-num">N5</div>
-      <div class="level-content">
-        <div class="level-name">Agents personnels</div>
-        <div class="level-headline">Un travail qui se fait tout seul.</div>
-        <div class="level-desc">Une IA qui observe, décide, agit en arrière-plan. Pas du pas-à-pas — elle tourne toute seule. Pour ce qui se répète et n'a pas besoin de vous pour avancer — juste de votre regard quand quelque chose sort de l'ordinaire.</div>
-      </div>
-    </div>
-
   </div>
-</section>
+</header>
 
-<div class="gap-wrap">
-  <div class="gap-inner">
-    <div class="section-label">Repères</div>
-    <h2 class="section-title">Où en sont la plupart des gens — et là où ça devient intéressant.</h2>
-    <p class="section-lead">Deux rapports différents à l'IA. La plupart sont dans le premier — non pas que le second soit difficile, mais ils n'ont jamais vu à quoi ça ressemble de l'autre côté.</p>
+<main>
 
-    <div class="gap-grid">
-      <div class="gap-card stuck" data-reveal>
-        <div class="gap-stat">80%</div>
-        <div class="gap-sub">des professionnels</div>
-        <div class="gap-headline">Voient l'IA comme un outil.</div>
-        <div class="gap-body">L'utilisent ponctuellement, pour des questions isolées. Comme un moteur de recherche plus rapide. Utile, mais le travail reste globalement le même, fait globalement de la même façon.</div>
-      </div>
+  <!-- Section 1 — Hero -->
+  <section class="hero">
+    <h1>Le coaching IA qui parle votre langue.</h1>
+    <p class="sub">Pour les entrepreneurs et les petites équipes.</p>
+    <p class="hero-tagline">Moins de poids. Plus de place.<br>Un second esprit qui pense avec vous.</p>
+    <div class="hero-ctas">
+      <a href="#receive" class="link-secondary">Voir comment ça se passe</a>
+    </div>
+  </section>
 
-      <div class="gap-card ahead" data-reveal>
-        <div class="gap-stat">20%</div>
-        <div class="gap-sub">travaillent avec l'IA</div>
-        <div class="gap-headline">En ont fait un partenaire.</div>
-        <div class="gap-body">Elle garde le contexte de leurs projets. Résume leurs réunions. Pousse leur réflexion. Elle fait partie de leur façon de penser — pas juste quelque chose qu'on consulte de temps en temps.</div>
+  <!-- Section 2 — The shift -->
+  <section id="shift" class="section-wide section-gap" data-reveal>
+    <div class="section-prose" style="padding:0;">
+      <hr class="divider">
+      <blockquote class="calloutquote">
+        Mon rôle n'est pas de vous apprendre l'IA. C'est de vous comprendre, vous, dans votre univers de travail. Vos habitudes, vos rythmes, la forme de vos journées. Puis d'amener les outils, d'une manière intégrative, à votre rythme.
+      </blockquote>
+      <div class="shift-prose">
+        <p>Quand on dirige une activité ou une petite équipe, les journées sont déjà bien remplies. Ce que je propose, ce n'est pas l'IA. C'est une manière de la faire entrer dans votre travail qui vient augmenter ce que vous faites déjà, sans le bousculer.</p>
       </div>
     </div>
+  </section>
 
-    <div class="cost-block" data-reveal>
-      <div class="cost-label">Ce qui change quand on bascule</div>
-      <div class="cost-items">
-        <div class="cost-item">
-          <div class="cost-amount">Plus d'espace</div>
-          <div class="cost-desc">Pas parce qu'on travaille moins — parce qu'on arrête de porter ce qui n'avait pas à l'être.</div>
+  <!-- Section 2.5 — About teaser -->
+  <section class="section-prose section-gap" data-reveal>
+    <p class="about-kicker">À propos de Frank</p>
+    <div class="prose-body">
+      <figure class="teaser-portrait">
+        <img src="/frank-sykes.jpg" alt="Portrait illustré de Frank Sykes" class="portrait-img" width="400" height="400">
+      </figure>
+      <p>Frank Sykes accompagne entrepreneurs et petites équipes dans leur transition à l'IA. Il est déjà passé par là. En 1998, en pleine révolution internet, il a construit à Londres l'une des premières plateformes en ligne de mise en relation candidats-postes, et a vu les consultants qui s'en servaient passer de « cet outil va nous prendre notre travail » à, trois mois plus tard, l'inverse.</p>
+      <p>Vingt ans à Londres, puis Genève pour son fils. La technologie a changé, pas la manière dont on la traverse.</p>
+    </div>
+    <a href="/fr/about/" class="framework-link">Lire la suite →</a>
+  </section>
+
+  <!-- Section 3 — What you actually get -->
+  <section id="receive" class="section-wide section-gap" data-reveal>
+    <div class="section-prose" style="padding:0;">
+      <!-- FR copy pending -->
+      <h2>De quoi il s'agit, en trois parties.</h2>
+    </div>
+    <div class="three-cards">
+      <div class="card" data-reveal>
+        <div class="card-label">01 / Compréhension</div>
+        <h3>Un diagnostic humain.</h3>
+        <p>Je vous propose une vraie conversation sur votre univers, ce que vous portez, ce qui est en attente, et où vous voulez faire de la place. On aborde l'activité, toute la personne, pas les outils, mais ce qui revient sans cesse et qui vous pèse.</p>
+        <p>Vous repartez avec une lecture claire de votre situation. Et deux expériences à tenter dès cette semaine.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card-label">02 / Continuité</div>
+        <h3>Six séances, à vos côtés.</h3>
+        <p>Je vous accompagne pendant six séances hebdomadaires. Je comprends votre activité, j'analyse ce que vous portez, je vous propose une approche qui vous convient. On met en œuvre ensemble et nous l'affinons pour vous alléger.</p>
+        <p>Un projet que vous portiez avance. Votre charge mentale s'allège.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card-label">03 / Un système qui vous reste</div>
+        <h3>Le vôtre, même après notre travail ensemble.</h3>
+        <p>Un système adapté à votre activité. Vos workflows, vos routines, des compétences sur mesure qui travaillent à vos côtés. Vous le comprenez, vous le faites évoluer.</p>
+        <p>Si nous arrêtons notre engagement, vos propositions continuent de se rédiger toutes seules. Votre point du lundi continue d'arriver.</p>
+      </div>
+    </div>
+    <blockquote class="calloutquote" style="margin-top: clamp(2.5rem, 5vw, 4rem);" data-reveal>
+      C'est du coaching structurel, pas aspirationnel.
+    </blockquote>
+    <div class="receive-cta" data-reveal>
+      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+    </div>
+  </section>
+
+  <!-- Section 3.5 — The 5 Levels framework -->
+  <section id="levels" class="framework-section" data-reveal>
+    <div class="framework-inner">
+      <blockquote class="calloutquote">
+        Voici comment je vois les choses, après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA.
+      </blockquote>
+      <div class="framework-row">
+        <div class="framework-level">
+          <div class="framework-level-header">
+            <span class="level-prefix">N1</span>
+            <span class="level-name">Curieux</span>
+          </div>
+          <span class="level-desc">Vous avez essayé l'IA. Pour vous, c'est un moteur de recherche en mieux.</span>
         </div>
-        <div class="cost-item">
-          <div class="cost-amount">Les choses bougent</div>
-          <div class="cost-desc">Les projets que vous portez. Les décisions que vous reportez. Tout cela trouve enfin un espace pour avancer.</div>
+        <div class="framework-level">
+          <div class="framework-level-header">
+            <span class="level-prefix">N2</span>
+            <span class="level-name">L'IA au quotidien</span>
+          </div>
+          <span class="level-desc">Notes vocales, brouillons, la friction du jour qui s'allège.</span>
+        </div>
+        <div class="framework-level level-shift">
+          <div class="framework-level-header">
+            <span class="level-prefix">N3</span>
+            <span class="level-name">Partenaire de réflexion</span>
+            <span class="level-marker">— le basculement</span>
+          </div>
+          <span class="level-desc">Vous pensez avec elle, pas juste à elle.</span>
+        </div>
+        <div class="framework-level">
+          <div class="framework-level-header">
+            <span class="level-prefix">N4</span>
+            <span class="level-name">Des outils qui vous ressemblent</span>
+          </div>
+          <span class="level-desc">Vous construisez de petits systèmes adaptés à votre façon de faire.</span>
+        </div>
+        <div class="framework-level">
+          <div class="framework-level-header">
+            <span class="level-prefix">N5</span>
+            <span class="level-name">Un travail qui tourne tout seul</span>
+          </div>
+          <span class="level-desc">Le récurrent se fait dans votre voix, en arrière-plan.</span>
         </div>
       </div>
+      <div class="framework-closing">
+        <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place — et nomme l'écart.</p>
+        <a href="/fr/framework/" class="framework-link">Lire le framework complet →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 — Who this is for -->
+  <section class="section-prose section-gap" data-reveal>
+    <!-- FR copy pending -->
+    <h2>Avec qui je travaille.</h2>
+    <div class="audience-grid">
+      <div class="audience-list for">
+        <h3>Pour</h3>
+        <ul>
+          <!-- FR copy pending -->
+          <li>Consultants indépendants et petites consultances</li>
+          <li>Dirigeants d'agences (marketing, design, communication)</li>
+          <li>Cabinets de services professionnels : comptabilité, fiscalité, conseil, notariat</li>
+          <li>Entreprises en ligne et créateurs ayant une activité opérationnelle</li>
+          <li>Toute personne qui <em>est</em> son entreprise et qui en a assez d'être le goulot d'étranglement de son propre travail</li>
+        </ul>
+      </div>
+      <div class="audience-list not-for">
+        <h3>Pas pour</h3>
+        <ul>
+          <!-- FR copy pending -->
+          <li>Ceux qui cherchent un atelier de prompt engineering</li>
+          <li>Ceux qui veulent une liste de recommandations d'outils</li>
+          <li>Les entreprises qui ont besoin d'une stratégie IA à grande échelle</li>
+          <li>Ceux qui espèrent apprendre l'IA sans changer leur façon de travailler</li>
+        </ul>
+      </div>
+    </div>
+    <p class="audience-note"><em>EN et FR. Séances en visio dans le monde entier, en personne en Suisse.</em></p>
+    <div class="receive-cta" data-reveal>
+      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+    </div>
+  </section>
+
+  <!-- Section 5 — How it works -->
+  <section id="process" class="section-prose section-gap" data-reveal>
+    <!-- FR copy pending -->
+    <h2>Comment ça commence.</h2>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <div class="step-num">1</div>
+        <div>
+          <h3>Un appel de 15 minutes.</h3>
+          <p>Court, sans engagement. On voit s'il y a un terrain commun. Si ce n'est pas le cas, vous avez perdu quinze minutes. Si c'est le cas, on planifie la suite.</p>
+          <p>Si vous voulez faire le pas avec l'IA, parlons-en.</p>
+        </div>
+      </div>
+      <div class="step" data-reveal>
+        <div class="step-num">2</div>
+        <div>
+          <h3>Une session Découverte de 60 minutes.</h3>
+          <p>Une heure pour comprendre votre univers, vos besoins, et ce qui mérite d'être allégé.</p>
+          <p><strong>Pendant l'heure, ensemble :</strong><br>Votre place sur les 5 Niveaux de Maîtrise de l'IA. À quoi pourrait ressembler votre prochaine étape. Toutes les questions que vous avez voulu poser sans avoir la bonne personne en face.</p>
+          <p><strong>Dans les jours qui suivent :</strong><br>Un document écrit vingt-quatre heures plus tard. Deux expériences à tenter cette semaine. Une lecture claire de l'intérêt de travailler ensemble.</p>
+          <p class="offer">Tarif préférentiel pour les 15 premiers entrepreneurs inscrits, pour le lancement de cette pratique.</p>
+        </div>
+      </div>
+      <div class="step" data-reveal>
+        <div class="step-num">3</div>
+        <div>
+          <h3>Coaching Ensemble, si nous voulons tous les deux continuer.</h3>
+          <p>Six séances hebdomadaires. Nous façonnons un système de travail adapté à votre activité réelle, vos propres workflows, vos propres routines, des compétences sur mesure qui travaillent à vos côtés. Un projet que vous portez depuis longtemps rendu visiblement avancé.</p>
+          <p class="offer">Actuellement ouvert à un nombre restreint de clients du premier groupe, jusqu'à l'été 2026.</p>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 — Cal.com booking -->
+  <section id="book" class="section-wide section-gap booking">
+    <p class="booking-headline">Quand vous êtes prêt.</p>
+    <div class="cal-inline-wrap" id="cal-inline"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-logo">Symbionis</span>
+      <span class="footer-copy">&copy; 2026 Frank Sykes, Genève</span>
+    </div>
+    <div class="footer-center">
+      <a href="mailto:frank@syks.co">frank@syks.co</a>
+      <a href="https://linkedin.com/in/franksykes" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="lang-switch">
+      <a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span>
     </div>
   </div>
-</div>
-
-<div class="reflection">
-  <div class="reflection-inner">
-    <div class="section-label">Le basculement</div>
-    <h2 class="section-title">Là où se joue le vrai basculement.</h2>
-
-    <p>Le basculement qui compte n'est pas entre N1 et N2. Il est au <strong>Niveau 3</strong>.</p>
-
-    <p>C'est là que l'IA cesse d'être un outil qu'on consulte et devient un véritable partenaire de réflexion. Là où les projets que vous portez rencontrent un second esprit. Là où les décisions que vous reportez se laissent enfin penser à voix haute — avec quelque chose qui écoute et qui répond.</p>
-
-    <p>Le premier pas est souvent plus discret qu'on ne l'imagine. Mais ce qui change est d'une autre nature : <strong>pas «&nbsp;j'utilise mieux l'IA&nbsp;» — mais «&nbsp;je pense autrement&nbsp;».</strong></p>
-
-    <p>Ce que ce travail veut dire concrètement : alléger une partie de ce que vous portez, faire avancer un projet qui attend depuis trop longtemps, et installer une vraie relation avec l'IA — pas un usage de temps en temps, mais une nouvelle façon de penser.</p>
-  </div>
-</div>
-
-<section class="sting">
-  <p class="sting-text">Moins d'encombrement. <em>Plus de présence.</em><br>Voilà le travail.</p>
-</section>
-
-<footer>
-  <p>Si quelque chose ici vous a parlé, c'est par là que la conversation continue.</p>
-  <p class="signature">Frank Sykes &middot; Genève</p>
-  <p class="lang-switch"><a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span></p>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+  // Scroll reveal
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('visible'));
+  }
+
+  // Cal.com inline embed
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "connect", {origin:"https://app.cal.com"});
+  Cal.ns.connect("inline", {
+    elementOrSelector:"#cal-inline",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "franksy/connect",
+  });
+  Cal.ns.connect("ui", {
+    theme: "light",
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    cssVarsPerTheme: {
+      light: {
+        "cal-bg": "#F4F1EA",
+        "cal-bg-muted": "#EEEAE0",
+        "cal-bg-emphasis": "#EEEAE0",
+        "cal-brand": "#1B3A57",
+        "cal-text": "#1B3A57",
+        "cal-text-emphasis": "#1B3A57"
       }
-    });
-  }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
-
-  document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
-
-  document.querySelectorAll('.lang-switch a, .lang-switch-top a').forEach((a) => {
-    a.addEventListener('click', () => sessionStorage.setItem('lang_override', '1'));
+    }
   });
 </script>
 

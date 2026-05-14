@@ -1,64 +1,67 @@
-# The 5 Levels of AI Fluency — Static Site
+# Symbionis — AI Coaching Practice
 
-Bilingual framework page (EN/FR) for Frank Sykes' AI coaching practice. Two self-contained HTML files, no build step.
+Bilingual site (EN/FR) for Frank Sykes' AI coaching practice. Static HTML + CSS, no build step. Deployed to Cloudflare Pages on `symbionis.ac`.
 
 ## Structure
 
 ```
 .
-├── index.html         English (default, root)
+├── index.html              EN homepage (root)
 ├── fr/
-│   └── index.html     French
-├── _headers           Cloudflare Pages: cache + security headers
+│   └── index.html          FR homepage
+├── styles.css              Shared stylesheet
+├── favicon.svg             Gold "S" on navy
+├── og-image.png            Open Graph image (to be created)
+├── framework/              Legacy five-levels page
+│   ├── index.html          EN five-levels
+│   └── fr/
+│       └── index.html      FR five-levels
+├── _headers                Cloudflare Pages headers
 ├── robots.txt
-├── sitemap.xml        Update YOUR-DOMAIN.com before deploying
-└── README.md          this file
+├── sitemap.xml
+└── README.md
 ```
-
-Each HTML file is fully self-contained (inline CSS + JS, no external deps). No npm, no build, no framework.
-
-## Deploy to Cloudflare Pages
-
-### Option A — Direct upload (fastest)
-
-1. Go to https://dash.cloudflare.com → **Workers & Pages** → **Create application** → **Pages** → **Upload assets**
-2. Name the project (e.g. `franxclaw` or `ai-fluency`)
-3. Drag this entire folder (or upload the zip) into the upload area
-4. Click **Deploy**
-5. You'll get a `*.pages.dev` URL within ~30 seconds
-
-### Option B — Connect a Git repo (for ongoing edits)
-
-1. Push this folder to GitHub/GitLab
-2. Cloudflare Pages → **Connect to Git** → select the repo
-3. Build settings: leave **Build command** empty, set **Build output directory** to `/`
-4. Deploy
-
-### Custom domain
-
-1. In your Pages project → **Custom domains** → **Set up a custom domain**
-2. Enter the domain you want (e.g. `ai.franksykes.com` or `fluency.syks.ch`)
-3. Cloudflare handles SSL automatically
-
-## Before going live
-
-- **Update `sitemap.xml`** — replace `YOUR-DOMAIN.com` with the real domain
-- **Test the language switcher** — the EN/FR link in the footer should round-trip cleanly
-- **Test dark/light mode** — page respects `prefers-color-scheme` automatically
-
-## Routing notes
-
-- `/` → English (index.html at root)
-- `/fr/` → French (index.html inside /fr/)
-- Cloudflare Pages auto-resolves `/fr/` to `/fr/index.html` — no rewrite rules needed
-- The `_headers` file adds basic security headers and 1-hour cache on HTML
 
 ## Editing content
 
-Each file is one HTML document with inline `<style>` and `<script>` blocks. To edit text, search for the section you want and modify directly. No rebuild needed — just re-upload to Cloudflare.
+- **Text changes:** edit `index.html` (EN) or `fr/index.html` (FR) directly. No rebuild needed.
+- **Styles:** edit `styles.css` — shared by both language pages.
+- **FR pending copy:** search for `<!-- FR copy pending -->` in `fr/index.html` to find sections awaiting native French text.
 
-If you change the EN version, mirror the same change in `fr/index.html` (and translate). The structure of both files is identical.
+## Cal.com integration
 
-## Footer language switcher
+Two embed types, both powered by `embed.js` (loaded once via `<script defer>`):
 
-The EN page footer links to `/fr/`. The FR page footer links to `/`. If you change the URL structure, update the `href` in both files.
+- **Popover:** any `<button>` with `data-cal-link="franksy/connect"` opens the booking modal on click.
+- **Inline:** the `#cal-inline` container in Section 6 renders the booking widget directly on the page.
+
+To change the event slug, update `data-cal-link` attributes and the `calLink` value in the inline init script.
+
+## Fonts
+
+Source Serif 4 (serif headlines) and Inter (body) loaded from Google Fonts with `display=swap`. Non-render-blocking.
+
+## Deploy
+
+Cloudflare Pages, connected to this Git repo:
+- **Build command:** *(none)*
+- **Build output directory:** `/`
+- **Production branch:** `main` → `symbionis.ac`
+- **Preview branches:** auto-deploy to `*.pages.dev`
+
+## Adding Frank's portrait
+
+1. Place the image at `frank-portrait.jpg` in the repo root (or `/public/` if the structure changes).
+2. In both `index.html` and `fr/index.html`, replace the `.portrait-placeholder` div with:
+   ```html
+   <img src="/frank-portrait.jpg" alt="Frank Sykes" class="portrait-img" width="560" height="700" loading="lazy">
+   ```
+
+## URLs
+
+| Path | Content |
+|---|---|
+| `/` | EN homepage |
+| `/fr/` | FR homepage |
+| `/framework/` | Legacy five-levels page (EN) |
+| `/framework/fr/` | Legacy five-levels page (FR) |

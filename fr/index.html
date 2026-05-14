@@ -8,6 +8,7 @@
 <link rel="alternate" hreflang="en" href="/">
 <link rel="alternate" hreflang="fr" href="/fr/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script src="/lang.js" defer></script>
 
 <!-- Open Graph -->
 <meta property="og:title" content="Frank Sykes — Coaching IA pour entrepreneurs">
@@ -27,10 +28,16 @@
 </head>
 <body>
 
-<header class="site-header">
-  <a href="/fr/" class="site-logo">Symbionis</a>
-  <div class="lang-switch">
-    <a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span>
+<header class="site-nav">
+  <a href="/fr/" class="nav-logo">Symbionis</a>
+  <div class="nav-right">
+    <nav class="nav-links">
+      <a href="/fr/about/">À propos</a>
+      <a href="/fr/framework/">Cadre</a>
+    </nav>
+    <div class="lang-switch">
+      <a href="/" hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span>
+    </div>
   </div>
 </header>
 
@@ -39,12 +46,11 @@
   <!-- Section 1 — Hero -->
   <section class="hero">
     <h1>Le coaching IA qui parle votre langue.</h1>
-    <p class="sub">Pour les entrepreneurs et les petites équipes.<br>Six semaines de séances de travail.<br>Des outils à votre mesure.</p>
-    <div class="hero-ctas">
-      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
-      <a href="#process" class="link-secondary">Voir comment ça se passe</a>
-    </div>
+    <p class="sub">Pour les entrepreneurs et les petites équipes.</p>
     <p class="hero-tagline">Moins de poids. Plus de place.<br>Un second esprit qui pense avec vous.</p>
+    <div class="hero-ctas">
+      <a href="#receive" class="link-secondary">Voir comment ça se passe</a>
+    </div>
   </section>
 
   <!-- Section 2 — The shift -->
@@ -52,28 +58,74 @@
     <div class="section-prose" style="padding:0;">
       <hr class="divider">
       <blockquote class="calloutquote">
-        Pour le travail que vous portez. Pour les projets qui attendent de voir le jour. Pour tout ce qui revient chaque semaine et n'a pas besoin de vous pour exister.
+        Mon rôle n'est pas de vous apprendre l'IA. C'est de vous comprendre, vous, dans votre univers de travail. Vos habitudes, vos rythmes, la forme de vos journées. Puis d'amener les outils, d'une manière intégrative, à votre rythme.
       </blockquote>
-    </div>
-    <div class="shift-columns">
       <div class="shift-prose">
-        <p>Tout passe par vous. Vous portez les opérations, le recrutement, les finances, l'offre que vous voulez affiner depuis des mois, le site qu'il faudrait remettre à jour, la personne à qui vous voulez répondre depuis trop longtemps. Vous n'avez pas de cercle de pairs. Vous n'avez pas de partenaire de réflexion. Vous n'avez pas de bras droit.</p>
-        <p>Une partie de ce poids ne mérite pas d'être porté. Refaire les mêmes propositions. Réexpliquer l'activité à chaque nouveau prestataire. Repréparer le même type de réunion. L'IA peut alléger tout cela. Pas en vous faisant gagner du temps. En vous évitant d'avoir à tout garder en tête.</p>
-        <p class="shift-transition">C'est ainsi que je vois tout cela, après vingt-cinq années à entreprendre, et plus récemment à le faire avec l'IA. Le framework des 5 Niveaux de Maîtrise de l'IA est un cheminement que j'ai vécu et que beaucoup peuvent utiliser pour se situer.</p>
-        <div class="shift-closing">
-          <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place — et nomme l'écart.</p>
-          <a href="/framework/fr/" class="framework-link">Lire le framework complet →</a>
-        </div>
+        <p>Quand on dirige une activité ou une petite équipe, les journées sont déjà bien remplies. Ce que je propose, ce n'est pas l'IA. C'est une manière de la faire entrer dans votre travail qui vient augmenter ce que vous faites déjà, sans le bousculer.</p>
       </div>
-      <div class="framework-levels">
-        <span class="framework-levels-kicker">Le framework</span>
-        <h3 class="framework-levels-title">Les 5 Niveaux de Maîtrise de l'IA</h3>
+    </div>
+  </section>
+
+  <!-- Section 2.5 — About teaser -->
+  <section class="section-prose section-gap" data-reveal>
+    <p class="about-kicker">À propos de Frank</p>
+    <div class="prose-body">
+      <figure class="teaser-portrait">
+        <img src="/frank-sykes.jpg" alt="Portrait illustré de Frank Sykes" class="portrait-img" width="400" height="400">
+      </figure>
+      <p>Frank Sykes accompagne entrepreneurs et petites équipes dans leur transition à l'IA. Il est déjà passé par là. En 1998, en pleine révolution internet, il a construit à Londres l'une des premières plateformes en ligne de mise en relation candidats-postes, et a vu les consultants qui s'en servaient passer de « cet outil va nous prendre notre travail » à, trois mois plus tard, l'inverse.</p>
+      <p>Vingt ans à Londres, puis Genève pour son fils. La technologie a changé, pas la manière dont on la traverse.</p>
+    </div>
+    <a href="/fr/about/" class="framework-link">Lire la suite →</a>
+  </section>
+
+  <!-- Section 3 — What you actually get -->
+  <section id="receive" class="section-wide section-gap" data-reveal>
+    <div class="section-prose" style="padding:0;">
+      <!-- FR copy pending -->
+      <h2>De quoi il s'agit, en trois parties.</h2>
+    </div>
+    <div class="three-cards">
+      <div class="card" data-reveal>
+        <div class="card-label">01 / Compréhension</div>
+        <h3>Un diagnostic humain.</h3>
+        <p>Je vous propose une vraie conversation sur votre univers, ce que vous portez, ce qui est en attente, et où vous voulez faire de la place. On aborde l'activité, toute la personne, pas les outils, mais ce qui revient sans cesse et qui vous pèse.</p>
+        <p>Vous repartez avec une lecture claire de votre situation. Et deux expériences à tenter dès cette semaine.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card-label">02 / Continuité</div>
+        <h3>Six séances, à vos côtés.</h3>
+        <p>Je vous accompagne pendant six séances hebdomadaires. Je comprends votre activité, j'analyse ce que vous portez, je vous propose une approche qui vous convient. On met en œuvre ensemble et nous l'affinons pour vous alléger.</p>
+        <p>Un projet que vous portiez avance. Votre charge mentale s'allège.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card-label">03 / Un système qui vous reste</div>
+        <h3>Le vôtre, même après notre travail ensemble.</h3>
+        <p>Un système adapté à votre activité. Vos workflows, vos routines, des compétences sur mesure qui travaillent à vos côtés. Vous le comprenez, vous le faites évoluer.</p>
+        <p>Si nous arrêtons notre engagement, vos propositions continuent de se rédiger toutes seules. Votre point du lundi continue d'arriver.</p>
+      </div>
+    </div>
+    <blockquote class="calloutquote" style="margin-top: clamp(2.5rem, 5vw, 4rem);" data-reveal>
+      C'est du coaching structurel, pas aspirationnel.
+    </blockquote>
+    <div class="receive-cta" data-reveal>
+      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+    </div>
+  </section>
+
+  <!-- Section 3.5 — The 5 Levels framework -->
+  <section id="levels" class="framework-section" data-reveal>
+    <div class="framework-inner">
+      <blockquote class="calloutquote">
+        Voici comment je vois les choses, après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA.
+      </blockquote>
+      <div class="framework-row">
         <div class="framework-level">
           <div class="framework-level-header">
             <span class="level-prefix">N1</span>
             <span class="level-name">Curieux</span>
           </div>
-          <span class="level-desc">Vous avez essayé l'IA. Vous ne savez pas trop quoi en faire.</span>
+          <span class="level-desc">Vous avez essayé l'IA. Pour vous, c'est un moteur de recherche en mieux.</span>
         </div>
         <div class="framework-level">
           <div class="framework-level-header">
@@ -105,40 +157,10 @@
           <span class="level-desc">Le récurrent se fait dans votre voix, en arrière-plan.</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Section 3 — What you actually get -->
-  <section id="receive" class="section-wide section-gap" data-reveal>
-    <div class="section-prose" style="padding:0;">
-      <!-- FR copy pending -->
-      <h2>Ce que vous obtenez, en trois temps.</h2>
-    </div>
-    <div class="three-cards">
-      <div class="card" data-reveal>
-        <div class="card-label">01 / Compréhension</div>
-        <h3>Un diagnostic humain.</h3>
-        <p>Je vous propose une vraie conversation sur votre univers, ce que vous portez, ce qui est en attente, et où vous voulez faire de la place. On aborde l'activité, toute la personne, pas les outils, mais ce qui revient sans cesse et qui vous pèse.</p>
-        <p>Vous repartez avec une lecture claire de votre situation. Et deux expériences à tenter dès cette semaine.</p>
+      <div class="framework-closing">
+        <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place — et nomme l'écart.</p>
+        <a href="/fr/framework/" class="framework-link">Lire le framework complet →</a>
       </div>
-      <div class="card" data-reveal>
-        <div class="card-label">02 / Continuité</div>
-        <h3>Six séances, à vos côtés.</h3>
-        <p>Je vous accompagne pendant six séances hebdomadaires. Je comprends votre activité, j'analyse ce que vous portez, je vous propose une approche qui vous convient. On met en œuvre ensemble et nous l'affinons pour vous alléger.</p>
-        <p>Un projet que vous portiez avance. Votre charge mentale s'allège.</p>
-      </div>
-      <div class="card" data-reveal>
-        <div class="card-label">03 / Un système qui vous reste</div>
-        <h3>Le vôtre, même après notre travail ensemble.</h3>
-        <p>Un système adapté à votre activité. Vos workflows, vos routines, des compétences sur mesure qui travaillent à vos côtés. Vous le comprenez, vous le faites évoluer.</p>
-        <p>Si nous arrêtons notre engagement, vos propositions continuent de se rédiger toutes seules. Votre point du lundi continue d'arriver.</p>
-      </div>
-    </div>
-    <blockquote class="calloutquote" style="margin-top: clamp(2.5rem, 5vw, 4rem);" data-reveal>
-      C'est du coaching structurel, pas aspirationnel.
-    </blockquote>
-    <div class="receive-cta" data-reveal>
-      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
     </div>
   </section>
 
@@ -170,6 +192,9 @@
       </div>
     </div>
     <p class="audience-note"><em>EN et FR. Séances en visio dans le monde entier, en personne en Suisse.</em></p>
+    <div class="receive-cta" data-reveal>
+      <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+    </div>
   </section>
 
   <!-- Section 5 — How it works -->
@@ -210,20 +235,6 @@
   <section id="book" class="section-wide section-gap booking">
     <p class="booking-headline">Quand vous êtes prêt.</p>
     <div class="cal-inline-wrap" id="cal-inline"></div>
-  </section>
-
-  <!-- Section 7 — About Frank -->
-  <section class="section-prose section-gap" data-reveal>
-    <h2>À propos de Frank.</h2>
-    <div class="about-content">
-      <div class="portrait-placeholder">
-        <span>Photo à venir.</span>
-      </div>
-      <div class="about-text">
-        <p>En 1998, le premier emploi de Frank était dans une agence de recrutement informatique à Londres. Avec une petite équipe, il a construit l'une des premières plateformes en ligne pour mettre en relation candidats et postes. Les candidats créaient un profil, listaient leurs compétences, et les annonces tombaient dans ce qu'ils appelaient le job tank. Les consultants qui faisaient ce travail à la main n'étaient pas ravis au début. Cet outil va nous prendre notre travail, ont-ils dit à Frank. Trois mois plus tard, les mêmes personnes sont revenues lui dire le contraire. Le système leur avait facilité la vie. Ils pouvaient enfin arrêter de fouiller les bases et de croiser les mots-clés. Cette partie n'avait jamais vraiment eu besoin d'eux.</p>
-        <p>Frank y revient souvent, à cette histoire. Vingt ans à Londres ont suivi : travail en agence, stratégie de marque, adtech. Puis un déménagement à Genève avec son jeune fils, en quête d'un rythme plus lent et d'un rapport plus proche à la nature. L'IA, c'est une arrivée du même genre. La plupart des entrepreneurs que Frank rencontre ne craignent pas d'être remplacés. Ils en entendent parler comme d'une révolution, ils sentent bien qu'il faudrait s'y mettre, et ils ne savent pas trop par où commencer. Et c'est précisément par là que Frank commence : avec vous, là où vous en êtes.</p>
-      </div>
-    </div>
   </section>
 
 </main>

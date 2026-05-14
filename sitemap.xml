@@ -16,7 +16,30 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://symbionis.ac/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/about/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://symbionis.ac/fr/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/about/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/about/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://symbionis.ac/framework/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/framework/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/framework/"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://symbionis.ac/fr/framework/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/framework/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/framework/"/>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

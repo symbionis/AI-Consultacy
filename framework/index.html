@@ -6,7 +6,9 @@
 <title>The 5 Levels of AI Fluency</title>
 <meta name="description" content="A reflective framework on the five levels of working with AI. Frank Sykes, Geneva.">
 <link rel="alternate" hreflang="en" href="/framework/">
-<link rel="alternate" hreflang="fr" href="/framework/fr/">
+<link rel="alternate" hreflang="fr" href="/fr/framework/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script src="/lang.js" defer></script>
 
 <style>
   :root {
@@ -561,9 +563,69 @@
   }
   footer { border-top-color: rgba(42, 47, 77, 0.1); }
   ::selection { background: rgba(201, 162, 75, 0.25); color: var(--navy); }
+
+  /* ===== NAV ===== */
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.5rem clamp(1.5rem, 5vw, 3rem);
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .nav-logo {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .nav-links {
+    display: flex;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+  }
+  .nav-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.25s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a[aria-current="page"] {
+    border-bottom-color: var(--gold);
+  }
+  .site-nav .lang-switch {
+    margin-top: 0;
+    font-style: normal;
+  }
 </style>
 </head>
 <body>
+
+<header class="site-nav">
+  <a href="/" class="nav-logo">Symbionis</a>
+  <div class="nav-right">
+    <nav class="nav-links">
+      <a href="/about/">About</a>
+      <a href="/framework/" aria-current="page">Framework</a>
+    </nav>
+    <div class="lang-switch">
+      <span class="current">EN</span><span class="sep">/</span><a href="/fr/framework/" hreflang="fr">FR</a>
+    </div>
+  </div>
+</header>
 
 <section class="hero">
   <div class="label">A reflective framework</div>
@@ -714,7 +776,7 @@
   <p>If something here resonated, that's where the conversation continues.</p>
   <p><a href="/#shift" class="framework-return" style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-size:0.9rem;color:var(--gold);text-decoration:none;margin-top:0.5rem;display:inline-block;">Back to the practice →</a></p>
   <p class="signature">Frank Sykes &middot; Geneva</p>
-  <p class="lang-switch"><span class="current">EN</span><span class="sep">/</span><a href="/framework/fr/" hreflang="fr">FR</a></p>
+  <p class="lang-switch"><span class="current">EN</span><span class="sep">/</span><a href="/fr/framework/" hreflang="fr">FR</a></p>
 </footer>
 
 <script>

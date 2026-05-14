@@ -1,53 +1,76 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
-import { parse } from 'node-html-parser';
+import { parse, type HTMLElement } from 'node-html-parser';
 
 // Build-output assertions. `npm test` runs `astro build` first, so these read
 // the real generated files in `dist/` rather than mocked component renders.
-// Coverage grows as pages land: U2 added the layout head assertions; U3/U4 add
-// per-page route and content assertions; U5 adds the sitemap assertions.
 
-const dist = (path: string) => {
-  const file = `dist/${path}`;
-  if (!existsSync(file)) throw new Error(`Expected build output at ${file} — run \`npm run build\``);
-  return parse(readFileSync(file, 'utf-8'));
+// The site's six routes — the single source of truth for every suite below.
+const ROUTES = [
+  { path: 'index.html', url: 'https://symbionis.ac/', locale: 'en' },
+  { path: 'fr/index.html', url: 'https://symbionis.ac/fr/', locale: 'fr' },
+  { path: 'about/index.html', url: 'https://symbionis.ac/about/', locale: 'en' },
+  { path: 'fr/about/index.html', url: 'https://symbionis.ac/fr/about/', locale: 'fr' },
+  { path: 'framework/index.html', url: 'https://symbionis.ac/framework/', locale: 'en' },
+  { path: 'fr/framework/index.html', url: 'https://symbionis.ac/fr/framework/', locale: 'fr' },
+] as const;
+
+/** Reciprocal hreflang pair for a route — its EN and FR counterparts. */
+const alternatesFor = (path: string) => {
+  const enUrl = `https://symbionis.ac/${path.replace(/^fr\//, '').replace('index.html', '')}`;
+  const frUrl = `https://symbionis.ac/fr/${path.replace(/^fr\//, '').replace('index.html', '')}`;
+  return { enUrl, frUrl };
 };
 
-describe('U2 — shared layout head generation (EN homepage)', () => {
-  const doc = () => dist('index.html');
+const distCache = new Map<string, HTMLElement>();
+const dist = (path: string): HTMLElement => {
+  const file = `dist/${path}`;
+  if (!distCache.has(file)) {
+    if (!existsSync(file)) throw new Error(`Expected build output at ${file} — run \`npm run build\``);
+    distCache.set(file, parse(readFileSync(file, 'utf-8')));
+  }
+  return distCache.get(file)!;
+};
 
+/** Asserts a page carries reciprocal en/fr/x-default hreflang alternates. */
+function expectReciprocalHreflang(doc: HTMLElement, enUrl: string, frUrl: string) {
+  const alternates = doc
+    .querySelectorAll('link[rel="alternate"]')
+    .map((el) => [el.getAttribute('hreflang'), el.getAttribute('href')]);
+  expect(alternates).toEqual(
+    expect.arrayContaining([
+      ['en', enUrl],
+      ['fr', frUrl],
+      ['x-default', enUrl],
+    ]),
+  );
+}
+
+describe('U2 — shared layout head generation (EN homepage)', () => {
   it('sets <html lang> to the page locale', () => {
-    expect(doc().querySelector('html')?.getAttribute('lang')).toBe('en');
+    expect(dist('index.html').querySelector('html')?.getAttribute('lang')).toBe('en');
   });
 
   it('emits a self-referential canonical', () => {
-    const canonical = doc().querySelector('link[rel="canonical"]')?.getAttribute('href');
-    expect(canonical).toBe('https://symbionis.ac/');
+    expect(dist('index.html').querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+      'https://symbionis.ac/',
+    );
   });
 
   it('emits reciprocal hreflang alternates including x-default', () => {
-    const alternates = doc()
-      .querySelectorAll('link[rel="alternate"]')
-      .map((el) => [el.getAttribute('hreflang'), el.getAttribute('href')]);
-    expect(alternates).toEqual(
-      expect.arrayContaining([
-        ['en', 'https://symbionis.ac/'],
-        ['fr', 'https://symbionis.ac/fr/'],
-        ['x-default', 'https://symbionis.ac/'],
-      ]),
-    );
+    expectReciprocalHreflang(dist('index.html'), 'https://symbionis.ac/', 'https://symbionis.ac/fr/');
   });
 
   it('emits Open Graph locale tags for the page locale', () => {
     const og = (prop: string) =>
-      doc().querySelector(`meta[property="${prop}"]`)?.getAttribute('content');
+      dist('index.html').querySelector(`meta[property="${prop}"]`)?.getAttribute('content');
     expect(og('og:locale')).toBe('en_US');
     expect(og('og:locale:alternate')).toBe('fr_FR');
     expect(og('og:type')).toBe('website');
   });
 
   it('includes the Google Fonts stylesheet, favicon, JSON-LD, and lang.js', () => {
-    const head = doc().querySelector('head')!;
+    const head = dist('index.html').querySelector('head')!;
     expect(head.querySelector('link[href*="fonts.googleapis.com/css2"]')).toBeTruthy();
     expect(head.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('/favicon.svg');
     expect(head.querySelector('script[type="application/ld+json"]')).toBeTruthy();
@@ -55,7 +78,7 @@ describe('U2 — shared layout head generation (EN homepage)', () => {
   });
 
   it('renders the shared nav and footer chrome', () => {
-    const d = doc();
+    const d = dist('index.html');
     expect(d.querySelector('header.site-nav')).toBeTruthy();
     expect(d.querySelector('footer.site-footer')).toBeTruthy();
     // lang-switch appears in both nav and footer
@@ -79,16 +102,7 @@ describe('U3 — homepages (EN + FR)', () => {
 
   it('EN and FR homepages carry reciprocal hreflang alternates', () => {
     for (const path of ['index.html', 'fr/index.html']) {
-      const alternates = dist(path)
-        .querySelectorAll('link[rel="alternate"]')
-        .map((el) => [el.getAttribute('hreflang'), el.getAttribute('href')]);
-      expect(alternates).toEqual(
-        expect.arrayContaining([
-          ['en', 'https://symbionis.ac/'],
-          ['fr', 'https://symbionis.ac/fr/'],
-          ['x-default', 'https://symbionis.ac/'],
-        ]),
-      );
+      expectReciprocalHreflang(dist(path), 'https://symbionis.ac/', 'https://symbionis.ac/fr/');
     }
   });
 
@@ -103,57 +117,32 @@ describe('U3 — homepages (EN + FR)', () => {
   });
 
   it('the about-teaser link is locale-correct on each homepage', () => {
-    expect(
-      dist('index.html')
+    const hasLink = (path: string, href: string) =>
+      dist(path)
         .querySelectorAll('a')
-        .some((a) => a.getAttribute('href') === '/about/'),
-    ).toBe(true);
-    expect(
-      dist('fr/index.html')
-        .querySelectorAll('a')
-        .some((a) => a.getAttribute('href') === '/fr/about/'),
-    ).toBe(true);
+        .some((a) => a.getAttribute('href') === href);
+    expect(hasLink('index.html', '/about/')).toBe(true);
+    expect(hasLink('fr/index.html', '/fr/about/')).toBe(true);
   });
 });
 
 describe('U4 — about and framework pages (EN + FR)', () => {
-  const routes: Array<[string, string]> = [
-    ['about/index.html', 'https://symbionis.ac/about/'],
-    ['fr/about/index.html', 'https://symbionis.ac/fr/about/'],
-    ['framework/index.html', 'https://symbionis.ac/framework/'],
-    ['fr/framework/index.html', 'https://symbionis.ac/fr/framework/'],
-  ];
+  const innerPages = ROUTES.filter((r) => r.path !== 'index.html' && r.path !== 'fr/index.html');
 
-  it('emits all four pages as directory-style routes', () => {
-    for (const [path] of routes) expect(existsSync(`dist/${path}`)).toBe(true);
+  it('emits all four inner pages as directory-style routes', () => {
+    for (const { path } of innerPages) expect(existsSync(`dist/${path}`)).toBe(true);
   });
 
   it('each page carries a self-referential canonical', () => {
-    for (const [path, canonical] of routes) {
-      expect(dist(path).querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-        canonical,
-      );
+    for (const { path, url } of innerPages) {
+      expect(dist(path).querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(url);
     }
   });
 
   it('each page carries reciprocal hreflang for its locale pair', () => {
-    const pairs: Array<[string, string, string]> = [
-      ['about/index.html', 'https://symbionis.ac/about/', 'https://symbionis.ac/fr/about/'],
-      ['fr/about/index.html', 'https://symbionis.ac/about/', 'https://symbionis.ac/fr/about/'],
-      ['framework/index.html', 'https://symbionis.ac/framework/', 'https://symbionis.ac/fr/framework/'],
-      ['fr/framework/index.html', 'https://symbionis.ac/framework/', 'https://symbionis.ac/fr/framework/'],
-    ];
-    for (const [path, enUrl, frUrl] of pairs) {
-      const alternates = dist(path)
-        .querySelectorAll('link[rel="alternate"]')
-        .map((el) => [el.getAttribute('hreflang'), el.getAttribute('href')]);
-      expect(alternates).toEqual(
-        expect.arrayContaining([
-          ['en', enUrl],
-          ['fr', frUrl],
-          ['x-default', enUrl],
-        ]),
-      );
+    for (const { path } of innerPages) {
+      const { enUrl, frUrl } = alternatesFor(path);
+      expectReciprocalHreflang(dist(path), enUrl, frUrl);
     }
   });
 
@@ -174,41 +163,27 @@ describe('U4 — about and framework pages (EN + FR)', () => {
 
   it('about pages mark the active nav link with aria-current', () => {
     for (const path of ['about/index.html', 'fr/about/index.html']) {
-      const active = dist(path)
-        .querySelectorAll('.site-nav a[aria-current="page"]')
-        .map((a) => a.text.trim());
-      expect(active.length).toBe(1);
+      expect(dist(path).querySelectorAll('.site-nav a[aria-current="page"]').length).toBe(1);
     }
   });
 });
 
 describe('U5 — generated sitemap', () => {
-  const allRoutes = [
-    'https://symbionis.ac/',
-    'https://symbionis.ac/about/',
-    'https://symbionis.ac/framework/',
-    'https://symbionis.ac/fr/',
-    'https://symbionis.ac/fr/about/',
-    'https://symbionis.ac/fr/framework/',
-  ];
+  const sitemap = () => readFileSync('dist/sitemap-0.xml', 'utf-8');
 
   it('sitemap-index.xml references the URL set', () => {
     expect(existsSync('dist/sitemap-index.xml')).toBe(true);
-    const index = readFileSync('dist/sitemap-index.xml', 'utf-8');
-    expect(index).toContain('sitemap-0.xml');
+    expect(readFileSync('dist/sitemap-index.xml', 'utf-8')).toContain('sitemap-0.xml');
   });
 
   it('lists every page route', () => {
-    const sitemap = readFileSync('dist/sitemap-0.xml', 'utf-8');
-    for (const url of allRoutes) {
-      expect(sitemap).toContain(`<loc>${url}</loc>`);
-    }
+    const xml = sitemap();
+    for (const { url } of ROUTES) expect(xml).toContain(`<loc>${url}</loc>`);
   });
 
   it('emits en/fr hreflang alternates for each entry', () => {
-    const sitemap = readFileSync('dist/sitemap-0.xml', 'utf-8');
-    const entries = sitemap.match(/<url>.*?<\/url>/gs) ?? [];
-    expect(entries.length).toBe(allRoutes.length);
+    const entries = sitemap().match(/<url>.*?<\/url>/gs) ?? [];
+    expect(entries.length).toBe(ROUTES.length);
     for (const entry of entries) {
       expect(entry).toContain('hreflang="en"');
       expect(entry).toContain('hreflang="fr"');
@@ -216,8 +191,9 @@ describe('U5 — generated sitemap', () => {
   });
 
   it('robots.txt points at the generated sitemap index', () => {
-    const robots = readFileSync('dist/robots.txt', 'utf-8');
-    expect(robots).toContain('Sitemap: https://symbionis.ac/sitemap-index.xml');
+    expect(readFileSync('dist/robots.txt', 'utf-8')).toContain(
+      'Sitemap: https://symbionis.ac/sitemap-index.xml',
+    );
   });
 
   it('carries the Cloudflare edge config into the build output', () => {

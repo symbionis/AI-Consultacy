@@ -9,7 +9,7 @@
 // for the framework pages); Astro injects the <link> into this <head>.
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { ui, pageUrl, type Locale } from '../i18n/ui';
+import { ui, pageUrl, otherLocale, SITE, type Locale } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -39,8 +39,8 @@ const canonical = pageUrl(locale, pathKey);
 const enUrl = pageUrl('en', pathKey);
 const frUrl = pageUrl('fr', pathKey);
 const ogLocale = ui[locale].ogLocale;
-const ogLocaleAlternate = locale === 'en' ? 'fr_FR' : 'en_US';
-const ogImage = 'https://symbionis.ac/og-image.png';
+const ogLocaleAlternate = ui[otherLocale(locale)].ogLocale;
+const ogImage = `${SITE}/og-image.png`;
 ---
 
 <!doctype html>

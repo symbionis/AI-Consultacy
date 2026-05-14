@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalEmbed from '../components/CalEmbed.astro';
+import { FRANK_REF } from '../i18n/ui';
 import '../styles/framework.css';
 
 const jsonLd = {
@@ -12,11 +13,7 @@ const jsonLd = {
   inLanguage: 'en',
   url: 'https://symbionis.ac/framework/',
   image: 'https://symbionis.ac/og-image.png',
-  author: {
-    '@type': 'Person',
-    '@id': 'https://symbionis.ac/about/#frank',
-    name: 'Frank Sykes',
-  },
+  author: FRANK_REF,
 };
 ---
 

@@ -22,6 +22,11 @@ export const ui = {
   },
 } as const;
 
+/** The opposite locale — EN ⇄ FR. */
+export function otherLocale(locale: Locale): Locale {
+  return locale === 'en' ? 'fr' : 'en';
+}
+
 /** Root-relative path for a page in a given locale, e.g. ('fr', 'about') → '/fr/about/'. */
 export function pagePath(locale: Locale, pathKey: string): string {
   const prefix = locale === 'fr' ? '/fr/' : '/';
@@ -33,3 +38,11 @@ export function pagePath(locale: Locale, pathKey: string): string {
 export function pageUrl(locale: Locale, pathKey: string): string {
   return `${SITE}${pagePath(locale, pathKey)}`;
 }
+
+/** schema.org reference to Frank — appears as `founder` (homepages) and `author`
+ *  (framework pages) across the page JSON-LD blocks. */
+export const FRANK_REF = {
+  '@type': 'Person',
+  '@id': 'https://symbionis.ac/about/#frank',
+  name: 'Frank Sykes',
+} as const;

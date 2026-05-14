@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalEmbed from '../components/CalEmbed.astro';
+import { FRANK_REF } from '../i18n/ui';
 import '../styles/global.css';
 
 const jsonLd = {
@@ -19,11 +20,7 @@ const jsonLd = {
     addressLocality: 'Geneva',
     addressCountry: 'CH',
   },
-  founder: {
-    '@type': 'Person',
-    '@id': 'https://symbionis.ac/about/#frank',
-    name: 'Frank Sykes',
-  },
+  founder: FRANK_REF,
 };
 ---
 

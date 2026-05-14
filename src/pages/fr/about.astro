@@ -1,12 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { FRANK_REF } from '../../i18n/ui';
 import '../../styles/global.css';
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': 'https://symbionis.ac/about/#frank',
-  name: 'Frank Sykes',
+  ...FRANK_REF,
   url: 'https://symbionis.ac/fr/about/',
   image: 'https://symbionis.ac/frank-sykes.jpg',
   jobTitle: 'Coach IA',

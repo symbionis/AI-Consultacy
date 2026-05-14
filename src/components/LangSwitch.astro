@@ -1,0 +1,29 @@
+---
+// The EN / FR switch shown in the nav and footer. The link points at the
+// current page's counterpart in the other locale — `lang.js` reads the
+// `hreflang` attribute to remember an explicit choice.
+import { pagePath, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  pathKey: string;
+}
+
+const { locale, pathKey } = Astro.props;
+const other: Locale = locale === 'en' ? 'fr' : 'en';
+const otherHref = pagePath(other, pathKey);
+---
+
+<div class="lang-switch">
+  {
+    locale === 'en' ? (
+      <>
+        <span class="current">EN</span><span class="sep">/</span><a href={otherHref} hreflang="fr">FR</a>
+      </>
+    ) : (
+      <>
+        <a href={otherHref} hreflang="en">EN</a><span class="sep">/</span><span class="current">FR</span>
+      </>
+    )
+  }
+</div>

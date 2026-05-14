@@ -1,0 +1,26 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { ui, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  pathKey: string;
+}
+
+const { locale, pathKey } = Astro.props;
+const t = ui[locale];
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-logo">Symbionis</span>
+      <span class="footer-copy">{t.footerCopy}</span>
+    </div>
+    <div class="footer-center">
+      <a href="mailto:frank@syks.co">frank@syks.co</a>
+      <a href="https://linkedin.com/in/franksykes" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <LangSwitch locale={locale} pathKey={pathKey} />
+  </div>
+</footer>

@@ -1,15 +1,25 @@
 ---
-// U1 placeholder — replaced by the real homepage in U3. Exists so `astro build`
-// has a route to emit while the scaffold is verified.
+// U2 placeholder — exercises the shared Layout/Nav/Footer so the scaffold can
+// be verified. Replaced by the real homepage content in U3.
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': 'https://symbionis.ac/#practice',
+  name: 'Symbionis',
+};
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Symbionis</title>
-  </head>
-  <body>
+<Layout
+  title="Symbionis"
+  description="AI coaching for entrepreneurs and small teams."
+  locale="en"
+  pathKey=""
+  jsonLd={jsonLd}
+>
+  <main>
     <p>Placeholder — replaced in U3.</p>
-  </body>
-</html>
+  </main>
+</Layout>

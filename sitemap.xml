@@ -5,42 +5,42 @@
     <loc>https://symbionis.ac/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/"/>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://symbionis.ac/"/>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
     <loc>https://symbionis.ac/fr/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/"/>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://symbionis.ac/"/>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
     <loc>https://symbionis.ac/about/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/about/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/about/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://symbionis.ac/about/"/>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
     <loc>https://symbionis.ac/fr/about/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/about/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/about/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://symbionis.ac/about/"/>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
     <loc>https://symbionis.ac/framework/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/framework/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/framework/"/>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://symbionis.ac/framework/"/>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
     <loc>https://symbionis.ac/fr/framework/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/framework/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/framework/"/>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://symbionis.ac/framework/"/>
+    <lastmod>2026-05-14</lastmod>
   </url>
 </urlset>

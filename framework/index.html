@@ -512,30 +512,65 @@
   }
 
   /* ===== FOOTER ===== */
-  footer {
-    padding: 4rem 1.5rem 5rem;
-    text-align: center;
-    border-top: 1px solid rgba(216, 226, 242, 0.08);
-    margin-top: 2rem;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
+  .site-footer {
+    border-top: 1px solid var(--gold);
+    padding: 3rem clamp(1.5rem, 5vw, 3rem) 4rem;
+    max-width: 960px;
+    margin: 2rem auto 0;
   }
 
-  footer p {
-    font-size: 0.95rem;
-    color: var(--ice-dim);
-    line-height: 1.6;
-    margin-bottom: 0.4rem;
-    font-weight: 300;
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
 
-  footer .signature {
-    font-size: 0.85rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-top: 1.2rem;
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .footer-logo {
+    font-family: 'Source Serif 4', Georgia, serif;
     font-style: italic;
+    font-size: 1rem;
+    color: var(--navy);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--ice-dim);
+  }
+
+  .footer-center {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .footer-center a {
+    font-size: 0.85rem;
+    color: var(--ice-dim);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .footer-center a:hover {
+    color: var(--navy);
+  }
+
+  .site-footer .lang-switch {
+    margin-top: 0;
+  }
+
+  @media (max-width: 600px) {
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   .lang-switch {
@@ -807,11 +842,20 @@
   <div class="cal-inline-wrap" style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-connect"></div>
 </div>
 
-<footer>
-  <p>If something here resonated, that's where the conversation continues.</p>
-  <p><a href="/#shift" class="framework-return" style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-size:0.9rem;color:var(--gold);text-decoration:none;margin-top:0.5rem;display:inline-block;">Back to the practice →</a></p>
-  <p class="signature">Frank Sykes &middot; Geneva</p>
-  <p class="lang-switch"><span class="current">EN</span><span class="sep">/</span><a href="/fr/framework/" hreflang="fr">FR</a></p>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-logo">Symbionis</span>
+      <span class="footer-copy">&copy; 2026 Frank Sykes</span>
+    </div>
+    <div class="footer-center">
+      <a href="mailto:frank@syks.co">frank@syks.co</a>
+      <a href="https://linkedin.com/in/franksykes" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="lang-switch">
+      <span class="current">EN</span><span class="sep">/</span><a href="/fr/framework/" hreflang="fr">FR</a>
+    </div>
+  </div>
 </footer>
 
 <script>

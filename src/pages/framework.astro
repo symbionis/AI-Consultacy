@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CalEmbed from '../components/CalEmbed.astro';
+import '../styles/framework.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'The 5 Levels of AI Fluency',
+  description:
+    'A map of how AI shows up in your work — from better questions to a system that runs in the background. For figuring out where you actually want to sit.',
+  inLanguage: 'en',
+  url: 'https://symbionis.ac/framework/',
+  image: 'https://symbionis.ac/og-image.png',
+  author: {
+    '@type': 'Person',
+    '@id': 'https://symbionis.ac/about/#frank',
+    name: 'Frank Sykes',
+  },
+};
+---
+
+<Layout
+  title="The Five Levels of AI | Symbionis"
+  description="A map of how AI shows up in your work — from better questions to a system that runs in the background. For figuring out where you actually want to sit."
+  locale="en"
+  pathKey="framework"
+  ogType="article"
+  jsonLd={jsonLd}
+  revealOptions={{ threshold: 0.2, rootMargin: '0px 0px -80px 0px' }}
+>
+  <section class="hero">
+    <div class="label">A reflective framework</div>
+    <h1>The 5 Levels of <em>AI Fluency.</em></h1>
+    <p class="sub">Five levels of fluency. Each more advanced than the last, and the right one depends on the work in front of you.</p>
+  </section>
+
+  <div class="sparkle-divider" aria-hidden="true">
+    <span class="star">✦</span>
+    <span class="star mid">✦</span>
+    <span class="star">✦</span>
+  </div>
+
+  <section class="prose">
+    <p>AI gets pitched as transformation. Most of what people actually want from it is quieter: <strong>a way to do the same work with less mental weight, and more room for what matters.</strong></p>
+
+    <p>Most people use AI at one level for some kinds of work, and another for others. That's normal. The right level depends on what you're trying to do. But the further you go, the more these tools become part of how you actually think.</p>
+  </section>
+
+  <section>
+    <div class="section-label">The five levels</div>
+    <h2 class="section-title">Each builds on what came before.</h2>
+    <p class="section-lead">Read them in order. The further you go, the more these tools shape how you work.</p>
+
+    <div class="levels">
+      <div class="level" data-reveal>
+        <div class="level-num">L1</div>
+        <div class="level-content">
+          <div class="level-name">Better questions</div>
+          <div class="level-headline">Use AI instead of search when the answer needs judgment.</div>
+          <div class="level-desc">For anything where the right answer depends on context, comparison, or your particular situation. Not facts that can be looked up, but questions that need to be thought through.</div>
+        </div>
+      </div>
+
+      <div class="level" data-reveal>
+        <div class="level-num">L2</div>
+        <div class="level-content">
+          <div class="level-name">Less weight</div>
+          <div class="level-headline">Take some load off the daily work.</div>
+          <div class="level-desc">Voice notes instead of typing. Meetings captured so you don't have to write them up. Conversations that hold the context of your projects, so you can pick up where you left off without re-explaining everything from scratch.</div>
+        </div>
+      </div>
+
+      <div class="level" data-reveal>
+        <div class="level-num">L3</div>
+        <div class="level-content">
+          <div class="level-name">Thinking partner</div>
+          <div class="level-headline">A second mind, available when you need one.</div>
+          <div class="level-desc">For ideas you've been carrying. For decisions that deserve more thought than they're getting. For working things out, out loud, with something that listens and pushes back. The work doesn't always need a person. Sometimes it just needs the right kind of attention.</div>
+        </div>
+      </div>
+
+      <div class="level" data-reveal>
+        <div class="level-num">L4</div>
+        <div class="level-content">
+          <div class="level-name">Tools that fit</div>
+          <div class="level-headline">Build things shaped to your work.</div>
+          <div class="level-desc">Not the generic app everyone uses. A tool designed for exactly how you actually operate: your invoicing, your bookings, your particular shape of project. Without needing to know how to code.</div>
+        </div>
+      </div>
+
+      <div class="level" data-reveal>
+        <div class="level-num">L5</div>
+        <div class="level-content">
+          <div class="level-name">Personal agents</div>
+          <div class="level-headline">Work that takes care of itself.</div>
+          <div class="level-desc">AI that observes, decides, and acts in the background. Not assisting you turn by turn. Running on its own. For the recurring work that doesn't need your attention to happen, just your judgment when something unusual comes up.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="coaching-cta" data-reveal>
+      <p>See how this framework shapes the coaching practice.</p>
+      <a href="/#receive" class="coaching-cta-btn">What you receive →</a>
+    </div>
+  </section>
+
+  <div class="gap-wrap">
+    <div class="gap-inner">
+      <div class="section-label">Orientation</div>
+      <h2 class="section-title">Where most people are, and where it gets interesting.</h2>
+      <p class="section-lead">Two different relationships with AI. Most people are in the first one, not because the second is hard, but because they haven't seen what it looks like from the inside.</p>
+
+      <div class="gap-grid">
+        <div class="gap-card stuck" data-reveal>
+          <div class="gap-stat">80%</div>
+          <div class="gap-sub">of professionals</div>
+          <div class="gap-headline">Treat AI as a tool.</div>
+          <div class="gap-body">Use it occasionally, for one-off questions. Like a faster search engine. Helpful, but the work mostly stays the same shape, done in mostly the same way.</div>
+        </div>
+
+        <div class="gap-card ahead" data-reveal>
+          <div class="gap-stat">20%</div>
+          <div class="gap-sub">work alongside AI</div>
+          <div class="gap-headline">Treat AI as a thinking partner.</div>
+          <div class="gap-body">It holds the context of their projects. Captures their meetings. Pushes back on their ideas. It becomes part of how they think. Not just something they consult.</div>
+        </div>
+      </div>
+
+      <div class="cost-block" data-reveal>
+        <div class="cost-label">What changes when you cross over</div>
+        <div class="cost-items">
+          <div class="cost-item">
+            <div class="cost-amount">More room</div>
+            <div class="cost-desc">Not because you work less. It's because you stop carrying what doesn't need carrying.</div>
+          </div>
+          <div class="cost-item">
+            <div class="cost-amount">Things move</div>
+            <div class="cost-desc">Projects you've been holding. Decisions you've been putting off. They start having a place to happen.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="coaching-cta" data-reveal>
+        <p>Discover your journey.</p>
+        <a href="/#process" class="coaching-cta-btn">How we start →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection">
+    <div class="reflection-inner">
+      <div class="section-label">The shift</div>
+      <h2 class="section-title">Where the real shift happens.</h2>
+
+      <p>The meaningful shift isn't between L1 and L2. It's at <strong>Level 3</strong>.</p>
+
+      <p>This is where AI stops being a tool you reach for and becomes a thinking partner you work with. Where the projects you've been carrying meet a second mind. Where the decisions you've been putting off finally get worked through, out loud, with something that listens and pushes back.</p>
+
+      <p>The first step is usually quieter than people expect. But what changes is qualitative, not incremental: <strong>not "I use AI more." It's "I think differently now."</strong></p>
+
+      <p>What this work usually looks like: clearing some of the clutter you've been carrying, activating one project that's been waiting, and building a real working relationship with AI as a thinking partner. Not occasionally, but as part of how you actually think.</p>
+    </div>
+  </div>
+
+  <section class="sting">
+    <p class="sting-text">Less clutter. <em>More presence.</em><br />That's the work.</p>
+  </section>
+
+  <div class="booking-section">
+    <p>Ready when you are.</p>
+    <CalEmbed elementId="my-cal-inline-connect" containerStyle="width:100%;height:100%;overflow:scroll" />
+  </div>
+</Layout>

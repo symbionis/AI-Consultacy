@@ -115,3 +115,69 @@ describe('U3 — homepages (EN + FR)', () => {
     ).toBe(true);
   });
 });
+
+describe('U4 — about and framework pages (EN + FR)', () => {
+  const routes: Array<[string, string]> = [
+    ['about/index.html', 'https://symbionis.ac/about/'],
+    ['fr/about/index.html', 'https://symbionis.ac/fr/about/'],
+    ['framework/index.html', 'https://symbionis.ac/framework/'],
+    ['fr/framework/index.html', 'https://symbionis.ac/fr/framework/'],
+  ];
+
+  it('emits all four pages as directory-style routes', () => {
+    for (const [path] of routes) expect(existsSync(`dist/${path}`)).toBe(true);
+  });
+
+  it('each page carries a self-referential canonical', () => {
+    for (const [path, canonical] of routes) {
+      expect(dist(path).querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+        canonical,
+      );
+    }
+  });
+
+  it('each page carries reciprocal hreflang for its locale pair', () => {
+    const pairs: Array<[string, string, string]> = [
+      ['about/index.html', 'https://symbionis.ac/about/', 'https://symbionis.ac/fr/about/'],
+      ['fr/about/index.html', 'https://symbionis.ac/about/', 'https://symbionis.ac/fr/about/'],
+      ['framework/index.html', 'https://symbionis.ac/framework/', 'https://symbionis.ac/fr/framework/'],
+      ['fr/framework/index.html', 'https://symbionis.ac/framework/', 'https://symbionis.ac/fr/framework/'],
+    ];
+    for (const [path, enUrl, frUrl] of pairs) {
+      const alternates = dist(path)
+        .querySelectorAll('link[rel="alternate"]')
+        .map((el) => [el.getAttribute('hreflang'), el.getAttribute('href')]);
+      expect(alternates).toEqual(
+        expect.arrayContaining([
+          ['en', enUrl],
+          ['fr', frUrl],
+          ['x-default', enUrl],
+        ]),
+      );
+    }
+  });
+
+  it('framework pages declare og:type article and an Article JSON-LD', () => {
+    for (const path of ['framework/index.html', 'fr/framework/index.html']) {
+      const d = dist(path);
+      expect(d.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe('article');
+      const ld = d.querySelector('script[type="application/ld+json"]')?.text ?? '';
+      expect(JSON.parse(ld)['@type']).toBe('Article');
+    }
+  });
+
+  it('framework pages render the Cal embed with the framework-specific id', () => {
+    for (const path of ['framework/index.html', 'fr/framework/index.html']) {
+      expect(dist(path).querySelector('#my-cal-inline-connect')).toBeTruthy();
+    }
+  });
+
+  it('about pages mark the active nav link with aria-current', () => {
+    for (const path of ['about/index.html', 'fr/about/index.html']) {
+      const active = dist(path)
+        .querySelectorAll('.site-nav a[aria-current="page"]')
+        .map((a) => a.text.trim());
+      expect(active.length).toBe(1);
+    }
+  });
+});

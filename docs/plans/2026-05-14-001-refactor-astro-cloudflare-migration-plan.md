@@ -1,7 +1,7 @@
 ---
 title: "refactor: Migrate Symbionis site to Astro on Cloudflare Workers"
 type: refactor
-status: active
+status: completed
 date: 2026-05-14
 ---
 

@@ -1,0 +1,27 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { ui, pagePath, type Locale, type PathKey } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  pathKey: PathKey;
+}
+
+const { locale, pathKey } = Astro.props;
+const t = ui[locale];
+---
+
+<header class="site-nav">
+  <a href={pagePath(locale, '')} class="nav-logo">Symbionis</a>
+  <div class="nav-right">
+    <nav class="nav-links">
+      <a href={pagePath(locale, 'about')} aria-current={pathKey === 'about' ? 'page' : undefined}>
+        {t.nav.about}
+      </a>
+      <a href={pagePath(locale, 'framework')} aria-current={pathKey === 'framework' ? 'page' : undefined}>
+        {t.nav.framework}
+      </a>
+    </nav>
+    <LangSwitch locale={locale} pathKey={pathKey} />
+  </div>
+</header>

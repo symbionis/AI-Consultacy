@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CalEmbed from '../components/CalEmbed.astro';
+import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
+import '../styles/global.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE}/#practice`,
+  name: 'Symbionis',
+  url: pageUrl('en', ''),
+  image: `${SITE}/og-image.png`,
+  description: 'AI coaching for entrepreneurs and small teams.',
+  email: 'frank@syks.co',
+  areaServed: 'Worldwide',
+  availableLanguage: ['en', 'fr'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Geneva',
+    addressCountry: 'CH',
+  },
+  founder: FRANK_REF,
+};
+---
+
+<Layout
+  title="Symbionis — AI coaching for entrepreneurs and small teams"
+  description="AI coaching for entrepreneurs and small teams. Less weight, more room, a second mind to think with — without disrupting how you already work."
+  locale="en"
+  pathKey=""
+  jsonLd={jsonLd}
+>
+  <main>
+    <!-- Section 1 — Hero -->
+    <section class="hero">
+      <h1>AI coaching, in your voice.</h1>
+      <p class="sub">For entrepreneurs and small teams.</p>
+      <p class="hero-tagline">Less weight. More room. A second mind to think with.</p>
+      <div class="hero-ctas">
+        <a href="#receive" class="link-secondary">See what this looks like</a>
+      </div>
+    </section>
+
+    <!-- Section 2 — The shift -->
+    <section id="shift" class="section-wide section-gap" data-reveal>
+      <div class="section-prose" style="padding:0;">
+        <hr class="divider" />
+        <blockquote class="calloutquote">
+          My role isn't to teach you AI. It's to understand you, in the way you actually work. Your habits, your rhythms, the shape of your day. And then to weave the tools in, at your pace.
+        </blockquote>
+        <div class="shift-prose">
+          <p>When you run a business or a small team, your day is already full. What I offer isn't AI. It's a way of bringing it into your work that augments how you already operate, without disrupting it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2.5 — About teaser -->
+    <section class="section-prose section-gap" data-reveal>
+      <p class="about-kicker">About Frank</p>
+      <div class="prose-body">
+        <figure class="teaser-portrait">
+          <img src="/frank-sykes.jpg" alt="Illustrated portrait of Frank Sykes" class="portrait-img" width="400" height="400" />
+        </figure>
+        <p>Frank Sykes coaches entrepreneurs and small teams through the AI transition. He's been here before. In 1998, during the internet revolution, he built one of London's first online job-matching systems and watched the consultants who used it move from "this is going to take our job away" to, three months later, the opposite.</p>
+        <p>Twenty years in London, then Geneva for his son. The technology has changed. The shape of what happens when it arrives hasn't.</p>
+      </div>
+      <a href="/about/" class="framework-link">The longer story →</a>
+    </section>
+
+    <!-- Section 3 — What you actually get -->
+    <section id="receive" class="section-wide section-gap" data-reveal>
+      <div class="section-prose" style="padding:0;">
+        <h2>What this is, in three parts.</h2>
+      </div>
+      <div class="three-cards">
+        <div class="card" data-reveal>
+          <div class="card-label">01 / Understanding</div>
+          <h3>A humanistic diagnostic.</h3>
+          <p>I offer you a real conversation about your univers, what you're carrying, what's been waiting, and where you want to make more room. The whole activity, the whole person. Not the tools, but the things that keep coming back and weighing on you.</p>
+          <p>You leave with a clear read of where you stand. And two experiments to try this week.</p>
+        </div>
+        <div class="card" data-reveal>
+          <div class="card-label">02 / Continuity</div>
+          <h3>Six sessions, alongside you.</h3>
+          <p>A journey of six weekly sessions, alongside you. We get to know how you actually operate, what you're carrying, and where to start. Then we shape it together and refine it until the weight lifts.</p>
+          <p>A project you've been carrying moves forward. Your mental load lifts.</p>
+        </div>
+        <div class="card" data-reveal>
+          <div class="card-label">03 / A system you keep</div>
+          <h3>Yours, after we stop working together.</h3>
+          <p>I leave you with a working system shaped to your operation, one you understand and can evolve. Your own workflows, your own routines, custom skills that work alongside you.</p>
+          <p>If our engagement ends, your proposals still draft themselves. Your Monday brief still arrives.</p>
+        </div>
+      </div>
+      <blockquote class="calloutquote" style="margin-top: clamp(2.5rem, 5vw, 4rem);" data-reveal>
+        Structural, not aspirational.
+      </blockquote>
+      <div class="receive-cta" data-reveal>
+        <a href="#book" class="btn-primary">Book a 15-minute call</a>
+      </div>
+    </section>
+
+    <!-- Section 3.5 — The 5 Levels framework -->
+    <section id="levels" class="framework-section" data-reveal>
+      <div class="framework-inner">
+        <blockquote class="calloutquote">
+          After twenty-five years of running things and the last few of running them with AI, this is how I've seen it unfold.
+        </blockquote>
+        <div class="framework-row">
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">L1</span>
+              <span class="level-name">Curious user</span>
+            </div>
+            <span class="level-desc">You've tried AI. To you, it's a better search engine.</span>
+          </div>
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">L2</span>
+              <span class="level-name">Working with tools</span>
+            </div>
+            <span class="level-desc">AI is part of your day. Voice notes, drafts, daily friction lifted.</span>
+          </div>
+          <div class="framework-level level-shift">
+            <div class="framework-level-header">
+              <span class="level-prefix">L3</span>
+              <span class="level-name">Thinking partner</span>
+              <span class="level-marker">— the shift</span>
+            </div>
+            <span class="level-desc">You think with it, not just at it.</span>
+          </div>
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">L4</span>
+              <span class="level-name">Tools shaped to you</span>
+            </div>
+            <span class="level-desc">You're building small systems that fit how you actually work.</span>
+          </div>
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">L5</span>
+              <span class="level-name">Operations that run themselves</span>
+            </div>
+            <span class="level-desc">Recurring work happens in your voice, in the background.</span>
+          </div>
+        </div>
+        <div class="framework-closing">
+          <p>Most people sit between two levels. The Discovery session places you and names the gap.</p>
+          <a href="/framework/" class="framework-link">Read the full framework →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 — Who this is for -->
+    <section class="section-prose section-gap" data-reveal>
+      <h2>Who this is for.</h2>
+      <div class="audience-grid">
+        <div class="audience-list for">
+          <h3>For</h3>
+          <ul>
+            <li>Solo consultants and small consultancies</li>
+            <li>Agency owners (marketing, design, communications)</li>
+            <li>Professional service firms: small accounting, tax, advisory, notarial</li>
+            <li>Online businesses and creators with operations</li>
+            <li>Small organisations, associations, and communities running on lean teams</li>
+            <li>Anyone at the centre of what they're running, tired of being the bottleneck on their own work</li>
+          </ul>
+        </div>
+        <div class="audience-list not-for">
+          <h3>Not for</h3>
+          <ul>
+            <li>People looking for a prompt-engineering workshop</li>
+            <li>People who want a tool recommendation list</li>
+            <li>Companies needing enterprise AI strategy</li>
+            <li>Anyone hoping to learn AI without changing how they work</li>
+          </ul>
+        </div>
+      </div>
+      <p class="audience-note"><em>EN and FR. Video sessions worldwide, in-person in Switzerland.</em></p>
+      <div class="receive-cta" data-reveal>
+        <a href="#book" class="btn-primary">Book a 15-minute call</a>
+      </div>
+    </section>
+
+    <!-- Section 5 — How it works -->
+    <section id="process" class="section-prose section-gap" data-reveal>
+      <h2>How we start.</h2>
+      <div class="steps">
+        <div class="step" data-reveal>
+          <div class="step-num">1</div>
+          <div>
+            <h3>A 15-minute connect call.</h3>
+            <p>Short, no obligation. We see whether there's a fit. If there isn't, you've lost fifteen minutes. If there is, we book the next conversation.</p>
+            <p>If you've been meaning to do something about AI for a while and not sure where to start, this is the call.</p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">2</div>
+          <div>
+            <h3>A 60-minute Discovery session.</h3>
+            <p>An hour to understand your world, your needs, and where there's weight to lift.</p>
+            <p><strong>In the hour, together:</strong><br />Where you sit on the 5 Levels of AI Fluency. What your next step in capability could be. Any questions you've been wanting to ask but haven't had the right person for.</p>
+            <p><strong>In the days after:</strong><br />A written document twenty-four hours later. Two experiments to try this week. A clear sense of whether working together makes sense.</p>
+            <p class="offer">Preferential rate for the first 15 entrepreneurs registering, as I launch this practice.</p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">3</div>
+          <div>
+            <h3>Coaching Together, if we both want to continue.</h3>
+            <p>Six weekly sessions. We shape a working system around how you actually operate, your own workflows, your own routines, custom skills that work alongside you. One project you've been carrying brought visibly forward.</p>
+            <p class="offer">Currently accepting a small number of first-cohort clients through summer 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 — Cal.com booking -->
+    <section id="book" class="section-wide section-gap booking">
+      <p class="booking-headline">Ready when you are.</p>
+      <CalEmbed elementId="cal-inline" />
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
+import '../../styles/global.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  ...FRANK_REF,
+  url: pageUrl('fr', 'about'),
+  image: `${SITE}/frank-sykes.jpg`,
+  jobTitle: 'Coach IA',
+  email: 'frank@syks.co',
+  sameAs: ['https://linkedin.com/in/franksykes'],
+  worksFor: {
+    '@type': 'ProfessionalService',
+    '@id': `${SITE}/#practice`,
+    name: 'Symbionis',
+  },
+};
+---
+
+<Layout
+  title="À propos de Frank Sykes | Symbionis"
+  description="Frank Sykes : coaching IA pour entrepreneurs et petites équipes. Il est déjà passé par là — Londres 1998, l'une des premières plateformes de recrutement en ligne."
+  locale="fr"
+  pathKey="about"
+  jsonLd={jsonLd}
+>
+  <main class="about-page">
+    <section class="about-hero" data-reveal>
+      <p class="about-kicker">À propos</p>
+      <h1>Frank Sykes.</h1>
+    </section>
+
+    <section class="about-body" data-reveal>
+      <figure class="about-portrait">
+        <img src="/frank-sykes.jpg" alt="Portrait illustré de Frank Sykes" class="portrait-img" width="400" height="400" />
+      </figure>
+      <p>En 1998, le premier emploi de Frank était dans une agence de recrutement informatique à Londres. Avec une petite équipe, il a construit l'une des premières plateformes en ligne pour mettre en relation candidats et postes. Les candidats créaient un profil, listaient leurs compétences, et les annonces tombaient dans ce qu'ils appelaient le job tank. Les consultants qui faisaient ce travail à la main n'étaient pas ravis au début. Cet outil va nous prendre notre travail, ont-ils dit à Frank. Trois mois plus tard, les mêmes personnes sont revenues lui dire le contraire. Le système leur avait facilité la vie. Ils pouvaient enfin arrêter de fouiller les bases et de croiser les mots-clés. Cette partie n'avait jamais vraiment eu besoin d'eux.</p>
+      <p>Frank y revient souvent, à cette histoire. Vingt ans à Londres ont suivi : travail en agence, stratégie de marque, adtech. Puis un déménagement à Genève avec son jeune fils, en quête d'un rythme plus lent et d'un rapport plus proche à la nature. L'IA, c'est une arrivée du même genre. La plupart des entrepreneurs et petites équipes que Frank rencontre ne craignent pas d'être remplacés. Ils en entendent parler comme d'une révolution, ils sentent bien qu'il faudrait s'y mettre, et ils ne savent pas trop par où commencer. Et c'est précisément par là que Frank commence : avec vous, là où vous en êtes.</p>
+    </section>
+
+    <div class="about-cta" data-reveal>
+      <a href="/fr/#receive" class="btn-primary">Voir comment ça se passe</a>
+    </div>
+  </main>
+</Layout>

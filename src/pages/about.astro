@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
+import '../styles/global.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  ...FRANK_REF,
+  url: pageUrl('en', 'about'),
+  image: `${SITE}/frank-sykes.jpg`,
+  jobTitle: 'AI coach',
+  email: 'frank@syks.co',
+  sameAs: ['https://linkedin.com/in/franksykes'],
+  worksFor: {
+    '@type': 'ProfessionalService',
+    '@id': `${SITE}/#practice`,
+    name: 'Symbionis',
+  },
+};
+---
+
+<Layout
+  title="About Frank Sykes | Symbionis"
+  description="Frank Sykes coaches entrepreneurs and small teams through the AI transition — having built one of London's first online job-matching platforms in 1998."
+  locale="en"
+  pathKey="about"
+  jsonLd={jsonLd}
+>
+  <main class="about-page">
+    <section class="about-hero" data-reveal>
+      <p class="about-kicker">About</p>
+      <h1>Frank Sykes.</h1>
+    </section>
+
+    <section class="about-body" data-reveal>
+      <figure class="about-portrait">
+        <img src="/frank-sykes.jpg" alt="Illustrated portrait of Frank Sykes" class="portrait-img" width="400" height="400" />
+      </figure>
+      <p>In 1998, Frank's first job was at an IT recruitment agency in London. He and a small team built one of the city's first online job-matching platforms. Candidates set up a profile, listed their skills, and roles came in to what they called the job tank. The consultants who had been doing that work by hand were not pleased at first. This is going to take our job away, they told him. Three months later, the same people came back and said the opposite. The system had made their work easier. The part they could now stop carrying, the database trawling and the keyword matches, was the part that had never really needed them.</p>
+      <p>That story is the one Frank keeps coming back to. Twenty years in London followed: agency work, brand strategy, adtech. Then a move to Geneva with his young son, looking for a slower pace and closer to nature. AI is the same kind of arrival. Most of the entrepreneurs and small teams Frank meets aren't worried about being replaced. They keep hearing about a revolution, suspect they should be doing something with it, and don't quite know where to start. And that's exactly where Frank starts: with you, where you actually are.</p>
+    </section>
+
+    <div class="about-cta" data-reveal>
+      <a href="/#receive" class="btn-primary">See what this looks like</a>
+    </div>
+  </main>
+</Layout>

@@ -6,7 +6,14 @@
     "enabled": true
   },
   "assets": {
-    "directory": "./"
+    // Astro build output. `npm run build` must run before `wrangler deploy`.
+    "directory": "./dist",
+    // Astro emits directory-style pages (dist/about/index.html); force the
+    // trailing slash so /about resolves to /about/ — matching trailingSlash:
+    // 'always' in astro.config.mjs.
+    "html_handling": "force-trailing-slash",
+    // No custom 404 page on the site today — keep the default null-body 404.
+    "not_found_handling": "none"
   },
   "compatibility_flags": [
     "nodejs_compat"

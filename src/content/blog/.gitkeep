@@ -1,0 +1,3 @@
+# Reserved for the Outrank-powered blog (plan #2).
+# Outrank's API Webhook receiver will write published articles here as markdown;
+# the `blog` collection in src/content.config.ts is already wired to load them.

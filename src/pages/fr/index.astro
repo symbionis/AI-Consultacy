@@ -1,0 +1,229 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CalEmbed from '../../components/CalEmbed.astro';
+import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
+import '../../styles/global.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE}/#practice`,
+  name: 'Symbionis',
+  url: pageUrl('fr', ''),
+  image: `${SITE}/og-image.png`,
+  description: 'Coaching IA pour les entrepreneurs et les petites équipes.',
+  email: 'frank@syks.co',
+  areaServed: 'Worldwide',
+  availableLanguage: ['en', 'fr'],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Geneva',
+    addressCountry: 'CH',
+  },
+  founder: FRANK_REF,
+};
+---
+
+<Layout
+  title="Symbionis — Coaching IA pour entrepreneurs et petites équipes"
+  description="Coaching IA pour entrepreneurs et petites équipes. Moins de poids, plus de place, un second esprit qui pense avec vous, sans bousculer votre travail."
+  locale="fr"
+  pathKey=""
+  jsonLd={jsonLd}
+>
+  <main>
+    <!-- Section 1 — Hero -->
+    <section class="hero">
+      <h1>Le coaching IA qui parle votre langue.</h1>
+      <p class="sub">Pour les entrepreneurs et les petites équipes.</p>
+      <p class="hero-tagline">Moins de poids. Plus de place.<br />Un second esprit qui pense avec vous.</p>
+      <div class="hero-ctas">
+        <a href="#receive" class="link-secondary">Voir comment ça se passe</a>
+      </div>
+    </section>
+
+    <!-- Section 2 — The shift -->
+    <section id="shift" class="section-wide section-gap" data-reveal>
+      <div class="section-prose" style="padding:0;">
+        <hr class="divider" />
+        <blockquote class="calloutquote">
+          Mon rôle n'est pas de vous apprendre l'IA. C'est de vous comprendre, vous, dans votre univers de travail. Vos habitudes, vos rythmes, la forme de vos journées. Puis d'amener les outils, d'une manière intégrative, à votre rythme.
+        </blockquote>
+        <div class="shift-prose">
+          <p>Quand on dirige une activité ou une petite équipe, les journées sont déjà bien remplies. Ce que je propose, ce n'est pas l'IA. C'est une manière de la faire entrer dans votre travail qui vient augmenter ce que vous faites déjà, sans le bousculer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2.5 — About teaser -->
+    <section class="section-prose section-gap" data-reveal>
+      <p class="about-kicker">À propos de Frank</p>
+      <div class="prose-body">
+        <figure class="teaser-portrait">
+          <img src="/frank-sykes.jpg" alt="Portrait illustré de Frank Sykes" class="portrait-img" width="400" height="400" />
+        </figure>
+        <p>Frank Sykes accompagne entrepreneurs et petites équipes dans leur transition à l'IA. Il est déjà passé par là. En 1998, en pleine révolution internet, il a construit à Londres l'une des premières plateformes en ligne de mise en relation candidats-postes, et a vu les consultants qui s'en servaient passer de « cet outil va nous prendre notre travail » à, trois mois plus tard, l'inverse.</p>
+        <p>Vingt ans à Londres, puis Genève pour son fils. La technologie a changé, pas la manière dont on la traverse.</p>
+      </div>
+      <a href="/fr/about/" class="framework-link">Lire la suite →</a>
+    </section>
+
+    <!-- Section 3 — What you actually get -->
+    <section id="receive" class="section-wide section-gap" data-reveal>
+      <div class="section-prose" style="padding:0;">
+        {/* FR copy pending */}
+        <h2>De quoi il s'agit, en trois parties.</h2>
+      </div>
+      <div class="three-cards">
+        <div class="card" data-reveal>
+          <div class="card-label">01 / Compréhension</div>
+          <h3>Un diagnostic humain.</h3>
+          <p>Je vous propose une vraie conversation sur votre univers, ce que vous portez, ce qui est en attente, et où vous voulez faire de la place. On aborde l'activité, toute la personne, pas les outils, mais ce qui revient sans cesse et qui vous pèse.</p>
+          <p>Vous repartez avec une lecture claire de votre situation. Et deux expériences à tenter dès cette semaine.</p>
+        </div>
+        <div class="card" data-reveal>
+          <div class="card-label">02 / Continuité</div>
+          <h3>Six séances, à vos côtés.</h3>
+          <p>Je vous accompagne pendant six séances hebdomadaires. Je comprends votre activité, j'analyse ce que vous portez, je vous propose une approche qui vous convient. On met en œuvre ensemble et nous l'affinons pour vous alléger.</p>
+          <p>Un projet que vous portiez avance. Votre charge mentale s'allège.</p>
+        </div>
+        <div class="card" data-reveal>
+          <div class="card-label">03 / Un système qui vous reste</div>
+          <h3>Le vôtre, même après notre travail ensemble.</h3>
+          <p>Un système adapté à votre activité. Vos workflows, vos routines, des compétences sur mesure qui travaillent à vos côtés. Vous le comprenez, vous le faites évoluer.</p>
+          <p>Si nous arrêtons notre engagement, vos propositions continuent de se rédiger toutes seules. Votre point du lundi continue d'arriver.</p>
+        </div>
+      </div>
+      <blockquote class="calloutquote" style="margin-top: clamp(2.5rem, 5vw, 4rem);" data-reveal>
+        C'est du coaching structurel, pas aspirationnel.
+      </blockquote>
+      <div class="receive-cta" data-reveal>
+        <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+      </div>
+    </section>
+
+    <!-- Section 3.5 — The 5 Levels framework -->
+    <section id="levels" class="framework-section" data-reveal>
+      <div class="framework-inner">
+        <blockquote class="calloutquote">
+          Voici comment je vois les choses, après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA.
+        </blockquote>
+        <div class="framework-row">
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">N1</span>
+              <span class="level-name">Curieux</span>
+            </div>
+            <span class="level-desc">Vous avez essayé l'IA. Pour vous, c'est un moteur de recherche en mieux.</span>
+          </div>
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">N2</span>
+              <span class="level-name">L'IA au quotidien</span>
+            </div>
+            <span class="level-desc">Notes vocales, brouillons, la friction du jour qui s'allège.</span>
+          </div>
+          <div class="framework-level level-shift">
+            <div class="framework-level-header">
+              <span class="level-prefix">N3</span>
+              <span class="level-name">Partenaire de réflexion</span>
+              <span class="level-marker">— le basculement</span>
+            </div>
+            <span class="level-desc">Vous pensez avec elle, pas juste à elle.</span>
+          </div>
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">N4</span>
+              <span class="level-name">Des outils qui vous ressemblent</span>
+            </div>
+            <span class="level-desc">Vous construisez de petits systèmes adaptés à votre façon de faire.</span>
+          </div>
+          <div class="framework-level">
+            <div class="framework-level-header">
+              <span class="level-prefix">N5</span>
+              <span class="level-name">Un travail qui tourne tout seul</span>
+            </div>
+            <span class="level-desc">Le récurrent se fait dans votre voix, en arrière-plan.</span>
+          </div>
+        </div>
+        <div class="framework-closing">
+          <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place — et nomme l'écart.</p>
+          <a href="/fr/framework/" class="framework-link">Lire le framework complet →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 — Who this is for -->
+    <section class="section-prose section-gap" data-reveal>
+      {/* FR copy pending */}
+      <h2>Avec qui je travaille.</h2>
+      <div class="audience-grid">
+        <div class="audience-list for">
+          <h3>Pour</h3>
+          <ul>
+            {/* FR copy pending */}
+            <li>Consultants indépendants et petites consultances</li>
+            <li>Dirigeants d'agences (marketing, design, communication)</li>
+            <li>Cabinets de services professionnels : comptabilité, fiscalité, conseil, notariat</li>
+            <li>Entreprises en ligne et créateurs ayant une activité opérationnelle</li>
+            <li>Toute personne qui <em>est</em> son entreprise et qui en a assez d'être le goulot d'étranglement de son propre travail</li>
+          </ul>
+        </div>
+        <div class="audience-list not-for">
+          <h3>Pas pour</h3>
+          <ul>
+            {/* FR copy pending */}
+            <li>Ceux qui cherchent un atelier de prompt engineering</li>
+            <li>Ceux qui veulent une liste de recommandations d'outils</li>
+            <li>Les entreprises qui ont besoin d'une stratégie IA à grande échelle</li>
+            <li>Ceux qui espèrent apprendre l'IA sans changer leur façon de travailler</li>
+          </ul>
+        </div>
+      </div>
+      <p class="audience-note"><em>EN et FR. Séances en visio dans le monde entier, en personne en Suisse.</em></p>
+      <div class="receive-cta" data-reveal>
+        <a href="#book" class="btn-primary">Réserver un appel de 15 minutes</a>
+      </div>
+    </section>
+
+    <!-- Section 5 — How it works -->
+    <section id="process" class="section-prose section-gap" data-reveal>
+      {/* FR copy pending */}
+      <h2>Comment ça commence.</h2>
+      <div class="steps">
+        <div class="step" data-reveal>
+          <div class="step-num">1</div>
+          <div>
+            <h3>Un appel de 15 minutes.</h3>
+            <p>Court, sans engagement. On voit s'il y a un terrain commun. Si ce n'est pas le cas, vous avez perdu quinze minutes. Si c'est le cas, on planifie la suite.</p>
+            <p>Si vous voulez faire le pas avec l'IA, parlons-en.</p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">2</div>
+          <div>
+            <h3>Une session Découverte de 60 minutes.</h3>
+            <p>Une heure pour comprendre votre univers, vos besoins, et ce qui mérite d'être allégé.</p>
+            <p><strong>Pendant l'heure, ensemble :</strong><br />Votre place sur les 5 Niveaux de Maîtrise de l'IA. À quoi pourrait ressembler votre prochaine étape. Toutes les questions que vous avez voulu poser sans avoir la bonne personne en face.</p>
+            <p><strong>Dans les jours qui suivent :</strong><br />Un document écrit vingt-quatre heures plus tard. Deux expériences à tenter cette semaine. Une lecture claire de l'intérêt de travailler ensemble.</p>
+            <p class="offer">Tarif préférentiel pour les 15 premiers entrepreneurs inscrits, pour le lancement de cette pratique.</p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <div class="step-num">3</div>
+          <div>
+            <h3>Coaching Ensemble, si nous voulons tous les deux continuer.</h3>
+            <p>Six séances hebdomadaires. Nous façonnons un système de travail adapté à votre activité réelle, vos propres workflows, vos propres routines, des compétences sur mesure qui travaillent à vos côtés. Un projet que vous portez depuis longtemps rendu visiblement avancé.</p>
+            <p class="offer">Actuellement ouvert à un nombre restreint de clients du premier groupe, jusqu'à l'été 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 — Cal.com booking -->
+    <section id="book" class="section-wide section-gap booking">
+      <p class="booking-headline">Quand vous êtes prêt.</p>
+      <CalEmbed elementId="cal-inline" />
+    </section>
+  </main>
+</Layout>

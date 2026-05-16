@@ -285,6 +285,16 @@ p {
   margin: 0.3rem clamp(1.25rem, 2.5vw, 1.75rem) 0.6rem 0;
 }
 
+.about-teaser-box {
+  background: var(--card-bg);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border-radius: 6px;
+}
+
+.about-teaser-box .prose-body p {
+  max-width: none;
+}
+
 .prose-body p {
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   line-height: 1.7;

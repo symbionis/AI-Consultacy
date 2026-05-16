@@ -7,18 +7,18 @@ import { parse, type HTMLElement } from 'node-html-parser';
 
 // The site's six routes — the single source of truth for every suite below.
 const ROUTES = [
-  { path: 'index.html', url: 'https://symbionis.ac/', locale: 'en' },
-  { path: 'fr/index.html', url: 'https://symbionis.ac/fr/', locale: 'fr' },
-  { path: 'about/index.html', url: 'https://symbionis.ac/about/', locale: 'en' },
-  { path: 'fr/about/index.html', url: 'https://symbionis.ac/fr/about/', locale: 'fr' },
-  { path: 'framework/index.html', url: 'https://symbionis.ac/framework/', locale: 'en' },
-  { path: 'fr/framework/index.html', url: 'https://symbionis.ac/fr/framework/', locale: 'fr' },
+  { path: 'index.html', url: 'https://franksy.me/', locale: 'en' },
+  { path: 'fr/index.html', url: 'https://franksy.me/fr/', locale: 'fr' },
+  { path: 'about/index.html', url: 'https://franksy.me/about/', locale: 'en' },
+  { path: 'fr/about/index.html', url: 'https://franksy.me/fr/about/', locale: 'fr' },
+  { path: 'framework/index.html', url: 'https://franksy.me/framework/', locale: 'en' },
+  { path: 'fr/framework/index.html', url: 'https://franksy.me/fr/framework/', locale: 'fr' },
 ] as const;
 
 /** Reciprocal hreflang pair for a route — its EN and FR counterparts. */
 const alternatesFor = (path: string) => {
-  const enUrl = `https://symbionis.ac/${path.replace(/^fr\//, '').replace('index.html', '')}`;
-  const frUrl = `https://symbionis.ac/fr/${path.replace(/^fr\//, '').replace('index.html', '')}`;
+  const enUrl = `https://franksy.me/${path.replace(/^fr\//, '').replace('index.html', '')}`;
+  const frUrl = `https://franksy.me/fr/${path.replace(/^fr\//, '').replace('index.html', '')}`;
   return { enUrl, frUrl };
 };
 
@@ -53,12 +53,12 @@ describe('U2 — shared layout head generation (EN homepage)', () => {
 
   it('emits a self-referential canonical', () => {
     expect(dist('index.html').querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://symbionis.ac/',
+      'https://franksy.me/',
     );
   });
 
   it('emits reciprocal hreflang alternates including x-default', () => {
-    expectReciprocalHreflang(dist('index.html'), 'https://symbionis.ac/', 'https://symbionis.ac/fr/');
+    expectReciprocalHreflang(dist('index.html'), 'https://franksy.me/', 'https://franksy.me/fr/');
   });
 
   it('emits Open Graph locale tags for the page locale', () => {
@@ -96,7 +96,7 @@ describe('U3 — homepages (EN + FR)', () => {
     const fr = dist('fr/index.html');
     expect(fr.querySelector('html')?.getAttribute('lang')).toBe('fr');
     expect(fr.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://symbionis.ac/fr/',
+      'https://franksy.me/fr/',
     );
   });
 
@@ -109,7 +109,7 @@ describe('U3 — homepages (EN + FR)', () => {
 
   it('EN and FR homepages carry reciprocal hreflang alternates', () => {
     for (const path of ['index.html', 'fr/index.html']) {
-      expectReciprocalHreflang(dist(path), 'https://symbionis.ac/', 'https://symbionis.ac/fr/');
+      expectReciprocalHreflang(dist(path), 'https://franksy.me/', 'https://franksy.me/fr/');
     }
   });
 
@@ -224,19 +224,19 @@ describe('U5 — generated sitemap', () => {
 
     // For a known route pair, assert the alternates carry the correct
     // reciprocal href — not just that the hreflang attribute is present.
-    const aboutEntry = entries.find((e) => e.includes('<loc>https://symbionis.ac/about/</loc>'));
+    const aboutEntry = entries.find((e) => e.includes('<loc>https://franksy.me/about/</loc>'));
     expect(aboutEntry).toBeDefined();
     expect(aboutEntry).toContain(
-      '<xhtml:link rel="alternate" hreflang="en" href="https://symbionis.ac/about/"/>',
+      '<xhtml:link rel="alternate" hreflang="en" href="https://franksy.me/about/"/>',
     );
     expect(aboutEntry).toContain(
-      '<xhtml:link rel="alternate" hreflang="fr" href="https://symbionis.ac/fr/about/"/>',
+      '<xhtml:link rel="alternate" hreflang="fr" href="https://franksy.me/fr/about/"/>',
     );
   });
 
   it('robots.txt points at the generated sitemap index', () => {
     expect(readFileSync('dist/robots.txt', 'utf-8')).toContain(
-      'Sitemap: https://symbionis.ac/sitemap-index.xml',
+      'Sitemap: https://franksy.me/sitemap-index.xml',
     );
   });
 

@@ -10,7 +10,7 @@ export type Locale = 'en' | 'fr';
 /** Locale-agnostic page identifier — the closed set of routes the site chrome knows about. */
 export type PathKey = '' | 'about' | 'framework';
 
-export const SITE = 'https://symbionis.ac';
+export const SITE = 'https://franksy.me';
 
 export const ui = {
   en: {

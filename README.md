@@ -1,8 +1,8 @@
-# Symbionis — AI Coaching Practice
+# Franksy — AI Coaching Practice
 
 Bilingual site (EN/FR) for Frank Sykes' AI coaching practice. Built with
 [Astro](https://astro.build) (static output), deployed to Cloudflare Workers
-static assets on `symbionis.ac`.
+static assets on `franksy.me`.
 
 ## Quick start
 
@@ -85,7 +85,7 @@ npx wrangler deploy
 ```
 
 Or connect the repo to **Cloudflare Workers Builds** so `npm run build` runs on
-every push to `main` → `symbionis.ac`.
+every push to `main` → `franksy.me`.
 
 `public/_headers` and `public/_redirects` are copied into `dist/` and applied at
 the edge — security headers, cache rules (including an `immutable` rule for

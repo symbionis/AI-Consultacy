@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   // Used for canonical URLs and the generated sitemap.
-  site: 'https://symbionis.ac',
+  site: 'https://franksy.me',
 
   // Pure static output — no SSR adapter. The Outrank-powered blog (plan #2)
   // will add the Cloudflare adapter for its single dynamic webhook route.

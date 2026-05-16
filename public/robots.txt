@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://symbionis.ac/sitemap-index.xml
+Sitemap: https://franksy.me/sitemap-index.xml

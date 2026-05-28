@@ -1,6 +1,6 @@
 ---
 title: "feat: Add PostHog web analytics"
-status: active
+status: completed
 created: 2026-05-28
 type: feat
 depth: lightweight

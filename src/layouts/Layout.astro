@@ -9,6 +9,7 @@
 // for the framework pages); Astro injects the <link> into this <head>.
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CalFloatingButton from '../components/CalFloatingButton.astro';
 import { ui, pageUrl, otherLocale, SITE, type Locale, type PathKey } from '../i18n/ui';
 
 interface Props {
@@ -102,6 +103,7 @@ posthog.init(${JSON.stringify(posthogKey)},{api_host:${JSON.stringify(posthogHos
     <Nav locale={locale} pathKey={pathKey} />
     <slot />
     <Footer locale={locale} pathKey={pathKey} />
+    <CalFloatingButton locale={locale} />
 
     <script is:inline define:vars={{ revealOptions }}>
       // Scroll reveal — adds `.visible` to `[data-reveal]` elements as they enter

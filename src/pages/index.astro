@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CalEmbed from '../components/CalEmbed.astro';
 import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
 import '../styles/global.css';
 
@@ -99,7 +98,7 @@ const jsonLd = {
         Structural, not aspirational.
       </blockquote>
       <div class="receive-cta" data-reveal>
-        <a href="#book" class="btn-primary">Book a 15-minute call</a>
+        <a href="https://app.cal.com/franksy/connect" class="btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a 15-minute call</a>
       </div>
     </section>
 
@@ -181,7 +180,7 @@ const jsonLd = {
       </div>
       <p class="audience-note"><em>EN and FR. Video sessions worldwide, in-person in Switzerland.</em></p>
       <div class="receive-cta" data-reveal>
-        <a href="#book" class="btn-primary">Book a 15-minute call</a>
+        <a href="https://app.cal.com/franksy/connect" class="btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a 15-minute call</a>
       </div>
     </section>
 
@@ -222,12 +221,6 @@ const jsonLd = {
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Section 6 — Cal.com booking -->
-    <section id="book" class="section-wide section-gap booking">
-      <p class="booking-headline">Ready when you are.</p>
-      <CalEmbed elementId="cal-inline" />
     </section>
   </main>
 </Layout>

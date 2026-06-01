@@ -1,12 +1,10 @@
 ---
 // Cal.com floating "Book 15 min" button. Rendered once from Layout, so it
-// appears on every page (home, about, framework — EN and FR). It shares the
-// `connect` namespace with the inline embed (CalEmbed.astro); the Cal loader
-// only injects embed.js once and re-initialising the namespace is idempotent,
-// so the two can coexist on the pages that also carry an inline embed.
-//
-// The `ui` config mirrors CalEmbed's themed cssVars so the popup matches the
-// site palette on the about pages, which have no inline embed of their own.
+// appears on every page (home, about, framework — EN and FR). This is the
+// site's only Cal embed: it loads embed.js, inits the `connect` namespace, and
+// sets the themed `ui` config. The in-page CTAs (data-cal-link buttons) reuse
+// that same namespace via Cal's global element-click delegation — no per-page
+// init needed — so clicking them opens the same popup as this button.
 import type { Locale } from '../i18n/ui';
 
 interface Props {

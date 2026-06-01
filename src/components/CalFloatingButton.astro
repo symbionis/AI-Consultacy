@@ -41,4 +41,12 @@ const buttonText = locale === 'fr' ? 'Réserver 15 min' : 'Book 15 min';
       },
     },
   });
+
+  // The in-page CTAs are anchors (data-cal-link) with an app.cal.com href as a
+  // no-JS fallback. Cal's element-click handler opens the modal but does not
+  // cancel the anchor's navigation, so without this the browser would follow
+  // the href and unload the page. Suppress the default only when JS is active.
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("a[data-cal-link]")) e.preventDefault();
+  });
 </script>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CalEmbed from '../components/CalEmbed.astro';
 import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
 import '../styles/framework.css';
 
@@ -166,6 +165,6 @@ const jsonLd = {
 
   <div class="booking-section">
     <p>Ready when you are.</p>
-    <CalEmbed elementId="my-cal-inline-connect" containerStyle="width:100%;height:100%;overflow:scroll" />
+    <a href="https://app.cal.com/franksy/connect" class="coaching-cta-btn" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a 15-minute call</a>
   </div>
 </Layout>

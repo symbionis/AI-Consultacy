@@ -14,12 +14,12 @@ export const SITE = 'https://franksy.me';
 
 export const ui = {
   en: {
-    nav: { about: 'About', framework: 'Framework' },
+    nav: { about: 'About', framework: 'Framework', portfolio: 'Portfolio' },
     footerCopy: '© 2026 Frank Sykes',
     ogLocale: 'en_US',
   },
   fr: {
-    nav: { about: 'À propos', framework: 'Framework' },
+    nav: { about: 'À propos', framework: 'Framework', portfolio: 'Portfolio' },
     footerCopy: '© 2026 Frank Sykes, Genève',
     ogLocale: 'fr_FR',
   },

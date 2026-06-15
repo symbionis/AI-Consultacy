@@ -15,7 +15,7 @@ const { locale } = Astro.props;
 const buttonText = locale === 'fr' ? 'Réserver 15 min' : 'Book 15 min';
 
 // Numeric ID of the LinkedIn event-specific conversion fired on a completed
-// booking. Null locally / when unset — the listener then only fires PostHog.
+// booking. Null locally / when unset — the listener then does nothing.
 // The Insight Tag base pixel itself lives in Layout.astro.
 const linkedInConversionId = import.meta.env.PUBLIC_LINKEDIN_CONVERSION_ID || null;
 ---
@@ -68,7 +68,6 @@ const linkedInConversionId = import.meta.env.PUBLIC_LINKEDIN_CONVERSION_ID || nu
       if (window.lintrk && linkedInConversionId) {
         window.lintrk("track", { conversion_id: Number(linkedInConversionId) });
       }
-      if (window.posthog) window.posthog.capture("booking_completed");
     }
     Cal.ns.connect("on", { action: "bookingSuccessful", callback: onBookingComplete });
     Cal.ns.connect("on", { action: "bookingSuccessfulV2", callback: onBookingComplete });

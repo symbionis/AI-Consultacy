@@ -38,22 +38,21 @@
   function init() {
     var style = document.createElement('style');
     style.textContent =
+      // Franksy block field: flat teal, white text, sun link. No shadow, no motion.
       '.lang-suggest{position:fixed;left:0;right:0;bottom:0;z-index:1000;' +
-      'display:flex;align-items:center;justify-content:center;gap:0.5rem 1.25rem;' +
-      'flex-wrap:wrap;padding:0.8rem 1.25rem;background:#1B3A57;color:#F4F1EA;' +
-      "font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;" +
-      'font-size:0.9rem;line-height:1.4;box-shadow:0 -1px 16px rgba(0,0,0,0.16);' +
-      'transform:translateY(100%);transition:transform 0.35s ease}' +
-      '.lang-suggest.is-visible{transform:translateY(0)}' +
-      '.lang-suggest-msg{opacity:0.88}' +
-      '.lang-suggest-cta{color:#C9A24B;font-weight:600;text-decoration:none;' +
-      'border-bottom:1px solid rgba(201,162,75,0.4);padding-bottom:1px}' +
-      '.lang-suggest-cta:hover{border-bottom-color:#C9A24B}' +
-      '.lang-suggest-close{background:none;border:none;color:#F4F1EA;opacity:0.55;' +
-      'font-size:1.2rem;line-height:1;cursor:pointer;padding:0 0.2rem;' +
-      'transition:opacity 0.2s ease}' +
+      'display:flex;align-items:center;justify-content:flex-start;gap:0.5rem 1.5rem;' +
+      'flex-wrap:wrap;padding:14px clamp(16px,5vw,48px);background:#0D4B47;color:#FFFFFF;' +
+      'border-top:1px solid rgba(246,246,242,0.16);' +
+      "font-family:'Instrument Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;" +
+      'font-size:15px;line-height:1.4;visibility:hidden}' +
+      '.lang-suggest.is-visible{visibility:visible}' +
+      '.lang-suggest-cta{color:#FFC93A;font-weight:500;text-decoration:underline;' +
+      'text-underline-offset:4px;text-decoration-thickness:1px}' +
+      '.lang-suggest-cta:hover{text-decoration-color:#F65A3C}' +
+      '.lang-suggest-close{margin-left:auto;background:none;border:none;color:#FFFFFF;opacity:0.75;' +
+      'font-size:1.25rem;line-height:1;cursor:pointer;padding:0 0.25rem}' +
       '.lang-suggest-close:hover{opacity:1}' +
-      '@media (prefers-reduced-motion:reduce){.lang-suggest{transition:none}}';
+      '.lang-suggest a:focus-visible,.lang-suggest button:focus-visible{outline:2px solid #FFC93A;outline-offset:2px}';
     document.head.appendChild(style);
 
     var bar = document.createElement('div');

@@ -23,11 +23,13 @@ const linkedInConversionId = import.meta.env.PUBLIC_LINKEDIN_CONVERSION_ID || nu
 <script is:inline define:vars={{ buttonText, linkedInConversionId }}>
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "connect", { origin: "https://app.cal.com" });
+  // Franksy primary button: teal on the light page, sun on the teal dark page.
+  var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   Cal.ns.connect("floatingButton", {
     calLink: "franksy/connect",
     config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
-    buttonColor: "#1B3A57",
-    buttonTextColor: "#F4F1EA",
+    buttonColor: prefersDark ? "#FFC93A" : "#0D4B47",
+    buttonTextColor: prefersDark ? "#0D4B47" : "#FFFFFF",
     buttonText: buttonText,
     buttonPosition: "bottom-right",
   });
@@ -37,12 +39,12 @@ const linkedInConversionId = import.meta.env.PUBLIC_LINKEDIN_CONVERSION_ID || nu
     layout: "month_view",
     cssVarsPerTheme: {
       light: {
-        "cal-bg": "#F4F1EA",
-        "cal-bg-muted": "#EEEAE0",
-        "cal-bg-emphasis": "#EEEAE0",
-        "cal-brand": "#1B3A57",
-        "cal-text": "#1B3A57",
-        "cal-text-emphasis": "#1B3A57",
+        "cal-bg": "#F6F6F2",
+        "cal-bg-muted": "#E6ECE8",
+        "cal-bg-emphasis": "#E6ECE8",
+        "cal-brand": "#0D4B47",
+        "cal-text": "#0D4B47",
+        "cal-text-emphasis": "#0D4B47",
       },
     },
   });

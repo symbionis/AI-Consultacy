@@ -12,19 +12,21 @@ const t = ui[locale];
 ---
 
 <header class="site-nav">
-  <a href={pagePath(locale, '')} class="nav-logo">Franksy</a>
-  <div class="nav-right">
-    <nav class="nav-links">
-      <a href={pagePath(locale, 'about')} aria-current={pathKey === 'about' ? 'page' : undefined}>
-        {t.nav.about}
-      </a>
-      <a href={pagePath(locale, 'framework')} aria-current={pathKey === 'framework' ? 'page' : undefined}>
-        {t.nav.framework}
-      </a>
-      <a href="https://work.franksy.me/">
-        {t.nav.portfolio}
-      </a>
-    </nav>
-    <LangSwitch locale={locale} pathKey={pathKey} />
+  <div class="container nav-inner">
+    <a href={pagePath(locale, '')} class="nav-logo">Franksy</a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href={pagePath(locale, 'about')} aria-current={pathKey === 'about' ? 'page' : undefined}>
+          {t.nav.about}
+        </a>
+        <a href={pagePath(locale, 'framework')} aria-current={pathKey === 'framework' ? 'page' : undefined}>
+          {t.nav.framework}
+        </a>
+        <a href="https://work.franksy.me/">
+          {t.nav.portfolio}
+        </a>
+      </nav>
+      <LangSwitch locale={locale} pathKey={pathKey} />
+    </div>
   </div>
 </header>

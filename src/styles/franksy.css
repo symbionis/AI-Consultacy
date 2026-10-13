@@ -1,0 +1,466 @@
+/* Franksy design system: tokens, base type and the shared site chrome.
+   Values come from the Franksy tokens.json (design system artifact). Loaded
+   once by Layout.astro; page sheets (home.css, framework.css) only lay out
+   their own sections on top of these patterns. */
+
+:root {
+  /* Palette */
+  --teal: #0D4B47;
+  --teal-50: #E6ECE8;
+  --sun: #FFC93A;
+  --scarlet: #F65A3C;
+  --scarlet-deep: #C8402A;
+  --white: #FFFFFF;
+
+  /* Semantic, light theme */
+  --page: #F6F6F2;
+  --surface: var(--teal-50);
+  --block: var(--teal);
+  --ink: var(--teal);
+  --ink-2: #2E5A56;
+  --ink-3: #4F6C69;
+  --on-block: var(--white);
+  --on-block-2: var(--sun);
+  --accent: var(--scarlet);
+  --hairline: rgba(13, 75, 71, 0.14);
+  --focus: var(--teal);
+  /* Small accent text. scarlet-deep clears 4.5:1 on page only, so it is never
+     used inside surface bands. */
+  --accent-text: var(--scarlet-deep);
+  --btn-bg: var(--teal);
+  --btn-fg: var(--white);
+  /* Shape markers that change with the ground they sit on. */
+  --marker-square: url('/brand/square-teal.svg');
+  --marker-dots: url('/brand/dots-teal.svg');
+
+  /* Type */
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Radius */
+  --radius-sm: 2px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container: 1120px;
+  --gutter: clamp(var(--space-4), 5vw, var(--space-7));
+  --section-y: var(--space-9);
+  --measure: 680px;
+
+  color-scheme: light dark;
+}
+
+@media (min-width: 900px) {
+  :root { --section-y: var(--space-10); }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0D4B47;
+    --surface: #16605B;
+    --block: #1B6A64;
+    --ink: #F6F6F2;
+    --ink-2: #CFE0DD;
+    --ink-3: #BFD5D1;
+    --hairline: rgba(246, 246, 242, 0.16);
+    --focus: var(--sun);
+    /* scarlet-deep is 2:1 on the teal page; sun carries small accents here. */
+    --accent-text: var(--sun);
+    /* A teal button would vanish on the teal page. */
+    --btn-bg: var(--sun);
+    --btn-fg: var(--teal);
+    --marker-square: url('/brand/square-teal-50.svg');
+    --marker-dots: url('/brand/dots-scarlet.svg');
+  }
+}
+
+/* ===== BASE ===== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  background: var(--page);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection { background: var(--sun); color: var(--teal); }
+
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-weight: 500;
+  color: inherit;
+  text-wrap: balance;
+}
+
+strong { font-weight: 600; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Links: ink with an underline at 4px offset; hover turns the underline scarlet. */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: currentColor;
+  transition: text-decoration-color 150ms ease-out;
+}
+a:hover { text-decoration-color: var(--accent); }
+
+/* ===== LAYOUT ===== */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); }
+
+/* Surface band: full-width teal-50 field. Never stack two. */
+.band { background: var(--surface); }
+
+.measure { max-width: var(--measure); }
+
+/* ===== TYPE STYLES ===== */
+
+.display {
+  font-size: clamp(44px, 6.4vw, 64px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.h1 {
+  font-size: clamp(34px, 4.6vw, 44px);
+  line-height: 1.08;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.h2 {
+  font-size: clamp(26px, 3vw, 30px);
+  line-height: 1.18;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.h3 {
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.body-sm { font-size: 15px; line-height: 1.6; }
+
+.caption { font-size: 13px; line-height: 1.5; color: var(--ink-3); }
+
+/* Uppercase section label. Sans, never mono. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* The one italic serif line per page. */
+.tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--ink-2);
+}
+
+/* Running copy blocks. */
+.prose p { margin-bottom: var(--space-4); color: var(--ink-2); }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); }
+
+/* A short scarlet bar: a rule, not a border. */
+.bar {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border: 0;
+  background: var(--accent);
+}
+
+/* ===== SHAPE MARKERS ===== */
+/* One shape at 16 to 56px marks a section or a track. */
+
+.marker {
+  display: inline-block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background: center / contain no-repeat;
+}
+.marker--lg { width: 32px; height: 32px; }
+.marker--square { background-image: var(--marker-square); }
+.marker--dots { background-image: var(--marker-dots); }
+.marker--circle { background-image: url('/brand/circle-sun.svg'); }
+
+/* ===== BUTTONS ===== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 14px 26px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font: 500 15px/1 var(--font-sans);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 150ms ease-out, transform 150ms ease-out;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(1px); }
+
+/* Primary on page or surface: teal fill, white text (sun on teal in dark). */
+.btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+
+/* Primary on a block field: sun fill, teal text. */
+.btn-sun { background: var(--sun); color: var(--teal); }
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+}
+
+/* ===== BLOCK FIELDS (nav, hero, footer) ===== */
+
+.on-block {
+  background: var(--block);
+  color: var(--on-block);
+  --focus: var(--sun);
+}
+
+/* ===== NAV ===== */
+
+.site-nav {
+  background: var(--block);
+  color: var(--on-block);
+  --focus: var(--sun);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-5);
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.nav-links a {
+  font-size: 15px;
+  text-decoration-color: transparent;
+}
+.nav-links a[aria-current="page"] { text-decoration-color: currentColor; }
+.nav-links a:hover { text-decoration-color: var(--accent); }
+
+/* ===== LANG SWITCH ===== */
+
+.lang-switch {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.lang-switch .sep { margin: 0 var(--space-2); opacity: 0.6; }
+.lang-switch .current { opacity: 0.75; }
+
+/* ===== HERO ===== */
+/* A block field sized to its content. Text bottom-left; two or three shapes
+   bleed off the right edge and never cross the headline. */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* Overlap the nav by 1px so no sub-pixel seam shows between the two
+     block fields. */
+  margin-top: -1px;
+  background: var(--block);
+  color: var(--on-block);
+  --focus: var(--sun);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  /* Narrow screens: shapes sit in a band above the text. */
+  padding-top: calc(var(--shapes-h) + var(--space-6));
+  padding-bottom: var(--space-9);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: 640px;
+}
+
+.hero .display { max-width: 14ch; margin-bottom: var(--space-3); }
+
+.hero-sub {
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 34ch;
+}
+
+.hero-lede {
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 52ch;
+}
+
+.hero .tagline { color: var(--on-block-2); }
+
+.hero .eyebrow { color: var(--on-block); opacity: 0.8; }
+
+.hero .cta-row { margin-top: var(--space-5); }
+
+/* Shape cluster. Sizes are fractions of --shapes-w so the composition
+   scales as one piece. */
+.hero {
+  --shapes-w: clamp(200px, 40vw, 540px);
+  --shapes-h: calc(var(--shapes-w) * 0.78);
+}
+
+.hero-shapes {
+  position: absolute;
+  top: var(--space-5);
+  right: calc(var(--shapes-w) * -0.14);
+  width: var(--shapes-w);
+  height: var(--shapes-h);
+  pointer-events: none;
+}
+
+.shape { position: absolute; display: block; height: auto; }
+.shape-arch { width: 64%; right: 0; top: 0; }
+.shape-circle { width: 36%; left: 6%; top: 10%; }
+.shape-dots { width: 11%; left: 24%; bottom: 0; }
+
+@media (min-width: 900px) {
+  .hero-inner {
+    /* Wide screens: shapes sit beside the text, so the text keeps to the
+       left of the cluster. */
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+    min-height: calc(var(--shapes-h) + var(--space-10));
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero-text { max-width: min(640px, calc(100% - var(--shapes-w) * 0.86 - var(--space-6))); }
+  .hero-shapes { top: var(--space-6); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shape--drift { animation: fy-drift 24s ease-in-out infinite alternate; }
+}
+@keyframes fy-drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-8px, 6px); }
+}
+
+/* ===== FOOTER ===== */
+
+.site-footer {
+  background: var(--block);
+  color: var(--on-block);
+  --focus: var(--sun);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  padding-block: var(--space-8);
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-logo {
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.footer-copy { font-size: 13px; opacity: 0.85; }
+
+.footer-center {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import HeroShapes from '../../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
 import '../../styles/framework.css';
 
@@ -23,99 +24,103 @@ const jsonLd = {
   pathKey="framework"
   ogType="article"
   jsonLd={jsonLd}
-  revealOptions={{ threshold: 0.2, rootMargin: '0px 0px -80px 0px' }}
 >
   <section class="hero">
-    <div class="label">Un cadre de réflexion</div>
-    <h1>Les 5 Niveaux de <em>Maîtrise de l'IA.</em></h1>
-    <p class="sub">Cinq niveaux de maîtrise. Chacun plus avancé que le précédent, et le bon, c'est celui qui correspond au travail devant vous.</p>
-  </section>
-
-  <div class="sparkle-divider" aria-hidden="true">
-    <span class="star">✦</span>
-    <span class="star mid">✦</span>
-    <span class="star">✦</span>
-  </div>
-
-  <section class="prose">
-    <p>On nous présente l'IA comme une révolution. En réalité, ce que la plupart cherchent est plus discret : <strong>faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.</strong></p>
-
-    <p>Selon le travail qu'on fait, on est à un niveau ou à un autre, c'est normal. Le bon niveau dépend de ce que vous avez à faire. Mais plus on avance, plus ces outils deviennent une vraie part de votre façon de penser.</p>
-  </section>
-
-  <section>
-    <div class="section-label">Les cinq niveaux</div>
-    <h2 class="section-title">Chacun s'appuie sur le précédent.</h2>
-    <p class="section-lead">Lisez-les dans l'ordre. Plus vous avancez, plus ces outils transforment votre manière de travailler.</p>
-
-    <div class="levels">
-      <div class="level" data-reveal>
-        <div class="level-num">N1</div>
-        <div class="level-content">
-          <div class="level-name">De meilleures questions</div>
-          <div class="level-headline">Utilisez l'IA plutôt que Google quand la réponse demande de réfléchir.</div>
-          <div class="level-desc">Pour tout ce qui demande du contexte, une comparaison, un peu de votre situation. Ce ne sont pas des faits à trouver, ce sont des questions à penser.</div>
-        </div>
-      </div>
-
-      <div class="level" data-reveal>
-        <div class="level-num">N2</div>
-        <div class="level-content">
-          <div class="level-name">Plus léger</div>
-          <div class="level-headline">Allégez le quotidien.</div>
-          <div class="level-desc">Dicter au lieu de taper. Vos réunions résumées toutes seules. Des conversations qui se souviennent de vos projets, pour reprendre où vous en étiez sans tout réexpliquer.</div>
-        </div>
-      </div>
-
-      <div class="level" data-reveal>
-        <div class="level-num">N3</div>
-        <div class="level-content">
-          <div class="level-name">Partenaire de réflexion</div>
-          <div class="level-headline">Un second esprit, à portée de main.</div>
-          <div class="level-desc">Pour les idées que vous portez. Pour les décisions qui mériteraient plus de temps qu'on ne leur en donne. Pour penser à voix haute, avec quelque chose qui écoute et qui répond. Ce travail-là n'exige pas toujours une personne. Parfois, il suffit de la bonne attention.</div>
-        </div>
-      </div>
-
-      <div class="level" data-reveal>
-        <div class="level-num">N4</div>
-        <div class="level-content">
-          <div class="level-name">Des outils à votre mesure</div>
-          <div class="level-headline">Construisez vos propres outils.</div>
-          <div class="level-desc">Pas l'application générique que tout le monde utilise. Un outil pensé pour votre manière de faire : votre facturation, vos réservations, vos projets tels que vous les menez. Sans savoir coder.</div>
-        </div>
-      </div>
-
-      <div class="level" data-reveal>
-        <div class="level-num">N5</div>
-        <div class="level-content">
-          <div class="level-name">Agents personnels</div>
-          <div class="level-headline">Un travail qui se fait tout seul.</div>
-          <div class="level-desc">Une IA qui observe, décide, agit en arrière-plan. Pas du pas-à-pas, elle tourne toute seule. Pour ce qui se répète et n'a pas besoin de vous pour avancer, juste de votre regard quand quelque chose sort de l'ordinaire.</div>
-        </div>
+    <HeroShapes />
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">Un cadre de réflexion</p>
+        <h1 class="display">Les 5 Niveaux de <em>Maîtrise de l'IA.</em></h1>
+        <p class="hero-lede">Cinq niveaux de maîtrise. Chacun plus avancé que le précédent, et le bon, c'est celui qui correspond au travail devant vous.</p>
       </div>
     </div>
+  </section>
 
-    <div class="coaching-cta" data-reveal>
-      <p>Découvrez comment ce framework structure l'accompagnement.</p>
-      <a href="/fr/#receive" class="coaching-cta-btn">Ce que vous recevez →</a>
+  <section class="section intro">
+    <div class="container">
+      <div class="prose measure">
+        <p>On nous présente l'IA comme une révolution. En réalité, ce que la plupart cherchent est plus discret : <strong>faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.</strong></p>
+
+        <p>Selon le travail qu'on fait, on est à un niveau ou à un autre, c'est normal. Le bon niveau dépend de ce que vous avez à faire. Mais plus on avance, plus ces outils deviennent une vraie part de votre façon de penser.</p>
+      </div>
     </div>
   </section>
 
-  <div class="gap-wrap">
-    <div class="gap-inner">
-      <div class="section-label">Repères</div>
-      <h2 class="section-title">Où en sont la plupart des gens, et là où ça devient intéressant.</h2>
+  <section class="section band">
+    <div class="container">
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Les cinq niveaux</div>
+      <h2 class="h1 section-title">Chacun s'appuie sur le précédent.</h2>
+      <p class="section-lead">Lisez-les dans l'ordre. Plus vous avancez, plus ces outils transforment votre manière de travailler.</p>
+
+      <div class="levels">
+        <div class="level">
+          <div class="level-num">N1</div>
+          <div class="level-content">
+            <div class="level-name">De meilleures questions</div>
+            <div class="level-headline">Utilisez l'IA plutôt que Google quand la réponse demande de réfléchir.</div>
+            <div class="level-desc">Pour tout ce qui demande du contexte, une comparaison, un peu de votre situation. Ce ne sont pas des faits à trouver, ce sont des questions à penser.</div>
+          </div>
+        </div>
+
+        <div class="level">
+          <div class="level-num">N2</div>
+          <div class="level-content">
+            <div class="level-name">Plus léger</div>
+            <div class="level-headline">Allégez le quotidien.</div>
+            <div class="level-desc">Dicter au lieu de taper. Vos réunions résumées toutes seules. Des conversations qui se souviennent de vos projets, pour reprendre où vous en étiez sans tout réexpliquer.</div>
+          </div>
+        </div>
+
+        <div class="level level-shift">
+          <div class="level-num">N3</div>
+          <div class="level-content">
+            <div class="level-name">Partenaire de réflexion</div>
+            <div class="level-headline">Un second esprit, à portée de main.</div>
+            <div class="level-desc">Pour les idées que vous portez. Pour les décisions qui mériteraient plus de temps qu'on ne leur en donne. Pour penser à voix haute, avec quelque chose qui écoute et qui répond. Ce travail-là n'exige pas toujours une personne. Parfois, il suffit de la bonne attention.</div>
+          </div>
+        </div>
+
+        <div class="level">
+          <div class="level-num">N4</div>
+          <div class="level-content">
+            <div class="level-name">Des outils à votre mesure</div>
+            <div class="level-headline">Construisez vos propres outils.</div>
+            <div class="level-desc">Pas l'application générique que tout le monde utilise. Un outil pensé pour votre manière de faire : votre facturation, vos réservations, vos projets tels que vous les menez. Sans savoir coder.</div>
+          </div>
+        </div>
+
+        <div class="level">
+          <div class="level-num">N5</div>
+          <div class="level-content">
+            <div class="level-name">Agents personnels</div>
+            <div class="level-headline">Un travail qui se fait tout seul.</div>
+            <div class="level-desc">Une IA qui observe, décide, agit en arrière-plan. Pas du pas-à-pas, elle tourne toute seule. Pour ce qui se répète et n'a pas besoin de vous pour avancer, juste de votre regard quand quelque chose sort de l'ordinaire.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="coaching-cta">
+        <p>Découvrez comment ce framework structure l'accompagnement.</p>
+        <a href="/fr/#receive" class="btn btn-primary">Ce que vous recevez →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section gap-wrap">
+    <div class="container">
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Repères</div>
+      <h2 class="h1 section-title">Où en sont la plupart des gens, et là où ça devient intéressant.</h2>
       <p class="section-lead">Deux rapports différents à l'IA. La plupart sont dans le premier, non pas que le second soit difficile, mais ils n'ont jamais vu à quoi ça ressemble de l'autre côté.</p>
 
       <div class="gap-grid">
-        <div class="gap-card stuck" data-reveal>
+        <div class="gap-card stuck">
           <div class="gap-stat">80%</div>
           <div class="gap-sub">des professionnels</div>
           <div class="gap-headline">Voient l'IA comme un outil.</div>
           <div class="gap-body">L'utilisent ponctuellement, pour des questions isolées. Comme un moteur de recherche plus rapide. Utile, mais le travail reste globalement le même, fait globalement de la même façon.</div>
         </div>
 
-        <div class="gap-card ahead" data-reveal>
+        <div class="gap-card ahead">
           <div class="gap-stat">20%</div>
           <div class="gap-sub">travaillent avec l'IA</div>
           <div class="gap-headline">En ont fait un partenaire.</div>
@@ -123,8 +128,8 @@ const jsonLd = {
         </div>
       </div>
 
-      <div class="cost-block" data-reveal>
-        <div class="cost-label">Ce qui change quand on bascule</div>
+      <div class="cost-block">
+        <div class="cost-label eyebrow">Ce qui change quand on bascule</div>
         <div class="cost-items">
           <div class="cost-item">
             <div class="cost-amount">Plus d'espace</div>
@@ -137,17 +142,17 @@ const jsonLd = {
         </div>
       </div>
 
-      <div class="coaching-cta" data-reveal>
+      <div class="coaching-cta">
         <p>Découvrez votre parcours.</p>
-        <a href="/fr/#process" class="coaching-cta-btn">Comment ça commence →</a>
+        <a href="/fr/#process" class="btn btn-primary">Comment ça commence →</a>
       </div>
     </div>
   </div>
 
-  <div class="reflection">
-    <div class="reflection-inner">
-      <div class="section-label">Le basculement</div>
-      <h2 class="section-title">Là où se joue le vrai basculement.</h2>
+  <div class="section band reflection">
+    <div class="container reflection-inner">
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Le basculement</div>
+      <h2 class="h1 section-title">Là où se joue le vrai basculement.</h2>
 
       <p>Le basculement qui compte n'est pas entre N1 et N2. Il est au <strong>Niveau 3</strong>.</p>
 
@@ -159,12 +164,16 @@ const jsonLd = {
     </div>
   </div>
 
-  <section class="sting">
-    <p class="sting-text">Moins d'encombrement. <em>Plus de présence.</em><br />Voilà le travail.</p>
+  <section class="section sting">
+    <div class="container">
+      <p class="tagline sting-text">Moins d'encombrement. <em>Plus de présence.</em><br />Voilà le travail.</p>
+    </div>
   </section>
 
   <div class="booking-section">
-    <p>Quand vous êtes prêt.</p>
-    <a href="https://app.cal.com/franksy/connect" class="coaching-cta-btn" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
+    <div class="container">
+      <p>Quand vous êtes prêt.</p>
+      <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
+    </div>
   </div>
 </Layout>

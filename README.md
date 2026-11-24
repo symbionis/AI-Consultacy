@@ -32,7 +32,7 @@ Requires Node 22 (see `.nvmrc`).
 │   │   ├── organisations.astro /organisations/ (EN organisations)
 │   │   └── fr/                 /fr/* mirror (FR pages)
 │   ├── layouts/Layout.astro   Shared <head>, nav, footer, scripts
-│   ├── components/            Nav, Footer, LangSwitch, CalEmbed
+│   ├── components/            Nav, Footer, LangSwitch, CalFloatingButton, Doors, MethodSteps, FrameworkTeaser
 │   ├── i18n/ui.ts             Shared UI strings + URL helpers
 │   ├── i18n/offer.ts          Levels, thread, method and doors copy (EN + FR)
 │   ├── styles/
@@ -67,10 +67,12 @@ the page's `locale` and `pathKey` props.
 
 ## Cal.com integration
 
-The `CalEmbed` component renders the Cal.com inline booking widget. The
-homepages use element id `cal-inline`; the framework pages use
-`my-cal-inline-connect`. To change the event, update `calLink` in
-`src/components/CalEmbed.astro`.
+`CalFloatingButton` (rendered once from the layout) loads Cal.com's embed
+script, sets up the `connect` namespace and shows the floating "Book 15 min"
+button on every page. In-page buttons carry `data-cal-link="franksy/connect"`
+and `data-cal-namespace="connect"`, so they open the same popup. To change the
+event, update `calLink` in `src/components/CalFloatingButton.astro` and the
+`data-cal-link` attributes.
 
 ## SEO
 

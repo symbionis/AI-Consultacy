@@ -124,13 +124,15 @@ describe('U3 — homepages (EN + FR)', () => {
     }
   });
 
-  it('both homepages render the Cal.com inline embed (container + loader)', () => {
+  it('both homepages load the Cal.com popup and carry a booking button', () => {
+    // The inline embed was replaced by a site-wide floating button (popup) plus
+    // in-page buttons that open the same popup.
     for (const path of ['index.html', 'fr/index.html']) {
       const d = dist(path);
-      expect(d.querySelector('#cal-inline')?.classNames).toContain('cal-inline-wrap');
       const html = d.toString();
       expect(html).toContain('app.cal.com/embed/embed.js');
-      expect(html).toContain('franksy/connect');
+      expect(html).toContain('floatingButton');
+      expect(d.querySelector('[data-cal-link="franksy/connect"][data-cal-namespace="connect"]')).toBeTruthy();
     }
   });
 

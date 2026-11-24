@@ -1,0 +1,42 @@
+/* Offer pages (private clients, organisations). They reuse home.css for the
+   hero, the three parts, the audience lists and the "how we start" steps; this
+   sheet adds the few pieces those pages need on top. The method itself is
+   styled inside MethodSteps.astro. */
+
+.framework-link { margin-top: var(--space-6); }
+
+.audience-intro {
+  max-width: var(--measure);
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: var(--space-7);
+}
+
+/* ===== YOUR RULES (organisations) ===== */
+
+.rules-intro {
+  max-width: var(--measure);
+  color: var(--ink-2);
+  margin-bottom: var(--space-6);
+}
+
+.rules { list-style: none; max-width: var(--measure); border-bottom: 1px solid var(--hairline); }
+
+.rules li {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-2);
+}
+
+.rules li strong { color: var(--ink); font-weight: 600; }
+
+/* ===== CLOSING ===== */
+
+.closing-text {
+  max-width: var(--measure);
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: var(--space-5);
+}

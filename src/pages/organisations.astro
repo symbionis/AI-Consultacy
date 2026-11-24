@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroShapes from '../components/HeroShapes.astro';
+import MethodSteps from '../components/MethodSteps.astro';
+import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
+import '../styles/home.css';
+import '../styles/offer.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Organisations',
+  description: 'For SMEs, family offices and organisations on lean teams. An audit of your business tools and processes, then agents shaped for your teams, within your rules.',
+  inLanguage: 'en',
+  url: pageUrl('en', 'organisations'),
+  image: `${SITE}/og/organisations-en.png`,
+  provider: FRANK_REF,
+};
+---
+
+<Layout
+  title={'Organisations | Franksy'}
+  description={'For SMEs, family offices and organisations on lean teams. An audit of your business tools and processes, then agents shaped for your teams, within your rules.'}
+  locale="en"
+  pathKey="organisations"
+  ogImage="/og/organisations-en.png"
+  jsonLd={jsonLd}
+>
+  <main>
+    <!-- Hero (block) -->
+    <section class="hero">
+      <HeroShapes />
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 class="display">Extra hands, where the work repeats.</h1>
+          <p class="hero-sub">Your processes already live in your business tools. So your teams can move quickly to agents, connected to those tools, within your rules and sign-offs.</p>
+          <div class="cta-row">
+            <a href="#method" class="btn btn-sun">See how it works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The method -->
+    <section class="section" id="method">
+      <div class="container">
+        <MethodSteps locale="en" audience="organisation" />
+        <p class="framework-link"><a href="/framework/" class="more-link">The five levels behind this method →</a></p>
+      </div>
+    </section>
+
+    <!-- Your rules (surface band) -->
+    <section class="section band" id="rules">
+      <div class="container">
+        <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Your rules</div>
+        <h2 class="h1 section-title">Your rules. Your limits.</h2>
+        <p class="rules-intro">Agents only do what you decide. Before anything runs, we agree three things with you.</p>
+        <ul class="rules">
+          <li><strong>What they can access.</strong> Which tools, which folders, which data.</li>
+          <li><strong>What they do on their own.</strong> And what waits for a person to sign off.</li>
+          <li><strong>Who looks after them on your side.</strong> An internal lead who keeps hold of the tools and adjusts the rules as you go.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Who this is for (page) -->
+    <section class="section" id="who">
+      <div class="container">
+        <h2 class="h1 section-title">Who this is for.</h2>
+        <p class="audience-intro">Teams whose work already lives in their business tools, and who want it to move with less effort.</p>
+        <div class="audience-grid">
+          <div class="audience-list for">
+            <h3 class="eyebrow">For</h3>
+            <ul>
+              <li>Small family offices with a team</li>
+              <li>Small consultancies</li>
+              <li>Agencies (marketing, design, communications)</li>
+              <li>Professional service firms: accounting, tax, advisory, notarial</li>
+              <li>Online businesses with an operations team</li>
+              <li>Small organisations, associations and communities running on lean teams</li>
+            </ul>
+          </div>
+          <div class="audience-list not-for">
+            <h3 class="eyebrow">Not for</h3>
+            <ul>
+              <li>Large companies needing an enterprise AI strategy</li>
+              <li>Requests for generic tool training</li>
+            </ul>
+          </div>
+        </div>
+        <p class="audience-note caption"><em>EN and FR. Remote worldwide, on site in Switzerland.</em></p>
+        <div class="cta-row">
+          <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a 15-minute call</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How we start (surface band) -->
+    <section id="process" class="section band">
+      <div class="container">
+        <h2 class="h1 section-title">How we start.</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body prose">
+              <h3 class="h3">A 15-minute call.</h3>
+              <p>Short, no obligation. We see whether there's a fit. If there isn't, you've lost fifteen minutes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body prose">
+              <h3 class="h3">The audit.</h3>
+              <p>We look at your business tools and processes with management and the teams involved. You get a ranked list of two or three recurring processes to start with.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body prose">
+              <h3 class="h3">A deployment proposal.</h3>
+              <p>Built from the audit and agreed with management: which processes, which agents, which rules, in what order.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body prose">
+              <h3 class="h3">Shaping and sessions.</h3>
+              <p>We shape the agents, connect them to your tools, and run sessions with the teams until they carry on by themselves.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <div class="container">
+        <p class="closing-text">If any of this lands, let's take 15 minutes to see whether there's a fit.</p>
+        <div class="cta-row">
+          <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a 15-minute call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

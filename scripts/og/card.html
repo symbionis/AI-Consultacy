@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- Social preview card (1200x630). Rendered to public/og/*.png, see README in this folder.
+     Params: ?t=title&s=subline (URL-encoded). -->
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..600&family=Instrument+Serif:ital@1&display=swap" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #0D4B47;
+    color: #F6F6F2;
+    font-family: 'Instrument Sans', sans-serif;
+    position: relative;
+  }
+  .arch { position: absolute; top: -70px; right: 70px; width: 220px; }
+  .dots { position: absolute; right: 92px; bottom: 96px; width: 56px; }
+  .text { position: absolute; left: 96px; top: 0; bottom: 0; width: 600px; display: flex; flex-direction: column; justify-content: center; }
+  .brand { font-size: 18px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #CFE0DD; margin-bottom: 28px; }
+  h1 { font-weight: 500; letter-spacing: -0.02em; line-height: 1.04; }
+  .sub { margin-top: 28px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 32px; line-height: 1.25; color: #FFC93A; }
+  .portrait { position: absolute; right: 150px; top: 150px; width: 330px; height: 330px; object-fit: cover; }
+</style>
+</head>
+<body>
+  <img class="arch" src="/brand/arch-scarlet.svg" alt="" />
+  <img class="portrait" src="/frank-sykes.jpg" alt="" />
+  <img class="dots" src="/brand/dots-scarlet.svg" alt="" />
+  <div class="text">
+    <div class="brand">Franksy</div>
+    <h1 id="t"></h1>
+    <p class="sub" id="s"></p>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const t = q.get('t') || '';
+    const h = document.getElementById('t');
+    h.textContent = t;
+    h.style.fontSize = (t.length > 60 ? 52 : t.length > 36 ? 60 : 72) + 'px';
+    document.getElementById('s').textContent = q.get('s') || '';
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+---
+// The two doors (private clients, organisations), used on the homepage and the
+// framework page. Copy in src/i18n/offer.ts.
+import { offer } from '../i18n/offer';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = offer[locale].doors;
+---
+
+<div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>{d.eyebrow}</div>
+<h2 class="h1 section-title">{d.title}</h2>
+
+<div class="doors">
+  {d.items.map((door) => (
+    <a href={door.href} class:list={['door', `door--${door.audience}`]}>
+      <span class="door-label">{door.label}</span>
+      <span class="door-title">{door.title}</span>
+      <span class="door-text">{door.text}</span>
+      <span class="door-link">{door.link}</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+  @media (max-width: 700px) {
+    .doors { grid-template-columns: 1fr; }
+  }
+  .door {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+    border-top: 2px solid var(--accent);
+    transition: border-color 150ms ease-out;
+  }
+  .door:hover { border-color: var(--ink); border-top-color: var(--accent); }
+  .door-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .door-title { font-size: 24px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em; }
+  .door-text { color: var(--ink-2); }
+  .door-link {
+    margin-top: auto;
+    padding-top: var(--space-3);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>

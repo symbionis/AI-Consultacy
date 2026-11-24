@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import HeroShapes from '../../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
+import { offer } from '../../i18n/offer';
+import Doors from '../../components/Doors.astro';
+
+const c = offer.fr;
 import '../../styles/framework.css';
 
 const jsonLd = {
@@ -12,7 +16,7 @@ const jsonLd = {
     "Cinq manières dont l'IA peut entrer dans votre travail, de meilleures questions à un système qui tourne en arrière-plan. Pour situer où vous voulez aller.",
   inLanguage: 'fr',
   url: pageUrl('fr', 'framework'),
-  image: `${SITE}/og-image.png`,
+  image: `${SITE}/og/framework-fr.png`,
   author: FRANK_REF,
 };
 ---
@@ -23,6 +27,7 @@ const jsonLd = {
   locale="fr"
   pathKey="framework"
   ogType="article"
+  ogImage="/og/framework-fr.png"
   jsonLd={jsonLd}
 >
   <section class="hero">
@@ -50,58 +55,20 @@ const jsonLd = {
     <div class="container">
       <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Les cinq niveaux</div>
       <h2 class="h1 section-title">Chacun s'appuie sur le précédent.</h2>
-      <p class="section-lead">Lisez-les dans l'ordre. Plus vous avancez, plus ces outils transforment votre manière de travailler.</p>
+      <p class="section-lead">{c.levels.lead}</p>
 
       <div class="levels">
-        <div class="level">
-          <div class="level-num">N1</div>
-          <div class="level-content">
-            <div class="level-name">De meilleures questions</div>
-            <div class="level-headline">Utilisez l'IA plutôt que Google quand la réponse demande de réfléchir.</div>
-            <div class="level-desc">Pour tout ce qui demande du contexte, une comparaison, un peu de votre situation. Ce ne sont pas des faits à trouver, ce sont des questions à penser.</div>
+        {c.levels.items.map((level) => (
+          <div class="level">
+            <div class="level-num">{level.num}</div>
+            <div class="level-content">
+              <div class="level-name">{level.name}</div>
+              <div class="level-headline">{level.who}</div>
+              <div class="level-desc"><span class="level-label">{c.labels.example}</span> {level.example}</div>
+              <div class="level-desc level-sign"><span class="level-label">{c.labels.sign}</span> {level.sign}</div>
+            </div>
           </div>
-        </div>
-
-        <div class="level">
-          <div class="level-num">N2</div>
-          <div class="level-content">
-            <div class="level-name">Plus léger</div>
-            <div class="level-headline">Allégez le quotidien.</div>
-            <div class="level-desc">Dicter au lieu de taper. Vos réunions résumées toutes seules. Des conversations qui se souviennent de vos projets, pour reprendre où vous en étiez sans tout réexpliquer.</div>
-          </div>
-        </div>
-
-        <div class="level level-shift">
-          <div class="level-num">N3</div>
-          <div class="level-content">
-            <div class="level-name">Partenaire de réflexion</div>
-            <div class="level-headline">Un second esprit, à portée de main.</div>
-            <div class="level-desc">Pour les idées que vous portez. Pour les décisions qui mériteraient plus de temps qu'on ne leur en donne. Pour penser à voix haute, avec quelque chose qui écoute et qui répond. Ce travail-là n'exige pas toujours une personne. Parfois, il suffit de la bonne attention.</div>
-          </div>
-        </div>
-
-        <div class="level">
-          <div class="level-num">N4</div>
-          <div class="level-content">
-            <div class="level-name">Des outils à votre mesure</div>
-            <div class="level-headline">Construisez vos propres outils.</div>
-            <div class="level-desc">Pas l'application générique que tout le monde utilise. Un outil pensé pour votre manière de faire : votre facturation, vos réservations, vos projets tels que vous les menez. Sans savoir coder.</div>
-          </div>
-        </div>
-
-        <div class="level">
-          <div class="level-num">N5</div>
-          <div class="level-content">
-            <div class="level-name">Agents personnels</div>
-            <div class="level-headline">Un travail qui se fait tout seul.</div>
-            <div class="level-desc">Une IA qui observe, décide, agit en arrière-plan. Pas du pas-à-pas, elle tourne toute seule. Pour ce qui se répète et n'a pas besoin de vous pour avancer, juste de votre regard quand quelque chose sort de l'ordinaire.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="coaching-cta">
-        <p>Découvrez comment ce framework structure l'accompagnement.</p>
-        <a href="/fr/#receive" class="btn btn-primary">Ce que vous recevez →</a>
+        ))}
       </div>
     </div>
   </section>
@@ -142,27 +109,22 @@ const jsonLd = {
         </div>
       </div>
 
-      <div class="coaching-cta">
-        <p>Découvrez votre parcours.</p>
-        <a href="/fr/#process" class="btn btn-primary">Comment ça commence →</a>
-      </div>
     </div>
   </div>
 
   <div class="section band reflection">
     <div class="container reflection-inner">
-      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Le basculement</div>
-      <h2 class="h1 section-title">Là où se joue le vrai basculement.</h2>
-
-      <p>Le basculement qui compte n'est pas entre N1 et N2. Il est au <strong>Niveau 3</strong>.</p>
-
-      <p>C'est là que l'IA cesse d'être un outil qu'on consulte et devient un véritable partenaire de réflexion. Là où les projets que vous portez rencontrent un second esprit. Là où les décisions que vous reportez se laissent enfin penser à voix haute, avec quelque chose qui écoute et qui répond.</p>
-
-      <p>Le premier pas est souvent plus discret qu'on ne l'imagine. Mais ce qui change est d'une autre nature : <strong>pas «&nbsp;j'utilise mieux l'IA&nbsp;», mais «&nbsp;je pense autrement&nbsp;».</strong></p>
-
-      <p>Ce que ce travail veut dire concrètement : alléger une partie de ce que vous portez, faire avancer un projet qui attend depuis trop longtemps, et installer une vraie relation avec l'IA, pas un usage de temps en temps, mais une nouvelle façon de penser.</p>
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>{c.thread.eyebrow}</div>
+      <h2 class="h1 section-title">{c.thread.title}</h2>
+      {c.thread.paragraphs.map((p) => <p>{p}</p>)}
     </div>
   </div>
+
+  <section class="section" id="doors">
+    <div class="container">
+      <Doors locale="fr" />
+    </div>
+  </section>
 
   <section class="section sting">
     <div class="container">

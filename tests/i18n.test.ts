@@ -11,6 +11,8 @@ describe('i18n URL helpers', () => {
     expect(pagePath('en', 'about')).toBe('/about/');
     expect(pagePath('fr', '')).toBe('/fr/');
     expect(pagePath('fr', 'framework')).toBe('/fr/framework/');
+    expect(pagePath('en', 'private-clients')).toBe('/private-clients/');
+    expect(pagePath('fr', 'organisations')).toBe('/fr/organisations/');
   });
 
   it('pageUrl prefixes the site origin onto the page path', () => {

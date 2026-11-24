@@ -5,7 +5,7 @@ import { parse, type HTMLElement } from 'node-html-parser';
 // Build-output assertions. `npm test` runs `astro build` first, so these read
 // the real generated files in `dist/` rather than mocked component renders.
 
-// The site's six routes — the single source of truth for every suite below.
+// The site's ten routes — the single source of truth for every suite below.
 const ROUTES = [
   { path: 'index.html', url: 'https://franksy.me/', locale: 'en' },
   { path: 'fr/index.html', url: 'https://franksy.me/fr/', locale: 'fr' },
@@ -13,7 +13,18 @@ const ROUTES = [
   { path: 'fr/about/index.html', url: 'https://franksy.me/fr/about/', locale: 'fr' },
   { path: 'framework/index.html', url: 'https://franksy.me/framework/', locale: 'en' },
   { path: 'fr/framework/index.html', url: 'https://franksy.me/fr/framework/', locale: 'fr' },
+  { path: 'private-clients/index.html', url: 'https://franksy.me/private-clients/', locale: 'en' },
+  { path: 'fr/private-clients/index.html', url: 'https://franksy.me/fr/private-clients/', locale: 'fr' },
+  { path: 'organisations/index.html', url: 'https://franksy.me/organisations/', locale: 'en' },
+  { path: 'fr/organisations/index.html', url: 'https://franksy.me/fr/organisations/', locale: 'fr' },
 ] as const;
+
+const OFFER_PAGES = [
+  'private-clients/index.html',
+  'fr/private-clients/index.html',
+  'organisations/index.html',
+  'fr/organisations/index.html',
+];
 
 /** Reciprocal hreflang pair for a route — its EN and FR counterparts. */
 const alternatesFor = (path: string) => {
@@ -148,10 +159,10 @@ describe('U3 — homepages (EN + FR)', () => {
   });
 });
 
-describe('U4 — about and framework pages (EN + FR)', () => {
+describe('U4 — about, framework and offer pages (EN + FR)', () => {
   const innerPages = ROUTES.filter((r) => r.path !== 'index.html' && r.path !== 'fr/index.html');
 
-  it('emits all four inner pages as directory-style routes', () => {
+  it('emits all eight inner pages as directory-style routes', () => {
     for (const { path } of innerPages) expect(existsSync(`dist/${path}`)).toBe(true);
   });
 
@@ -177,18 +188,55 @@ describe('U4 — about and framework pages (EN + FR)', () => {
     }
   });
 
-  it('framework pages render the Cal embed with the framework-specific id', () => {
+  it('framework pages render the five levels and the two doors', () => {
     for (const path of ['framework/index.html', 'fr/framework/index.html']) {
-      expect(dist(path).querySelector('#my-cal-inline-connect')).toBeTruthy();
+      const d = dist(path);
+      expect(d.querySelectorAll('.level').length).toBe(5);
+      expect(d.querySelectorAll('.door').length).toBe(2);
     }
   });
 
-  it('about and framework pages mark exactly one active nav link with aria-current', () => {
+  it('offer pages declare a Service JSON-LD and render the five method steps', () => {
+    for (const path of OFFER_PAGES) {
+      const d = dist(path);
+      const ld = d.querySelector('script[type="application/ld+json"]')?.text ?? '';
+      expect(JSON.parse(ld)['@type']).toBe('Service');
+      expect(d.querySelectorAll('.method-step').length).toBe(5);
+    }
+  });
+
+  it('private clients get the short method, organisations their own text per step', () => {
+    for (const path of ['private-clients/index.html', 'fr/private-clients/index.html']) {
+      expect(dist(path).querySelectorAll('.method-own').length).toBe(0);
+      expect(dist(path).querySelector('.parts')).toBeTruthy();
+    }
+    for (const path of ['organisations/index.html', 'fr/organisations/index.html']) {
+      expect(dist(path).querySelectorAll('.method-own').length).toBe(5);
+      expect(dist(path).querySelector('#rules')).toBeTruthy();
+    }
+  });
+
+  it('home, framework and offer pages each carry their own social preview image', () => {
+    for (const { path, locale } of ROUTES.filter((r) => !r.path.includes('about'))) {
+      const img = dist(path).querySelector('meta[property="og:image"]')?.getAttribute('content') ?? '';
+      expect(img).toMatch(new RegExp(`^https://franksy\\.me/og/[a-z-]+-${locale}\\.png$`));
+      expect(existsSync(`dist${img.replace('https://franksy.me', '')}`)).toBe(true);
+    }
+  });
+
+  it('homepages show the two doors', () => {
+    for (const path of ['index.html', 'fr/index.html']) {
+      expect(dist(path).querySelectorAll('.door').length).toBe(2);
+    }
+  });
+
+  it('inner pages mark exactly one active nav link with aria-current', () => {
     for (const path of [
       'about/index.html',
       'fr/about/index.html',
       'framework/index.html',
       'fr/framework/index.html',
+      ...OFFER_PAGES,
     ]) {
       expect(dist(path).querySelectorAll('.site-nav a[aria-current="page"]').length).toBe(1);
     }

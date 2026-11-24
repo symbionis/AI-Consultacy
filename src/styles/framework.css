@@ -1,6 +1,6 @@
 /* Framework page sections. Tokens, type, buttons, hero, nav and footer come
    from franksy.css. Section order: hero (block), intro (page), five levels
-   (band), orientation (page), the shift (band), closing line and booking
+   (band), orientation (page), the thread (band), the two doors (page), closing line and booking
    (page), footer (block). */
 
 /* Hero headline emphasis: second-level text on block, not a second italic. */
@@ -37,8 +37,6 @@
   border-top: 1px solid var(--hairline);
 }
 
-/* L3 is the shift: the one scarlet rule in this band. */
-.level.level-shift { border-top: 2px solid var(--accent); }
 
 .level-num {
   font-size: 30px;
@@ -66,6 +64,8 @@
 .level-headline { font-weight: 500; color: var(--ink); }
 
 .level-desc { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+.level-label { font-weight: 600; color: var(--ink); }
+.level-sign { color: var(--ink-3); }
 
 @media (max-width: 600px) {
   .level { grid-template-columns: 1fr; gap: var(--space-2); }
@@ -146,7 +146,7 @@
   .cost-item { grid-template-columns: 1fr; gap: var(--space-1); }
 }
 
-/* ===== THE SHIFT ===== */
+/* ===== THE THREAD ===== */
 
 .reflection-inner > p {
   max-width: var(--measure);

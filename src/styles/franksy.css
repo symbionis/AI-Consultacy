@@ -67,18 +67,21 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  /* Same rhythm as light: teal blocks (nav, hero, footer) against a page of a
+     different value, with bands one step lifted from the page. The page goes
+     near-black so the teal blocks still read as their own fields. */
   :root {
-    --page: #0D4B47;
-    --surface: #16605B;
-    --block: #1B6A64;
-    --ink: #F6F6F2;
-    --ink-2: #CFE0DD;
-    --ink-3: #BFD5D1;
-    --hairline: rgba(246, 246, 242, 0.16);
+    --page: #0B1312;
+    --surface: #15211F;
+    --block: var(--teal);
+    --ink: #F2F2EE;
+    --ink-2: #C5D1CE;
+    --ink-3: #9DB0AC;
+    --hairline: rgba(242, 242, 238, 0.14);
     --focus: var(--sun);
-    /* scarlet-deep is 2:1 on the teal page; sun carries small accents here. */
+    /* scarlet-deep is too dark on the near-black page; sun carries small accents. */
     --accent-text: var(--sun);
-    /* A teal button would vanish on the teal page. */
+    /* A teal button would sink into the dark page. */
     --btn-bg: var(--sun);
     --btn-fg: var(--teal);
     --marker-square: url('/brand/square-teal-50.svg');
@@ -274,8 +277,14 @@ a:hover { text-decoration-color: var(--accent); }
 }
 
 /* ===== NAV ===== */
+/* Sticky on every page. Under 800px the links fold into a menu button. */
+
+html { scroll-padding-top: 88px; }
 
 .site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   background: var(--block);
   color: var(--on-block);
   --focus: var(--sun);
@@ -285,7 +294,6 @@ a:hover { text-decoration-color: var(--accent); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   gap: var(--space-4) var(--space-6);
   padding-block: var(--space-5);
 }
@@ -300,7 +308,6 @@ a:hover { text-decoration-color: var(--accent); }
 .nav-right {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: var(--space-4) var(--space-6);
 }
 
@@ -317,16 +324,77 @@ a:hover { text-decoration-color: var(--accent); }
 .nav-links a[aria-current="page"] { text-decoration-color: currentColor; }
 .nav-links a:hover { text-decoration-color: var(--accent); }
 
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: 1px solid rgba(246, 246, 242, 0.35);
+  color: inherit;
+  font: 500 14px/1 var(--font-sans);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.nav-toggle-bars { display: inline-flex; flex-direction: column; gap: 4px; width: 16px; }
+.nav-toggle-bars span { display: block; height: 2px; background: currentColor; transition: transform 150ms ease-out, opacity 150ms ease-out; }
+.site-nav.is-open .nav-toggle-bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.site-nav.is-open .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+.site-nav.is-open .nav-toggle-bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 799px) {
+  .nav-inner { position: relative; padding-block: var(--space-4); }
+  .nav-right { gap: var(--space-4); }
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-2) var(--gutter) var(--space-5);
+    background: var(--block);
+    border-top: 1px solid rgba(246, 246, 242, 0.16);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.2);
+  }
+  .site-nav.is-open .nav-links { display: flex; }
+  .nav-links a {
+    font-size: 18px;
+    padding-block: var(--space-3);
+    border-bottom: 1px solid rgba(246, 246, 242, 0.12);
+  }
+  html { scroll-padding-top: 72px; }
+}
+
 /* ===== LANG SWITCH ===== */
+/* The current language sits in a sun pill; the other is a plain link. */
 
 .lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.lang-switch .sep { margin: 0 var(--space-2); opacity: 0.6; }
-.lang-switch .current { opacity: 0.75; }
+.lang-switch .sep { display: none; }
+.lang-switch a,
+.lang-switch .current {
+  padding: 5px 8px 5px 9px;
+  line-height: 1;
+}
+.lang-switch a {
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 150ms ease-out;
+}
+.lang-switch a:hover { opacity: 1; }
+.lang-switch .current {
+  background: var(--sun);
+  color: var(--teal);
+}
 
 /* ===== HERO ===== */
 /* A block field sized to its content. Text bottom-left; two or three shapes

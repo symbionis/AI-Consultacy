@@ -28,10 +28,13 @@ Requires Node 22 (see `.nvmrc`).
 │   │   ├── index.astro         /            (EN home)
 │   │   ├── about.astro         /about/      (EN about)
 │   │   ├── framework.astro     /framework/  (EN five levels)
+│   │   ├── private-clients.astro /private-clients/ (EN private clients)
+│   │   ├── organisations.astro /organisations/ (EN organisations)
 │   │   └── fr/                 /fr/* mirror (FR pages)
 │   ├── layouts/Layout.astro   Shared <head>, nav, footer, scripts
 │   ├── components/            Nav, Footer, LangSwitch, CalEmbed
 │   ├── i18n/ui.ts             Shared UI strings + URL helpers
+│   ├── i18n/offer.ts          Levels, thread, method and doors copy (EN + FR)
 │   ├── styles/
 │   │   ├── global.css         Home + about pages
 │   │   └── framework.css      Framework pages (own dark-theme design)
@@ -53,10 +56,12 @@ the page's `locale` and `pathKey` props.
 ## Editing content
 
 - **Text changes:** edit the relevant `.astro` file in `src/pages/`. EN and FR
-  are separate files.
+  are separate files. The five levels, the thread, the method and the two doors
+  are shared copy in `src/i18n/offer.ts` (components `MethodSteps`, `Doors`).
 - **Shared chrome** (nav labels, footer): `src/i18n/ui.ts`.
 - **Styles:** `src/styles/global.css` (home + about) or
-  `src/styles/framework.css` (framework pages).
+  `src/styles/framework.css` (framework pages), `src/styles/offer.css` (private
+  clients and organisations, on top of `home.css`).
 - **FR pending copy:** search for `FR copy pending` in `src/pages/fr/` — these
   are source-only comments marking sections awaiting native French text.
 
@@ -106,3 +111,5 @@ collection is intentionally empty.
 | `/` · `/fr/` | Homepage |
 | `/about/` · `/fr/about/` | About Frank |
 | `/framework/` · `/fr/framework/` | The Five Levels of AI |
+| `/private-clients/` · `/fr/private-clients/` | Private clients: role, three parts, method, who it's for, how we start |
+| `/organisations/` · `/fr/organisations/` | Organisations: method, rules and limits, who it's for, how we start |

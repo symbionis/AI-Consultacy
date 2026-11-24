@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import HeroShapes from '../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
+import { offer } from '../i18n/offer';
+import Doors from '../components/Doors.astro';
+
+const c = offer.en;
 import '../styles/framework.css';
 
 const jsonLd = {
@@ -12,7 +16,7 @@ const jsonLd = {
     'A map of how AI shows up in your work, from better questions to a system that runs in the background. For figuring out where you actually want to sit.',
   inLanguage: 'en',
   url: pageUrl('en', 'framework'),
-  image: `${SITE}/og-image.png`,
+  image: `${SITE}/og/framework-en.png`,
   author: FRANK_REF,
 };
 ---
@@ -23,6 +27,7 @@ const jsonLd = {
   locale="en"
   pathKey="framework"
   ogType="article"
+  ogImage="/og/framework-en.png"
   jsonLd={jsonLd}
 >
   <section class="hero">
@@ -50,58 +55,20 @@ const jsonLd = {
     <div class="container">
       <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>The five levels</div>
       <h2 class="h1 section-title">Each builds on what came before.</h2>
-      <p class="section-lead">Read them in order. The further you go, the more these tools shape how you work.</p>
+      <p class="section-lead">{c.levels.lead}</p>
 
       <div class="levels">
-        <div class="level">
-          <div class="level-num">L1</div>
-          <div class="level-content">
-            <div class="level-name">Better questions</div>
-            <div class="level-headline">Use AI instead of search when the answer needs judgment.</div>
-            <div class="level-desc">For anything where the right answer depends on context, comparison, or your particular situation. Not facts that can be looked up, but questions that need to be thought through.</div>
+        {c.levels.items.map((level) => (
+          <div class="level">
+            <div class="level-num">{level.num}</div>
+            <div class="level-content">
+              <div class="level-name">{level.name}</div>
+              <div class="level-headline">{level.who}</div>
+              <div class="level-desc"><span class="level-label">{c.labels.example}</span> {level.example}</div>
+              <div class="level-desc level-sign"><span class="level-label">{c.labels.sign}</span> {level.sign}</div>
+            </div>
           </div>
-        </div>
-
-        <div class="level">
-          <div class="level-num">L2</div>
-          <div class="level-content">
-            <div class="level-name">Less weight</div>
-            <div class="level-headline">Take some load off the daily work.</div>
-            <div class="level-desc">Voice notes instead of typing. Meetings captured so you don't have to write them up. Conversations that hold the context of your projects, so you can pick up where you left off without re-explaining everything from scratch.</div>
-          </div>
-        </div>
-
-        <div class="level level-shift">
-          <div class="level-num">L3</div>
-          <div class="level-content">
-            <div class="level-name">Thinking partner</div>
-            <div class="level-headline">A second mind, available when you need one.</div>
-            <div class="level-desc">For ideas you've been carrying. For decisions that deserve more thought than they're getting. For working things out, out loud, with something that listens and pushes back. The work doesn't always need a person. Sometimes it just needs the right kind of attention.</div>
-          </div>
-        </div>
-
-        <div class="level">
-          <div class="level-num">L4</div>
-          <div class="level-content">
-            <div class="level-name">Tools that fit</div>
-            <div class="level-headline">Build things shaped to your work.</div>
-            <div class="level-desc">Not the generic app everyone uses. A tool designed for exactly how you actually operate: your invoicing, your bookings, your particular shape of project. Without needing to know how to code.</div>
-          </div>
-        </div>
-
-        <div class="level">
-          <div class="level-num">L5</div>
-          <div class="level-content">
-            <div class="level-name">Personal agents</div>
-            <div class="level-headline">Work that takes care of itself.</div>
-            <div class="level-desc">AI that observes, decides, and acts in the background. Not assisting you turn by turn. Running on its own. For the recurring work that doesn't need your attention to happen, just your judgment when something unusual comes up.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="coaching-cta">
-        <p>See how this framework shapes the coaching practice.</p>
-        <a href="/#receive" class="btn btn-primary">What you receive →</a>
+        ))}
       </div>
     </div>
   </section>
@@ -142,27 +109,22 @@ const jsonLd = {
         </div>
       </div>
 
-      <div class="coaching-cta">
-        <p>Discover your journey.</p>
-        <a href="/#process" class="btn btn-primary">How we start →</a>
-      </div>
     </div>
   </div>
 
   <div class="section band reflection">
     <div class="container reflection-inner">
-      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>The shift</div>
-      <h2 class="h1 section-title">Where the real shift happens.</h2>
-
-      <p>The meaningful shift isn't between L1 and L2. It's at <strong>Level 3</strong>.</p>
-
-      <p>This is where AI stops being a tool you reach for and becomes a thinking partner you work with. Where the projects you've been carrying meet a second mind. Where the decisions you've been putting off finally get worked through, out loud, with something that listens and pushes back.</p>
-
-      <p>The first step is usually quieter than people expect. But what changes is qualitative, not incremental: <strong>not "I use AI more." It's "I think differently now."</strong></p>
-
-      <p>What this work usually looks like: clearing some of the clutter you've been carrying, activating one project that's been waiting, and building a real working relationship with AI as a thinking partner. Not occasionally, but as part of how you actually think.</p>
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>{c.thread.eyebrow}</div>
+      <h2 class="h1 section-title">{c.thread.title}</h2>
+      {c.thread.paragraphs.map((p) => <p>{p}</p>)}
     </div>
   </div>
+
+  <section class="section" id="doors">
+    <div class="container">
+      <Doors locale="en" />
+    </div>
+  </section>
 
   <section class="section sting">
     <div class="container">

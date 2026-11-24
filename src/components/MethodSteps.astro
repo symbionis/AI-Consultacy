@@ -1,0 +1,63 @@
+---
+// The five-step method on one offer page. Private clients get the short form
+// (step title and shared sentence), since the three parts above already cover
+// the detail. Organisations get the shared sentence plus their own text.
+import { offer, type Audience } from '../i18n/offer';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  audience: Audience;
+}
+
+const { locale, audience } = Astro.props;
+const m = offer[locale].method;
+---
+
+<div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>{m.eyebrow}</div>
+<h2 class="h1 section-title">{m.title}</h2>
+<p class="method-lead">{m.lead}</p>
+
+<ol class="method">
+  {m.steps.map((step, i) => (
+    <li class="method-step">
+      <div class="method-num">{i + 1}</div>
+      <div class="method-body">
+        <h3 class="method-title">{step.title}</h3>
+        <p class="method-common">{step.common}</p>
+        {audience === 'organisation' && <p class="method-own">{step.organisation}</p>}
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .method-lead {
+    max-width: var(--measure);
+    margin-bottom: var(--space-7);
+    color: var(--ink-2);
+  }
+  .method { list-style: none; border-bottom: 1px solid var(--hairline); }
+  .method-step {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--hairline);
+  }
+  .method-num { font-size: 30px; line-height: 1.1; font-weight: 500; color: var(--ink); }
+  .method-body { max-width: var(--measure); }
+  .method-title {
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
+  }
+  .method-common { color: var(--ink-2); }
+  .method-own { color: var(--ink); margin-top: var(--space-3); }
+  @media (max-width: 600px) {
+    .method-step { grid-template-columns: 1fr; gap: var(--space-2); }
+    .method-num { font-size: 20px; }
+  }
+</style>

@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeroShapes from '../../components/HeroShapes.astro';
+import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
+import { offer } from '../../i18n/offer';
+import Doors from '../../components/Doors.astro';
+
+const c = offer.fr;
+import '../../styles/framework.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: "Les 5 Niveaux de Maîtrise de l'IA",
+  description:
+    "Cinq manières dont l'IA peut entrer dans votre travail, de meilleures questions à un système qui tourne en arrière-plan. Pour situer où vous voulez aller.",
+  inLanguage: 'fr',
+  url: pageUrl('fr', 'framework'),
+  image: `${SITE}/og-image.png`,
+  author: FRANK_REF,
+};
+---
+
+<Layout
+  title="Les cinq niveaux de l'IA | Franksy"
+  description="Cinq manières dont l'IA peut entrer dans votre travail, de meilleures questions à un système qui tourne en arrière-plan. Pour situer où vous voulez aller."
+  locale="fr"
+  pathKey="framework"
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <section class="hero">
+    <HeroShapes />
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">Un cadre de réflexion</p>
+        <h1 class="display">Les 5 Niveaux de <em>Maîtrise de l'IA.</em></h1>
+        <p class="hero-lede">Cinq niveaux de maîtrise. Chacun plus avancé que le précédent, et le bon, c'est celui qui correspond au travail devant vous.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro">
+    <div class="container">
+      <div class="prose measure">
+        <p>On nous présente l'IA comme une révolution. En réalité, ce que la plupart cherchent est plus discret : <strong>faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.</strong></p>
+
+        <p>Selon le travail qu'on fait, on est à un niveau ou à un autre, c'est normal. Le bon niveau dépend de ce que vous avez à faire. Mais plus on avance, plus ces outils deviennent une vraie part de votre façon de penser.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container">
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Les cinq niveaux</div>
+      <h2 class="h1 section-title">Chacun s'appuie sur le précédent.</h2>
+      <p class="section-lead">{c.levels.lead}</p>
+
+      <div class="levels">
+        {c.levels.items.map((level) => (
+          <div class="level">
+            <div class="level-num">{level.num}</div>
+            <div class="level-content">
+              <div class="level-name">{level.name}</div>
+              <div class="level-headline">{level.who}</div>
+              <div class="level-desc"><span class="level-label">{c.labels.example}</span> {level.example}</div>
+              <div class="level-desc level-sign"><span class="level-label">{c.labels.sign}</span> {level.sign}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="section gap-wrap">
+    <div class="container">
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Repères</div>
+      <h2 class="h1 section-title">Où en sont la plupart des gens, et là où ça devient intéressant.</h2>
+      <p class="section-lead">Deux rapports différents à l'IA. La plupart sont dans le premier, non pas que le second soit difficile, mais ils n'ont jamais vu à quoi ça ressemble de l'autre côté.</p>
+
+      <div class="gap-grid">
+        <div class="gap-card stuck">
+          <div class="gap-stat">80%</div>
+          <div class="gap-sub">des professionnels</div>
+          <div class="gap-headline">Voient l'IA comme un outil.</div>
+          <div class="gap-body">L'utilisent ponctuellement, pour des questions isolées. Comme un moteur de recherche plus rapide. Utile, mais le travail reste globalement le même, fait globalement de la même façon.</div>
+        </div>
+
+        <div class="gap-card ahead">
+          <div class="gap-stat">20%</div>
+          <div class="gap-sub">travaillent avec l'IA</div>
+          <div class="gap-headline">En ont fait un partenaire.</div>
+          <div class="gap-body">Elle garde le contexte de leurs projets. Résume leurs réunions. Pousse leur réflexion. Elle fait partie de leur façon de penser, pas juste quelque chose qu'on consulte de temps en temps.</div>
+        </div>
+      </div>
+
+      <div class="cost-block">
+        <div class="cost-label eyebrow">Ce qui change quand on bascule</div>
+        <div class="cost-items">
+          <div class="cost-item">
+            <div class="cost-amount">Plus d'espace</div>
+            <div class="cost-desc">Pas parce qu'on travaille moins, mais parce qu'on arrête de porter ce qui n'avait pas à l'être.</div>
+          </div>
+          <div class="cost-item">
+            <div class="cost-amount">Les choses bougent</div>
+            <div class="cost-desc">Les projets que vous portez. Les décisions que vous reportez. Tout cela trouve enfin un espace pour avancer.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section band reflection">
+    <div class="container reflection-inner">
+      <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>{c.thread.eyebrow}</div>
+      <h2 class="h1 section-title">{c.thread.title}</h2>
+      {c.thread.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+
+  <section class="section" id="doors">
+    <div class="container">
+      <Doors locale="fr" />
+    </div>
+  </section>
+
+  <section class="section sting">
+    <div class="container">
+      <p class="tagline sting-text">Moins d'encombrement. <em>Plus de présence.</em><br />Voilà le travail.</p>
+    </div>
+  </section>
+
+  <div class="booking-section">
+    <div class="container">
+      <p>Quand vous êtes prêt.</p>
+      <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
+    </div>
+  </div>
+</Layout>

@@ -1,12 +1,11 @@
-// Copy for the two offer pages: individuals (/coaching/) and organisations
-// (/organisations/), EN and FR. Source of the French text: the Claude Doc
-// « Repositionnement : niveaux concrets et offre organisations » (Nov 2026).
-// The levels, the thread and the method are shared; each page only changes the
-// hero, which box of each step comes first, and the closing.
+// Shared copy for the framework, the two offer pages (private clients,
+// organisations) and the homepage doors, EN and FR. Source: the Claude Doc
+// « Repositionnement : niveaux concrets et offre organisations » (Nov 2026),
+// tabs « Repositionnement » and « Plan de contenu du site ».
 
 import type { Locale } from './ui';
 
-export type Audience = 'individual' | 'organisation';
+export type Audience = 'private' | 'organisation';
 
 interface Level {
   num: string;
@@ -19,37 +18,31 @@ interface Level {
 interface Step {
   title: string;
   common: string;
-  individual: string;
+  private: string;
   organisation: string;
 }
 
-interface PageCopy {
+interface Door {
+  audience: Audience;
+  label: string;
   title: string;
-  description: string;
-  eyebrow: string;
-  /** HTML: the part in <em> is the hero's second-level text. */
-  h1: string;
-  lede: string;
-  crossLink: { text: string; href: string };
-  /** HTML. */
-  sting: string;
-  booking: string;
+  text: string;
+  link: string;
+  href: string;
 }
 
 interface OfferCopy {
-  labels: { example: string; sign: string; individual: string; organisation: string; book: string };
+  labels: { example: string; sign: string; book: string };
   levels: { eyebrow: string; title: string; lead: string; items: Level[] };
   thread: { eyebrow: string; title: string; paragraphs: string[] };
   method: { eyebrow: string; title: string; lead: string; steps: Step[] };
-  pages: Record<Audience, PageCopy>;
+  doors: { eyebrow: string; title: string; items: Door[] };
 }
 
 const fr: OfferCopy = {
   labels: {
     example: 'Exemple\u00a0:',
     sign: 'Le signe\u00a0:',
-    individual: 'Individuel',
-    organisation: 'Organisation',
     book: 'Réserver un appel de 15 minutes',
   },
   levels: {
@@ -111,56 +104,56 @@ const fr: OfferCopy = {
       {
         title: 'Comprendre',
         common: "On commence par observer le travail tel qu'il se fait aujourd'hui. On regarde aussi la maturité d'adoption de l'IA et son étendue.",
-        individual: "Cela se fait pendant une séance de découverte d'une heure. On y parle de ce que vous portez, de ce qui revient chaque semaine et de ce qui attend depuis trop longtemps.",
+        private: "Cela se fait pendant une séance de découverte d'une heure. On y parle de ce que vous portez, de ce qui revient chaque semaine et de ce qui attend depuis trop longtemps.",
         organisation: 'Nous commençons par un audit des outils métiers et des processus. Il montre ce que les équipes utilisent, comment le travail circule et où il bloque.',
       },
       {
         title: 'Choisir',
         common: "On fait la liste de ce qui revient, par ordre de priorité. On commence par les tâches récurrentes qui pèsent le plus et dont on peut vérifier le résultat. Certaines questions ne se règlent pas avec un outil. Celles-là, on les ouvre et on les décortique ensemble.",
-        individual: "Souvent, il s'agit du suivi et de la communication : les relances, les comptes rendus, les réponses aux clients. Parfois, c'est une question que vous repoussez depuis longtemps.",
+        private: "Souvent, il s'agit du suivi et de la communication : les relances, les comptes rendus, les réponses aux clients. Parfois, c'est une question que vous repoussez depuis longtemps.",
         organisation: "La liste est validée avec la direction. Elle classe deux ou trois processus récurrents, pour que la suite soit visible dès le départ. Quand un problème dépasse une simple tâche, nous l'analysons d'abord avec les équipes concernées.",
       },
       {
         title: 'Façonner',
         common: "On façonne l'IA pour qu'elle réponde à la tâche ou au processus, avec une fiabilité qui permet de la prendre en main en confiance. Selon le besoin, cela prend la forme d'un agent : une IA configurée pour une tâche précise, avec ses instructions, ses outils et ses limites.",
-        individual: "Pendant les séances, on façonne l'IA à votre manière de travailler, avec vos outils, vos routines et votre voix. Vos premiers agents prennent en charge ce qui revient chaque semaine.",
+        private: "Pendant les séances, on façonne l'IA à votre manière de travailler, avec vos outils, vos routines et votre voix. Vos premiers agents prennent en charge ce qui revient chaque semaine.",
         organisation: "Nous connectons les agents à vos outils métiers, pour que les équipes concernées s'en servent facilement. Nous y appliquons vos règles et vos limites : ce à quoi ils ont accès, ce qu'ils font seuls, ce qui passe par une validation.",
       },
       {
         title: 'Adopter',
         common: "Vous gardez la main sur ce qui a été déployé et adopté. On vous accompagne dans l'adoption, jusqu'à une intégration personnelle et réussie. Avec l'IA, cela va en général vite.",
-        individual: "Des séances d'intégration, pour que l'IA entre dans votre quotidien avec toutes ses astuces. Vous repartez avec un système qui vous appartient, et qui continue de tourner une fois l'accompagnement terminé.",
+        private: "Des séances d'intégration, pour que l'IA entre dans votre quotidien avec toutes ses astuces. Vous repartez avec un système qui vous appartient, et qui continue de tourner une fois l'accompagnement terminé.",
         organisation: 'Nous organisons des séances avec les équipes concernées, pour répondre à leurs questions et lever les incertitudes. Elles avancent ensuite en autonomie, avec un référent interne qui garde la main sur les outils.',
       },
       {
         title: 'Recommencer et étendre',
         common: "Une fois la première tâche adoptée, on reprend la liste et on recommence une étape de façonnage pour la suivante. Chaque nouvel agent s'appuie sur ce qui existe déjà : les outils connectés, les règles posées, les habitudes prises. À chaque tour, l'IA prend en charge une part plus grande du travail récurrent.",
-        individual: "Vos agents se complètent au fil des tours. Celui qui prépare vos relances peut s'appuyer sur celui qui résume vos réunions. Vous montez d'un niveau quand c'est utile, pas avant.",
+        private: "Vos agents se complètent au fil des tours. Celui qui prépare vos relances peut s'appuyer sur celui qui résume vos réunions. Vous montez d'un niveau quand c'est utile, pas avant.",
         organisation: "Nous façonnons de nouveaux agents pour les processus suivants de la liste, puis pour d'autres équipes. Ce qui a marché dans une équipe sert de modèle aux autres. Ce qui ne marche pas, nous l'arrêtons.",
       },
     ],
   },
-  pages: {
-    individual: {
-      title: "Accompagnement individuel à l'IA | Franksy",
-      description: "Pour les entrepreneurs et les indépendants. Cinq niveaux pour situer votre usage de l'IA, et une méthode en cinq étapes pour alléger ce qui revient chaque semaine.",
-      eyebrow: 'Pour les individuels',
-      h1: "L'IA, à votre <em>manière de travailler.</em>",
-      lede: "Pour les entrepreneurs et les indépendants qui portent beaucoup. Le but est simple : faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.",
-      crossLink: { text: "Vous dirigez une équipe ? Voir l'accompagnement des organisations →", href: '/fr/organisations/' },
-      sting: "Moins d'encombrement. <em>Plus de présence.</em><br />Voilà le travail.",
-      booking: 'Quand vous êtes prêt.',
-    },
-    organisation: {
-      title: "L'IA pour les équipes | Franksy",
-      description: "Pour les PME et les organisations. Un audit des outils métiers et des processus, puis des agents façonnés pour vos équipes, avec vos règles et vos limites.",
-      eyebrow: 'Pour les organisations',
-      h1: "L'IA, au service <em>de vos équipes.</em>",
-      lede: "Pour les PME et les organisations qui veulent alléger leurs équipes. Faire le même travail avec moins de charge mentale, et plus de place pour ce qui compte vraiment.",
-      crossLink: { text: "Vous travaillez seul ? Voir l'accompagnement individuel →", href: '/fr/coaching/' },
-      sting: 'Des équipes plus légères. <em>Un travail qui avance.</em>',
-      booking: "Si cela vous parle, prenons un quart d'heure pour voir s'il y a quelque chose à faire ensemble.",
-    },
+  doors: {
+    eyebrow: 'Deux portes',
+    title: 'Par où commencer.',
+    items: [
+      {
+        audience: 'private',
+        label: 'Clients privés',
+        title: "D'abord, un second esprit.",
+        text: "Mon rôle n'est pas de vous apprendre l'IA. C'est de comprendre votre façon de travailler, et d'y accorder les outils, à votre rythme.",
+        link: "Voir l'accompagnement privé →",
+        href: '/fr/private-clients/',
+      },
+      {
+        audience: 'organisation',
+        label: 'Organisations',
+        title: 'Des mains en plus, là où le travail se répète.',
+        text: 'Vos processus vivent déjà dans vos outils métiers. Vos équipes peuvent donc passer vite aux agents, connectés à ces outils, avec vos règles et vos validations.',
+        link: "Voir l'accompagnement des organisations →",
+        href: '/fr/organisations/',
+      },
+    ],
   },
 };
 
@@ -168,8 +161,6 @@ const en: OfferCopy = {
   labels: {
     example: 'Example:',
     sign: 'The sign:',
-    individual: 'Individual',
-    organisation: 'Organisation',
     book: 'Book a 15-minute call',
   },
   levels: {
@@ -231,56 +222,56 @@ const en: OfferCopy = {
       {
         title: 'Understand',
         common: "We start by looking at the work as it's done today. We also look at how far AI has been adopted, and how widely.",
-        individual: 'This happens in a one-hour Discovery session. We talk about what you carry, what comes back every week, and what has been waiting too long.',
+        private: 'This happens in a one-hour Discovery session. We talk about what you carry, what comes back every week, and what has been waiting too long.',
         organisation: 'We start with an audit of your business tools and processes. It shows what the teams use, how the work flows and where it gets stuck.',
       },
       {
         title: 'Choose',
         common: "We list what keeps coming back, in order of priority. We start with the recurring tasks that weigh the most and whose results we can check. Some questions can't be solved with a tool. Those, we open up and take apart together.",
-        individual: "Often it's follow-up and communication: chasers, meeting notes, replies to clients. Sometimes it's a question you've been putting off for a long time.",
+        private: "Often it's follow-up and communication: chasers, meeting notes, replies to clients. Sometimes it's a question you've been putting off for a long time.",
         organisation: 'The list is agreed with management. It ranks two or three recurring processes, so the next steps are visible from the start. When a problem is bigger than a single task, we work through it with the teams involved first.',
       },
       {
         title: 'Shape',
         common: 'We shape AI to fit the task or the process, reliably enough that people can pick it up with confidence. Where it helps, this takes the form of an agent: an AI set up for one specific task, with its own instructions, tools and limits.',
-        individual: 'During the sessions, we shape AI to the way you work, with your tools, your routines and your voice. Your first agents take on what comes back every week.',
+        private: 'During the sessions, we shape AI to the way you work, with your tools, your routines and your voice. Your first agents take on what comes back every week.',
         organisation: 'We connect the agents to your business tools, so the teams involved can use them easily. We apply your rules and limits: what they can access, what they do on their own, what needs sign-off.',
       },
       {
         title: 'Adopt',
         common: "You stay in control of what has been deployed and adopted. We support you through adoption, until it's part of how you work. With AI, this usually goes quickly.",
-        individual: 'Onboarding sessions, so AI becomes part of your day, with all its shortcuts. You leave with a system that belongs to you, and keeps running once our work together ends.',
+        private: 'Onboarding sessions, so AI becomes part of your day, with all its shortcuts. You leave with a system that belongs to you, and keeps running once our work together ends.',
         organisation: 'We run sessions with the teams involved, to answer their questions and clear up uncertainty. Then they carry on by themselves, with an internal lead who keeps hold of the tools.',
       },
       {
         title: 'Repeat and extend',
         common: "Once the first task is adopted, we go back to the list and start a new round of shaping for the next one. Each new agent builds on what's already there: the connected tools, the rules in place, the habits formed. With each round, AI takes on a larger share of the recurring work.",
-        individual: "Your agents start to work together over time. The one that prepares your follow-ups can draw on the one that summarises your meetings. You move up a level when it's useful, not before.",
+        private: "Your agents start to work together over time. The one that prepares your follow-ups can draw on the one that summarises your meetings. You move up a level when it's useful, not before.",
         organisation: "We shape new agents for the next processes on the list, then for other teams. What worked in one team becomes the model for the others. What doesn't work, we stop.",
       },
     ],
   },
-  pages: {
-    individual: {
-      title: 'AI coaching for individuals | Franksy',
-      description: 'For entrepreneurs and independents. Five levels to see where AI sits in your work, and a five-step method to lift what comes back every week.',
-      eyebrow: 'For individuals',
-      h1: 'AI, shaped to <em>the way you work.</em>',
-      lede: 'For entrepreneurs and independents who carry a lot. The aim is simple: the same work, with less mental load and more room for what actually matters.',
-      crossLink: { text: 'Leading a team? See how this works for organisations →', href: '/organisations/' },
-      sting: 'Less clutter. <em>More presence.</em><br />That\'s the work.',
-      booking: 'Ready when you are.',
-    },
-    organisation: {
-      title: 'AI for teams | Franksy',
-      description: 'For SMEs and organisations. An audit of your business tools and processes, then agents shaped for your teams, within your rules and limits.',
-      eyebrow: 'For organisations',
-      h1: 'AI, working <em>for your teams.</em>',
-      lede: 'For SMEs and organisations that want to lighten the load on their teams. The same work, with less mental load and more room for what actually matters.',
-      crossLink: { text: 'Working on your own? See individual coaching →', href: '/coaching/' },
-      sting: 'Lighter teams. <em>Work that moves.</em>',
-      booking: "If any of this lands, let's take 15 minutes to see whether there's a fit.",
-    },
+  doors: {
+    eyebrow: 'Two doors',
+    title: 'Where to start.',
+    items: [
+      {
+        audience: 'private',
+        label: 'Private clients',
+        title: 'A second mind, first.',
+        text: "My role isn't to teach you AI. It's to understand the way you actually work, and to weave the tools in at your pace.",
+        link: 'See private client work →',
+        href: '/private-clients/',
+      },
+      {
+        audience: 'organisation',
+        label: 'Organisations',
+        title: 'Extra hands, where the work repeats.',
+        text: 'Your processes already live in your business tools. So your teams can move quickly to agents, connected to those tools, within your rules and sign-offs.',
+        link: 'See work with organisations →',
+        href: '/organisations/',
+      },
+    ],
   },
 };
 

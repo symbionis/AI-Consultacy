@@ -1,7 +1,7 @@
-/* Offer page sections (individuals, organisations). Tokens, type, buttons,
-   hero, nav and footer come from franksy.css. Section order: hero (block),
-   five levels (page), the thread (band), the method (page), closing line and
-   booking (page), footer (block). */
+/* Framework page sections. Tokens, type, buttons, hero, nav and footer come
+   from franksy.css. Section order: hero (block), intro (page), five levels
+   (band), orientation (page), the thread (band), the two doors (page), closing line and booking
+   (page), footer (block). */
 
 /* Hero headline emphasis: second-level text on block, not a second italic. */
 .hero .display em { font-style: normal; color: var(--on-block-2); }
@@ -14,6 +14,14 @@
   max-width: var(--measure);
   margin-bottom: var(--space-7);
   color: var(--ink-2);
+}
+
+/* ===== INTRO ===== */
+
+.intro .prose p {
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.6;
+  margin-bottom: var(--space-5);
 }
 
 /* ===== FIVE LEVELS ===== */
@@ -64,6 +72,79 @@
   .level-num { font-size: 20px; }
 }
 
+.coaching-cta { margin-top: var(--space-7); }
+.coaching-cta p { color: var(--ink-2); margin-bottom: var(--space-4); }
+
+/* ===== ORIENTATION (80/20) ===== */
+
+.gap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+@media (max-width: 700px) {
+  .gap-grid { grid-template-columns: 1fr; }
+}
+
+.gap-card { padding: var(--space-6); }
+
+/* Most people: a surface card. Those ahead: a sun field behind teal text. */
+.gap-card.stuck { background: var(--surface); color: var(--ink); }
+.gap-card.ahead { background: var(--sun); color: var(--teal); }
+
+.gap-stat {
+  font-size: clamp(48px, 6.4vw, 64px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.gap-sub {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+.gap-card.stuck .gap-sub { color: var(--ink-3); }
+
+.gap-headline {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+}
+
+.gap-body { font-size: 15px; line-height: 1.6; }
+.gap-card.stuck .gap-body { color: var(--ink-2); }
+
+.cost-block {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+}
+
+.cost-block .cost-label { margin-bottom: var(--space-5); }
+
+.cost-items { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.cost-item {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: baseline;
+}
+
+.cost-amount { font-size: 20px; line-height: 1.35; font-weight: 500; color: var(--ink); }
+
+.cost-desc { color: var(--ink-2); max-width: var(--measure); }
+
+@media (max-width: 600px) {
+  .cost-item { grid-template-columns: 1fr; gap: var(--space-1); }
+}
 
 /* ===== THE THREAD ===== */
 
@@ -77,71 +158,6 @@
 .reflection-inner > p:last-child { margin-bottom: 0; }
 .reflection-inner .section-title { margin-bottom: var(--space-6); }
 .reflection-inner strong { color: var(--ink); }
-
-
-/* ===== THE METHOD ===== */
-/* Five steps. Each: a shared sentence, then two boxes. The page's own audience
-   box is the highlighted one (surface field); the other sits on a hairline. */
-
-.steps { list-style: none; border-bottom: 1px solid var(--hairline); }
-
-.step {
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  gap: var(--space-5);
-  align-items: start;
-  padding-block: var(--space-6);
-  border-top: 1px solid var(--hairline);
-}
-
-.step-num {
-  font-size: 30px;
-  line-height: 1.1;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.step-title {
-  font-size: 24px;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-bottom: var(--space-3);
-}
-
-.step-common { max-width: var(--measure); color: var(--ink-2); margin-bottom: var(--space-5); }
-
-.step-boxes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
-}
-
-.step-box { padding: var(--space-5); font-size: 15px; line-height: 1.6; }
-.step-box p { color: var(--ink-2); }
-.step-box--main { background: var(--surface); }
-.step-box--main p { color: var(--ink); }
-.step-box--other { border: 1px solid var(--hairline); }
-
-.step-box-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: var(--space-2);
-}
-.step-box--main .step-box-label { color: var(--accent-text); }
-
-@media (max-width: 700px) {
-  .step-boxes { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 600px) {
-  .step { grid-template-columns: 1fr; gap: var(--space-2); }
-  .step-num { font-size: 20px; }
-}
-
-.cross-link { margin-top: var(--space-6); }
 
 /* ===== CLOSING LINE AND BOOKING ===== */
 /* The page's one italic serif line. Scarlet emphasis stays at 32px and up. */

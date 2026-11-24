@@ -1,5 +1,143 @@
 ---
-import OfferPage from '../../components/OfferPage.astro';
+import Layout from '../../layouts/Layout.astro';
+import HeroShapes from '../../components/HeroShapes.astro';
+import MethodSteps from '../../components/MethodSteps.astro';
+import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
+import '../../styles/home.css';
+import '../../styles/offer.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Organisations',
+  description: 'Pour les PME, les family offices et les organisations aux équipes légères. Un audit de vos outils métiers et de vos processus, puis des agents façonnés pour vos équipes, avec vos règles.',
+  inLanguage: 'fr',
+  url: pageUrl('fr', 'organisations'),
+  image: `${SITE}/og-image.png`,
+  provider: FRANK_REF,
+};
 ---
 
-<OfferPage locale="fr" audience="organisation" />
+<Layout
+  title={'Organisations | Franksy'}
+  description={'Pour les PME, les family offices et les organisations aux équipes légères. Un audit de vos outils métiers et de vos processus, puis des agents façonnés pour vos équipes, avec vos règles.'}
+  locale="fr"
+  pathKey="organisations"
+  jsonLd={jsonLd}
+>
+  <main>
+    <!-- Hero (block) -->
+    <section class="hero">
+      <HeroShapes />
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 class="display">Des mains en plus, là où le travail se répète.</h1>
+          <p class="hero-sub">Vos processus vivent déjà dans vos outils métiers. Vos équipes peuvent donc passer vite aux agents, connectés à ces outils, avec vos règles et vos validations.</p>
+          <div class="cta-row">
+            <a href="#method" class="btn btn-sun">Voir comment ça se passe</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The method -->
+    <section class="section" id="method">
+      <div class="container">
+        <MethodSteps locale="fr" audience="organisation" />
+        <p class="framework-link"><a href="/fr/framework/" class="more-link">Les cinq niveaux derrière cette méthode →</a></p>
+      </div>
+    </section>
+
+    <!-- Your rules (surface band) -->
+    <section class="section band" id="rules">
+      <div class="container">
+        <div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>Vos règles</div>
+        <h2 class="h1 section-title">Vos règles. Vos limites.</h2>
+        <p class="rules-intro">Les agents ne font que ce que vous décidez. Avant que quoi que ce soit tourne, nous fixons trois choses avec vous.</p>
+        <ul class="rules">
+          <li><strong>Ce à quoi ils ont accès.</strong> Quels outils, quels dossiers, quelles données.</li>
+          <li><strong>Ce qu'ils font seuls.</strong> Et ce qui attend la validation d'une personne.</li>
+          <li><strong>Qui, chez vous, s'en occupe.</strong> Un référent interne qui garde la main sur les outils et ajuste les règles en chemin.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Who this is for (page) -->
+    <section class="section" id="who">
+      <div class="container">
+        <h2 class="h1 section-title">Avec qui je travaille.</h2>
+        <p class="audience-intro">Des équipes dont le travail vit déjà dans leurs outils métiers, et qui veulent qu'il avance avec moins d'effort.</p>
+        <div class="audience-grid">
+          <div class="audience-list for">
+            <h3 class="eyebrow">Pour</h3>
+            <ul>
+              <li>Petits family offices avec une équipe</li>
+              <li>Petites consultances</li>
+              <li>Agences (marketing, design, communication)</li>
+              <li>Cabinets de services professionnels : comptabilité, fiscalité, conseil, notariat</li>
+              <li>Entreprises en ligne avec une équipe opérationnelle</li>
+              <li>Petites organisations, associations et communautés aux équipes légères</li>
+            </ul>
+          </div>
+          <div class="audience-list not-for">
+            <h3 class="eyebrow">Pas pour</h3>
+            <ul>
+              <li>Les grandes entreprises qui cherchent une stratégie IA à grande échelle</li>
+              <li>Les demandes de formation générique aux outils</li>
+            </ul>
+          </div>
+        </div>
+        <p class="audience-note caption"><em>EN et FR. À distance dans le monde entier, sur place en Suisse.</em></p>
+        <div class="cta-row">
+          <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How we start (surface band) -->
+    <section id="process" class="section band">
+      <div class="container">
+        <h2 class="h1 section-title">Comment ça commence.</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body prose">
+              <h3 class="h3">Un appel de 15 minutes.</h3>
+              <p>Court, sans engagement. On voit s'il y a un terrain commun. Si ce n'est pas le cas, vous avez perdu quinze minutes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body prose">
+              <h3 class="h3">L'audit.</h3>
+              <p>Nous regardons vos outils métiers et vos processus avec la direction et les équipes concernées. Vous recevez une liste classée de deux ou trois processus récurrents par où commencer.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body prose">
+              <h3 class="h3">Une proposition de déploiement.</h3>
+              <p>Construite à partir de l'audit et validée avec la direction : quels processus, quels agents, quelles règles, dans quel ordre.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body prose">
+              <h3 class="h3">Le façonnage et les séances.</h3>
+              <p>Nous façonnons les agents, nous les connectons à vos outils, et nous organisons des séances avec les équipes jusqu'à ce qu'elles avancent en autonomie.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <div class="container">
+        <p class="closing-text">Si cela vous parle, prenons un quart d'heure pour voir s'il y a quelque chose à faire ensemble.</p>
+        <div class="cta-row">
+          <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

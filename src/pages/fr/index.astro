@@ -3,7 +3,9 @@ import { offer } from '../../i18n/offer';
 import Layout from '../../layouts/Layout.astro';
 import HeroShapes from '../../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
+import Doors from '../../components/Doors.astro';
 import '../../styles/home.css';
+import '../../styles/offer.css';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -12,7 +14,7 @@ const jsonLd = {
   name: 'Franksy',
   url: pageUrl('fr', ''),
   image: `${SITE}/og-image.png`,
-  description: 'Coaching IA pour les entrepreneurs et les petites équipes.',
+  description: "Coaching IA pour les clients privés et les family offices, et agents IA pour les organisations.",
   email: 'frank@syks.co',
   areaServed: 'Worldwide',
   availableLanguage: ['en', 'fr'],
@@ -26,8 +28,8 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Franksy | Coaching IA pour entrepreneurs et petites équipes"
-  description="Coaching IA pour entrepreneurs et petites équipes. Moins de poids, plus de place, un second esprit qui pense avec vous, sans bousculer votre travail."
+  title="Franksy | Un second esprit pour vous, des mains en plus pour vos équipes"
+  description="L'IA accordée à votre façon de travailler. Un second esprit pour les clients privés et les family offices, des mains en plus pour les équipes. Genève, en français et en anglais."
   locale="fr"
   pathKey=""
   jsonLd={jsonLd}
@@ -38,25 +40,11 @@ const jsonLd = {
       <HeroShapes />
       <div class="container hero-inner">
         <div class="hero-text">
-          <h1 class="display">Le coaching IA qui parle votre langue.</h1>
-          <p class="hero-sub">Pour les entrepreneurs et les petites équipes.</p>
-          <p class="tagline">Moins de poids. Plus de place.<br />Un second esprit qui pense avec vous.</p>
+          <h1 class="display">Un second esprit pour vous. Des mains en plus pour vos équipes.</h1>
+          <p class="tagline">Moins de poids. Plus de place.</p>
           <div class="cta-row">
-            <a href="#receive" class="btn btn-sun">Voir comment ça se passe</a>
+            <a href="#doors" class="btn btn-sun">Voir comment ça se passe</a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: The shift (page) -->
-    <section id="shift" class="section">
-      <div class="container">
-        <hr class="bar" />
-        <blockquote class="statement">
-          Mon rôle n'est pas de vous apprendre l'IA. C'est de vous comprendre, vous, dans votre univers de travail. Vos habitudes, vos rythmes, la forme de vos journées. Puis d'amener les outils, d'une manière intégrative, à votre rythme.
-        </blockquote>
-        <div class="prose measure lede">
-          <p>Quand on dirige une activité ou une petite équipe, les journées sont déjà bien remplies. Ce que je propose, ce n'est pas l'IA. C'est une manière de la faire entrer dans votre travail qui vient augmenter ce que vous faites déjà, sans le bousculer.</p>
         </div>
       </div>
     </section>
@@ -70,7 +58,7 @@ const jsonLd = {
             <img src="/frank-sykes.jpg" alt="Portrait illustré de Frank Sykes" class="portrait-img" width="400" height="400" />
           </figure>
           <div class="prose measure">
-            <p>Frank Sykes accompagne entrepreneurs et petites équipes dans leur transition à l'IA. Il est déjà passé par là. En 1998, en pleine révolution internet, il a construit à Londres l'une des premières plateformes en ligne de mise en relation candidats-postes, et a vu les consultants qui s'en servaient passer de « cet outil va nous prendre notre travail » à, trois mois plus tard, l'inverse.</p>
+            <p>Frank Sykes accompagne entrepreneurs et petites équipes dans leur transition à l'IA, et déploie des solutions à fort impact. Il est déjà passé par là. En 1998, en pleine révolution internet, il a construit à Londres l'une des premières plateformes en ligne de mise en relation candidats-postes, et a vu les consultants qui s'en servaient passer de « cet outil va nous prendre notre travail » à, trois mois plus tard, l'inverse.</p>
             <p>Vingt ans à Londres, puis Genève pour son fils. La technologie a changé, pas la manière dont on la traverse.</p>
             <p><a href="/fr/about/" class="more-link">Lire la suite →</a></p>
           </div>
@@ -78,51 +66,8 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- Section 3: What you actually get (page) -->
-    <section id="receive" class="section">
-      <div class="container">
-        {/* FR copy pending */}
-        <h2 class="h1 section-title">De quoi il s'agit, en trois parties.</h2>
-        <div class="parts">
-          <div class="part">
-            <span class="marker marker--lg marker--circle" aria-hidden="true"></span>
-            <div class="eyebrow">01 / Compréhension</div>
-            <h3 class="h3">Une vraie conversation sur comment vous travaillez au quotidien.</h3>
-            <div class="prose body-sm">
-              <p>Notre point de depart, votre semaine de travail type : ce qui a pris votre temps, ce qui n'avance que quand c'est vous qui le faites, ce qui revient sans cesse. Ensuite, on regarde ce qui attend. Le projet que vous n'avez pas lancé. La décision que vous n'avez pas eu le temps de penser à fond. La rédaction qui revient chaque semaine et prend toujours autant de temps.</p>
-              <p>Vous repartez avec une lecture claire de là où vous en êtes, et deux expériences à essayer cette semaine.</p>
-            </div>
-          </div>
-          <div class="part">
-            <span class="marker marker--lg marker--square" aria-hidden="true"></span>
-            <div class="eyebrow">02 / Continuité</div>
-            <h3 class="h3">Six séances. Des choses concrètes construites.</h3>
-            <div class="prose body-sm">
-              <p>Six séances hebdomadaires où l'on façonne Claude autour de votre façon de travailler. On lui donne votre voix, votre manière de penser, votre ton. On lance votre premier espace de travail autour du domaine qui compte le plus, et on commence à créer des compétences pour les actions que vous répétez chaque semaine.</p>
-              <p>Au bout du compte, un projet que vous portiez depuis trop longtemps a avancé. Le poids commence à se lever.</p>
-            </div>
-          </div>
-          <div class="part">
-            <span class="marker marker--lg marker--dots" aria-hidden="true"></span>
-            <div class="eyebrow">03 / Un système qui vous reste</div>
-            <h3 class="h3">À vous, après qu'on ait fini de travailler ensemble.</h3>
-            <div class="prose body-sm">
-              <p>Claude connaît vos principes de voix. Vos compétences gèrent le travail qui attendait après vous. Votre espace fonctionne comme vous pensez, pas comme une IA générique pense que vous devriez.</p>
-              <p>Les choses avancent : les relances, le brief hebdomadaire, le brouillon qui arrive et n'attend plus que votre validation. Les choses sortent : l'offre qui stagnait à 80% depuis six mois, l'étude de cas qui dormait dans un dossier. Ça se cumule, et c'est à vous de le garder.</p>
-            </div>
-          </div>
-        </div>
-        <blockquote class="accent-line">
-          C'est du coaching structurel, pas aspirationnel.
-        </blockquote>
-        <div class="cta-row">
-          <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3.5: The 5 Levels framework (surface band) -->
-    <section id="levels" class="section band">
+    <!-- The 5 Levels (page) -->
+    <section id="levels" class="section">
       <div class="container">
         <blockquote class="statement">
           Voici comment je vois les choses, après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA.
@@ -140,84 +85,24 @@ const jsonLd = {
         </div>
         <div class="framework-closing measure">
           <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place et nomme l'écart.</p>
-          <p><a href="/fr/coaching/" class="more-link">Voir les cinq niveaux en détail →</a></p>
+          <p><a href="/fr/framework/" class="more-link">Lire le framework complet →</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Who this is for (page) -->
-    <section class="section">
+    <!-- Two doors (surface band) -->
+    <section id="doors" class="section band">
       <div class="container">
-        {/* FR copy pending */}
-        <h2 class="h1 section-title">Avec qui je travaille.</h2>
-        <div class="audience-grid">
-          <div class="audience-list for">
-            <h3 class="eyebrow">Pour</h3>
-            <ul>
-              {/* FR copy pending */}
-              <li>Consultants indépendants et petites consultances</li>
-              <li>Dirigeants d'agences (marketing, design, communication)</li>
-              <li>Cabinets de services professionnels : comptabilité, fiscalité, conseil, notariat</li>
-              <li>Entreprises en ligne et créateurs ayant une activité opérationnelle</li>
-              <li>Toute personne qui <em>est</em> son entreprise et qui en a assez d'être le goulot d'étranglement de son propre travail</li>
-            </ul>
-          </div>
-          <div class="audience-list not-for">
-            <h3 class="eyebrow">Pas pour</h3>
-            <ul>
-              {/* FR copy pending */}
-              <li>Ceux qui cherchent un atelier de prompt engineering</li>
-              <li>Ceux qui veulent une liste de recommandations d'outils</li>
-              <li>Les entreprises qui ont besoin d'une stratégie IA à grande échelle</li>
-              <li>Ceux qui espèrent apprendre l'IA sans changer leur façon de travailler</li>
-            </ul>
-          </div>
-        </div>
-        <p class="audience-note caption"><em>EN et FR. Séances en visio dans le monde entier, en personne en Suisse.</em></p>
+        <Doors locale="fr" />
+      </div>
+    </section>
+
+    <!-- Closing (page) -->
+    <section class="section closing">
+      <div class="container">
+        <p class="closing-text">Quand vous êtes prêt.</p>
         <div class="cta-row">
           <a href="https://app.cal.com/franksy/connect" class="btn btn-primary" data-cal-link="franksy/connect" data-cal-namespace="connect" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Réserver un appel de 15 minutes</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: How it works (surface band) -->
-    <section id="process" class="section band">
-      <div class="container">
-        {/* FR copy pending */}
-        <h2 class="h1 section-title">Comment ça commence.</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-body prose">
-              <h3 class="h3">Un appel de 15 minutes.</h3>
-              <p>Court, sans engagement. On voit s'il y a un terrain commun. Si ce n'est pas le cas, vous avez perdu quinze minutes. Si c'est le cas, on planifie la suite.</p>
-              <p>Si vous voulez faire le pas avec l'IA, parlons-en.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-body prose">
-              <h3 class="h3">Une session Découverte de 60 minutes.</h3>
-              <p>Une heure pour comprendre votre univers, vos besoins, et ce qui mérite d'être allégé.</p>
-              <p><strong>Pendant l'heure, ensemble :</strong><br />Votre place sur les 5 Niveaux de Maîtrise de l'IA. À quoi pourrait ressembler votre prochaine étape. Toutes les questions que vous avez voulu poser sans avoir la bonne personne en face.</p>
-              <p><strong>Dans les jours qui suivent :</strong><br />Un document écrit vingt-quatre heures plus tard. Deux expériences à tenter cette semaine. Une lecture claire de l'intérêt de travailler ensemble.</p>
-              <p class="offer">Tarif préférentiel pour les 15 premiers entrepreneurs inscrits, pour le lancement de cette pratique.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-body prose">
-              <h3 class="h3">Coaching Together, si on veut tous les deux continuer.</h3>
-              <p>Six séances hebdomadaires. Voici ce qu'on construit :</p>
-              <p><strong>Claude, façonné pour vous.</strong> On donne à Claude une personnalité qui vous ressemble : votre ton, vos réflexes, votre façon de penser. Il retient comment vous travaillez, pour que chaque échange parte de la compréhension, pas de zéro.</p>
-              <p><strong>Votre voix, reconnue.</strong> On définit vos principes de voix pour que ce que Claude écrit pour vous sonne comme si c'était vous qui l'aviez écrit. Propositions, emails, notes clients, tout dans votre registre.</p>
-              <p><strong>Un espace pour votre domaine.</strong> On lance votre premier environnement de travail autour du domaine qui compte le plus dans votre activité, que ce soit le travail client, le contenu, le recrutement ou l'administratif.</p>
-              <p><strong>Des compétences pour votre travail récurrent.</strong> On crée des compétences dédiées aux actions que vous répétez : rédiger des propositions, préparer des briefs, relancer, synthétiser des réunions. Les choses qui prennent votre temps et ne devraient pas.</p>
-              <p><strong>Des bonnes pratiques qui restent.</strong> Vous apprenez à bien travailler avec Claude. Les habitudes, les raccourcis, les outils complémentaires qui rendent l'interaction naturelle plutôt que technique.</p>
-              <p>Un projet que vous portiez depuis trop longtemps, concrètement avancé.</p>
-              <p class="offer">Nombre limité de places pour la première cohorte, été 2026.</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

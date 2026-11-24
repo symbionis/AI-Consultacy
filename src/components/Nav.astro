@@ -16,14 +16,17 @@ const t = ui[locale];
     <a href={pagePath(locale, '')} class="nav-logo">Franksy</a>
     <div class="nav-right">
       <nav class="nav-links">
-        <a href={pagePath(locale, 'about')} aria-current={pathKey === 'about' ? 'page' : undefined}>
-          {t.nav.about}
+        <a href={pagePath(locale, 'framework')} aria-current={pathKey === 'framework' ? 'page' : undefined}>
+          {t.nav.framework}
         </a>
-        <a href={pagePath(locale, 'coaching')} aria-current={pathKey === 'coaching' ? 'page' : undefined}>
-          {t.nav.coaching}
+        <a href={pagePath(locale, 'private-clients')} aria-current={pathKey === 'private-clients' ? 'page' : undefined}>
+          {t.nav.privateClients}
         </a>
         <a href={pagePath(locale, 'organisations')} aria-current={pathKey === 'organisations' ? 'page' : undefined}>
           {t.nav.organisations}
+        </a>
+        <a href={pagePath(locale, 'about')} aria-current={pathKey === 'about' ? 'page' : undefined}>
+          {t.nav.about}
         </a>
         <a href="https://work.franksy.me/">
           {t.nav.portfolio}

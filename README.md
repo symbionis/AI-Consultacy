@@ -27,14 +27,16 @@ Requires Node 22 (see `.nvmrc`).
 │   ├── pages/              One .astro file per route
 │   │   ├── index.astro         /            (EN home)
 │   │   ├── about.astro         /about/      (EN about)
-│   │   ├── framework.astro     /framework/  (EN five levels)
+│   │   ├── coaching.astro      /coaching/   (EN individuals)
+│   │   ├── organisations.astro /organisations/ (EN organisations)
 │   │   └── fr/                 /fr/* mirror (FR pages)
 │   ├── layouts/Layout.astro   Shared <head>, nav, footer, scripts
 │   ├── components/            Nav, Footer, LangSwitch, CalEmbed
 │   ├── i18n/ui.ts             Shared UI strings + URL helpers
+│   ├── i18n/offer.ts          Copy for the two offer pages (EN + FR)
 │   ├── styles/
 │   │   ├── global.css         Home + about pages
-│   │   └── framework.css      Framework pages (own dark-theme design)
+│   │   └── framework.css      Offer pages (individuals, organisations)
 │   └── content.config.ts      Reserved blog collection (see Blog, below)
 ├── public/                 Served as-is: _headers, _redirects, robots.txt,
 │                           favicon.svg, lang.js, images
@@ -53,10 +55,11 @@ the page's `locale` and `pathKey` props.
 ## Editing content
 
 - **Text changes:** edit the relevant `.astro` file in `src/pages/`. EN and FR
-  are separate files.
+  are separate files. The two offer pages share one component
+  (`src/components/OfferPage.astro`) and their copy lives in `src/i18n/offer.ts`.
 - **Shared chrome** (nav labels, footer): `src/i18n/ui.ts`.
 - **Styles:** `src/styles/global.css` (home + about) or
-  `src/styles/framework.css` (framework pages).
+  `src/styles/framework.css` (the two offer pages).
 - **FR pending copy:** search for `FR copy pending` in `src/pages/fr/` — these
   are source-only comments marking sections awaiting native French text.
 
@@ -89,7 +92,7 @@ every push to `main` → `franksy.me`.
 
 `public/_headers` and `public/_redirects` are copied into `dist/` and applied at
 the edge — security headers, cache rules (including an `immutable` rule for
-hashed `/_astro/*` assets), and the legacy `/framework/fr/` → `/fr/framework/`
+hashed `/_astro/*` assets), and the retired `/framework/` URLs → `/coaching/`
 redirects.
 
 ## Blog (planned)
@@ -105,4 +108,5 @@ collection is intentionally empty.
 |---|---|
 | `/` · `/fr/` | Homepage |
 | `/about/` · `/fr/about/` | About Frank |
-| `/framework/` · `/fr/framework/` | The Five Levels of AI |
+| `/coaching/` · `/fr/coaching/` | Individuals: five levels and the method |
+| `/organisations/` · `/fr/organisations/` | Organisations: same levels and method |

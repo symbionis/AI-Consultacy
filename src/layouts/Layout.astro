@@ -18,9 +18,9 @@ interface Props {
   title: string;
   description: string;
   locale: Locale;
-  /** Locale-agnostic page identifier: '' (home), 'about', 'framework'. */
+  /** Locale-agnostic page identifier: '' (home), 'about', 'coaching', 'organisations'. */
   pathKey: PathKey;
-  /** og:type — 'website' for most pages, 'article' for the framework pages. */
+  /** og:type — 'website' for most pages, 'article' where a page is an article. */
   ogType?: 'website' | 'article';
   /** JSON-LD structured data object, emitted verbatim into a ld+json script. */
   jsonLd: Record<string, unknown>;

@@ -5,14 +5,16 @@ import { parse, type HTMLElement } from 'node-html-parser';
 // Build-output assertions. `npm test` runs `astro build` first, so these read
 // the real generated files in `dist/` rather than mocked component renders.
 
-// The site's six routes — the single source of truth for every suite below.
+// The site's eight routes — the single source of truth for every suite below.
 const ROUTES = [
   { path: 'index.html', url: 'https://franksy.me/', locale: 'en' },
   { path: 'fr/index.html', url: 'https://franksy.me/fr/', locale: 'fr' },
   { path: 'about/index.html', url: 'https://franksy.me/about/', locale: 'en' },
   { path: 'fr/about/index.html', url: 'https://franksy.me/fr/about/', locale: 'fr' },
-  { path: 'framework/index.html', url: 'https://franksy.me/framework/', locale: 'en' },
-  { path: 'fr/framework/index.html', url: 'https://franksy.me/fr/framework/', locale: 'fr' },
+  { path: 'coaching/index.html', url: 'https://franksy.me/coaching/', locale: 'en' },
+  { path: 'fr/coaching/index.html', url: 'https://franksy.me/fr/coaching/', locale: 'fr' },
+  { path: 'organisations/index.html', url: 'https://franksy.me/organisations/', locale: 'en' },
+  { path: 'fr/organisations/index.html', url: 'https://franksy.me/fr/organisations/', locale: 'fr' },
 ] as const;
 
 /** Reciprocal hreflang pair for a route — its EN and FR counterparts. */
@@ -21,6 +23,13 @@ const alternatesFor = (path: string) => {
   const frUrl = `https://franksy.me/fr/${path.replace(/^fr\//, '').replace('index.html', '')}`;
   return { enUrl, frUrl };
 };
+
+const OFFER_PAGES = [
+  'coaching/index.html',
+  'fr/coaching/index.html',
+  'organisations/index.html',
+  'fr/organisations/index.html',
+];
 
 const distCache = new Map<string, HTMLElement>();
 const dist = (path: string): HTMLElement => {
@@ -148,10 +157,10 @@ describe('U3 — homepages (EN + FR)', () => {
   });
 });
 
-describe('U4 — about and framework pages (EN + FR)', () => {
+describe('U4 — about and offer pages (EN + FR)', () => {
   const innerPages = ROUTES.filter((r) => r.path !== 'index.html' && r.path !== 'fr/index.html');
 
-  it('emits all four inner pages as directory-style routes', () => {
+  it('emits all six inner pages as directory-style routes', () => {
     for (const { path } of innerPages) expect(existsSync(`dist/${path}`)).toBe(true);
   });
 
@@ -168,27 +177,34 @@ describe('U4 — about and framework pages (EN + FR)', () => {
     }
   });
 
-  it('framework pages declare og:type article and an Article JSON-LD', () => {
-    for (const path of ['framework/index.html', 'fr/framework/index.html']) {
+  it('offer pages declare a Service JSON-LD', () => {
+    for (const path of OFFER_PAGES) {
+      const ld = dist(path).querySelector('script[type="application/ld+json"]')?.text ?? '';
+      expect(JSON.parse(ld)['@type']).toBe('Service');
+    }
+  });
+
+  it('offer pages render five levels and five method steps with two boxes each', () => {
+    for (const path of OFFER_PAGES) {
       const d = dist(path);
-      expect(d.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe('article');
-      const ld = d.querySelector('script[type="application/ld+json"]')?.text ?? '';
-      expect(JSON.parse(ld)['@type']).toBe('Article');
+      expect(d.querySelectorAll('.level').length).toBe(5);
+      expect(d.querySelectorAll('.step').length).toBe(5);
+      expect(d.querySelectorAll('.step-box--main').length).toBe(5);
+      expect(d.querySelectorAll('.step-box--other').length).toBe(5);
     }
   });
 
-  it('framework pages render the Cal embed with the framework-specific id', () => {
-    for (const path of ['framework/index.html', 'fr/framework/index.html']) {
-      expect(dist(path).querySelector('#my-cal-inline-connect')).toBeTruthy();
+  it('offer pages carry a Cal.com booking button', () => {
+    for (const path of OFFER_PAGES) {
+      expect(dist(path).querySelector('.booking-section [data-cal-link="franksy/connect"]')).toBeTruthy();
     }
   });
 
-  it('about and framework pages mark exactly one active nav link with aria-current', () => {
+  it('about and offer pages mark exactly one active nav link with aria-current', () => {
     for (const path of [
       'about/index.html',
       'fr/about/index.html',
-      'framework/index.html',
-      'fr/framework/index.html',
+      ...OFFER_PAGES,
     ]) {
       expect(dist(path).querySelectorAll('.site-nav a[aria-current="page"]').length).toBe(1);
     }
@@ -244,10 +260,11 @@ describe('U5 — generated sitemap', () => {
     expect(existsSync('dist/_headers')).toBe(true);
     expect(existsSync('dist/_redirects')).toBe(true);
     const redirects = readFileSync('dist/_redirects', 'utf-8');
-    // both legacy framework redirect rules are preserved — matched as whole
-    // rule lines so neither can be dropped without failing the test (the bare
-    // rule is a substring of the wildcard rule).
-    expect(redirects).toMatch(/^\/framework\/fr\/\s+\/fr\/framework\/\s+301/m);
-    expect(redirects).toMatch(/^\/framework\/fr\/\*\s+\/fr\/framework\/\s+301/m);
+    // the retired framework URLs (and their legacy forms) all land on the
+    // individuals page — matched as whole rule lines so none can be dropped.
+    expect(redirects).toMatch(/^\/framework\/fr\/\s+\/fr\/coaching\/\s+301/m);
+    expect(redirects).toMatch(/^\/framework\/fr\/\*\s+\/fr\/coaching\/\s+301/m);
+    expect(redirects).toMatch(/^\/framework\/\s+\/coaching\/\s+301/m);
+    expect(redirects).toMatch(/^\/fr\/framework\/\s+\/fr\/coaching\/\s+301/m);
   });
 });

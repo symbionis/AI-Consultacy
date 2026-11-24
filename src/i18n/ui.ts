@@ -3,23 +3,24 @@
 // Pages are identified by a locale-agnostic `pathKey`:
 //   ''          → home          (/, /fr/)
 //   'about'     → about page    (/about/, /fr/about/)
-//   'framework' → framework page (/framework/, /fr/framework/)
+//   'coaching'      → individuals page   (/coaching/, /fr/coaching/)
+//   'organisations' → organisations page (/organisations/, /fr/organisations/)
 
 export type Locale = 'en' | 'fr';
 
 /** Locale-agnostic page identifier — the closed set of routes the site chrome knows about. */
-export type PathKey = '' | 'about' | 'framework';
+export type PathKey = '' | 'about' | 'coaching' | 'organisations';
 
 export const SITE = 'https://franksy.me';
 
 export const ui = {
   en: {
-    nav: { about: 'About', framework: 'Framework', portfolio: 'Portfolio' },
+    nav: { about: 'About', coaching: 'Individuals', organisations: 'Organisations', portfolio: 'Portfolio' },
     footerCopy: '© 2026 Frank Sykes',
     ogLocale: 'en_US',
   },
   fr: {
-    nav: { about: 'À propos', framework: 'Framework', portfolio: 'Portfolio' },
+    nav: { about: 'À propos', coaching: 'Individuels', organisations: 'Organisations', portfolio: 'Portfolio' },
     footerCopy: '© 2026 Frank Sykes, Genève',
     ogLocale: 'fr_FR',
   },
@@ -43,7 +44,7 @@ export function pageUrl(locale: Locale, pathKey: PathKey): string {
 }
 
 /** schema.org reference to Frank — appears as `founder` (homepages) and `author`
- *  (framework pages) across the page JSON-LD blocks. */
+ *  (offer pages) across the page JSON-LD blocks. */
 export const FRANK_REF = {
   '@type': 'Person',
   '@id': `${SITE}/about/#frank`,

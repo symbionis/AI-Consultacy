@@ -1,4 +1,5 @@
 ---
+import { offer } from '../i18n/offer';
 import Layout from '../layouts/Layout.astro';
 import HeroShapes from '../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../i18n/ui';
@@ -126,46 +127,19 @@ const jsonLd = {
           After twenty-five years of running things and the last few of running them with AI, this is how I've seen it unfold.
         </blockquote>
         <div class="framework-row">
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">L1</span>
-              <span class="level-name">Curious user</span>
+          {offer.en.levels.items.map((level) => (
+            <div class="framework-level">
+              <div class="framework-level-header">
+                <span class="level-prefix">{level.num}</span>
+                <span class="level-name">{level.name}</span>
+              </div>
+              <span class="level-desc">{level.who}</span>
             </div>
-            <span class="level-desc">You've tried AI. To you, it's a better search engine.</span>
-          </div>
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">L2</span>
-              <span class="level-name">Working with tools</span>
-            </div>
-            <span class="level-desc">AI is part of your day. Voice notes, drafts, daily friction lifted.</span>
-          </div>
-          <div class="framework-level level-shift">
-            <div class="framework-level-header">
-              <span class="level-prefix">L3</span>
-              <span class="level-name">Thinking partner</span>
-              <span class="level-marker">The shift</span>
-            </div>
-            <span class="level-desc">You think with it, not just at it.</span>
-          </div>
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">L4</span>
-              <span class="level-name">Tools shaped to you</span>
-            </div>
-            <span class="level-desc">You're building small systems that fit how you actually work.</span>
-          </div>
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">L5</span>
-              <span class="level-name">Operations that run themselves</span>
-            </div>
-            <span class="level-desc">Recurring work happens in your voice, in the background.</span>
-          </div>
+          ))}
         </div>
         <div class="framework-closing measure">
           <p>Most people sit between two levels. The Discovery session places you and names the gap.</p>
-          <p><a href="/framework/" class="more-link">Read the full framework →</a></p>
+          <p><a href="/coaching/" class="more-link">See the five levels in detail →</a></p>
         </div>
       </div>
     </section>

@@ -10,14 +10,15 @@ describe('i18n URL helpers', () => {
     expect(pagePath('en', '')).toBe('/');
     expect(pagePath('en', 'about')).toBe('/about/');
     expect(pagePath('fr', '')).toBe('/fr/');
-    expect(pagePath('fr', 'framework')).toBe('/fr/framework/');
+    expect(pagePath('fr', 'coaching')).toBe('/fr/coaching/');
+    expect(pagePath('en', 'organisations')).toBe('/organisations/');
   });
 
   it('pageUrl prefixes the site origin onto the page path', () => {
     expect(pageUrl('en', '')).toBe(`${SITE}/`);
     expect(pageUrl('en', 'about')).toBe(`${SITE}/about/`);
     expect(pageUrl('fr', '')).toBe(`${SITE}/fr/`);
-    expect(pageUrl('fr', 'framework')).toBe(`${SITE}/fr/framework/`);
+    expect(pageUrl('fr', 'coaching')).toBe(`${SITE}/fr/coaching/`);
   });
 
   it('otherLocale flips EN ⇄ FR', () => {

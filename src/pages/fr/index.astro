@@ -1,4 +1,5 @@
 ---
+import { offer } from '../../i18n/offer';
 import Layout from '../../layouts/Layout.astro';
 import HeroShapes from '../../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
@@ -127,46 +128,19 @@ const jsonLd = {
           Voici comment je vois les choses, après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA.
         </blockquote>
         <div class="framework-row">
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">N1</span>
-              <span class="level-name">Curieux</span>
+          {offer.fr.levels.items.map((level) => (
+            <div class="framework-level">
+              <div class="framework-level-header">
+                <span class="level-prefix">{level.num}</span>
+                <span class="level-name">{level.name}</span>
+              </div>
+              <span class="level-desc">{level.who}</span>
             </div>
-            <span class="level-desc">Vous avez essayé l'IA. Pour vous, c'est un moteur de recherche en mieux.</span>
-          </div>
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">N2</span>
-              <span class="level-name">L'IA au quotidien</span>
-            </div>
-            <span class="level-desc">Notes vocales, brouillons, la friction du jour qui s'allège.</span>
-          </div>
-          <div class="framework-level level-shift">
-            <div class="framework-level-header">
-              <span class="level-prefix">N3</span>
-              <span class="level-name">Partenaire de réflexion</span>
-              <span class="level-marker">Le basculement</span>
-            </div>
-            <span class="level-desc">Vous pensez avec elle, pas juste à elle.</span>
-          </div>
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">N4</span>
-              <span class="level-name">Des outils qui vous ressemblent</span>
-            </div>
-            <span class="level-desc">Vous construisez de petits systèmes adaptés à votre façon de faire.</span>
-          </div>
-          <div class="framework-level">
-            <div class="framework-level-header">
-              <span class="level-prefix">N5</span>
-              <span class="level-name">Un travail qui tourne tout seul</span>
-            </div>
-            <span class="level-desc">Le récurrent se fait dans votre voix, en arrière-plan.</span>
-          </div>
+          ))}
         </div>
         <div class="framework-closing measure">
           <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place et nomme l'écart.</p>
-          <p><a href="/fr/framework/" class="more-link">Lire le framework complet →</a></p>
+          <p><a href="/fr/coaching/" class="more-link">Voir les cinq niveaux en détail →</a></p>
         </div>
       </div>
     </section>

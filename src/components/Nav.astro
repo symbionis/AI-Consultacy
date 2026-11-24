@@ -9,30 +9,47 @@ interface Props {
 
 const { locale, pathKey } = Astro.props;
 const t = ui[locale];
+const links: { key: PathKey; label: string }[] = [
+  { key: 'framework', label: t.nav.framework },
+  { key: 'private-clients', label: t.nav.privateClients },
+  { key: 'organisations', label: t.nav.organisations },
+  { key: 'about', label: t.nav.about },
+];
+const menuLabel = 'Menu';
 ---
 
-<header class="site-nav">
+<!-- Sticky on every page. Under 800px the links fold into a menu button;
+     the language switch stays visible beside it. -->
+<header class="site-nav" data-nav>
   <div class="container nav-inner">
     <a href={pagePath(locale, '')} class="nav-logo">Franksy</a>
     <div class="nav-right">
-      <nav class="nav-links">
-        <a href={pagePath(locale, 'framework')} aria-current={pathKey === 'framework' ? 'page' : undefined}>
-          {t.nav.framework}
-        </a>
-        <a href={pagePath(locale, 'private-clients')} aria-current={pathKey === 'private-clients' ? 'page' : undefined}>
-          {t.nav.privateClients}
-        </a>
-        <a href={pagePath(locale, 'organisations')} aria-current={pathKey === 'organisations' ? 'page' : undefined}>
-          {t.nav.organisations}
-        </a>
-        <a href={pagePath(locale, 'about')} aria-current={pathKey === 'about' ? 'page' : undefined}>
-          {t.nav.about}
-        </a>
-        <a href="https://work.franksy.me/">
-          {t.nav.portfolio}
-        </a>
+      <nav class="nav-links" id="site-nav-links" aria-label={locale === 'fr' ? 'Navigation principale' : 'Main navigation'}>
+        {links.map((l) => (
+          <a href={pagePath(locale, l.key)} aria-current={pathKey === l.key ? 'page' : undefined}>{l.label}</a>
+        ))}
+        <a href="https://work.franksy.me/">{t.nav.portfolio}</a>
       </nav>
       <LangSwitch locale={locale} pathKey={pathKey} />
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="nav-toggle-label">{menuLabel}</span>
+      </button>
     </div>
   </div>
 </header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = nav?.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  if (nav && toggle) {
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+    nav.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    window.matchMedia('(min-width: 800px)').addEventListener('change', (m) => { if (m.matches) setOpen(false); });
+  }
+</script>

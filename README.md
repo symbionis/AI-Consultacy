@@ -4,6 +4,14 @@ Bilingual site (EN/FR) for Frank Sykes' AI coaching practice. Built with
 [Astro](https://astro.build) (static output), deployed to Cloudflare Workers
 static assets on `franksy.me`.
 
+## Content and positioning
+
+Positioning and content decisions live in the Claude Doc « Repositionnement :
+niveaux concrets et offre organisations »
+(https://claude.ai/artifact/HrVX1BMmP8MwW2u7tChhsK), tabs « Repositionnement »
+and « Plan de contenu du site ». A decision made there reaches the site through
+a PR, and the reverse. It replaces the former `docs/Positioning.md`.
+
 ## Quick start
 
 ```sh

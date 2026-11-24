@@ -1,9 +1,9 @@
 ---
-import { offer } from '../../i18n/offer';
 import Layout from '../../layouts/Layout.astro';
 import HeroShapes from '../../components/HeroShapes.astro';
 import { FRANK_REF, SITE, pageUrl } from '../../i18n/ui';
 import Doors from '../../components/Doors.astro';
+import FrameworkTeaser from '../../components/FrameworkTeaser.astro';
 import '../../styles/home.css';
 import '../../styles/offer.css';
 
@@ -13,7 +13,7 @@ const jsonLd = {
   '@id': `${SITE}/#practice`,
   name: 'Franksy',
   url: pageUrl('fr', ''),
-  image: `${SITE}/og-image.png`,
+  image: `${SITE}/og/home-fr.png`,
   description: "Coaching IA pour les clients privés et les family offices, et agents IA pour les organisations.",
   email: 'frank@syks.co',
   areaServed: 'Worldwide',
@@ -32,6 +32,7 @@ const jsonLd = {
   description="L'IA accordée à votre façon de travailler. Un second esprit pour les clients privés et les family offices, des mains en plus pour les équipes. Genève, en français et en anglais."
   locale="fr"
   pathKey=""
+  ogImage="/og/home-fr.png"
   jsonLd={jsonLd}
 >
   <main>
@@ -43,14 +44,34 @@ const jsonLd = {
           <h1 class="display">Un second esprit pour vous. Des mains en plus pour vos équipes.</h1>
           <p class="tagline">Moins de poids. Plus de place.</p>
           <div class="cta-row">
-            <a href="#doors" class="btn btn-sun">Voir comment ça se passe</a>
+            <a href="#what" class="btn btn-sun">Voir comment ça se passe</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2.5: About teaser (surface band) -->
-    <section class="section band">
+    <!-- What this is (page) -->
+    <section id="what" class="section">
+      <div class="container">
+        <hr class="bar" />
+        <blockquote class="statement">
+          J'aide les personnes et les équipes à faire entrer l'IA dans leur façon de travailler. Pour vous, un second esprit avec qui penser. Pour vos équipes, des agents qui portent le travail qui se répète.
+        </blockquote>
+        <div class="prose measure lede">
+          <p>Ni un cours, ni une liste d'outils. On part de votre façon de travailler aujourd'hui, on y accorde l'IA, et je vous accompagne jusqu'à ce qu'elle en fasse partie.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The framework (surface band) -->
+    <section id="levels" class="section band">
+      <div class="container">
+        <FrameworkTeaser locale="fr" />
+      </div>
+    </section>
+
+    <!-- About Frank (page) -->
+    <section class="section" id="about">
       <div class="container">
         <p class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>À propos de Frank</p>
         <div class="teaser">
@@ -63,30 +84,9 @@ const jsonLd = {
             <p><a href="/fr/about/" class="more-link">Lire la suite →</a></p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- The 5 Levels (page) -->
-    <section id="levels" class="section">
-      <div class="container">
-        <blockquote class="statement">
-          Voici comment je vois les choses, après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA.
+        <blockquote class="statement about-statement">
+          Après vingt-cinq ans à faire tourner des activités, et les dernières années à les faire tourner avec l'IA, j'ai vu le même schéma à chaque fois. La peur d'abord. Quelques mois plus tard, plus personne ne veut revenir en arrière.
         </blockquote>
-        <div class="framework-row">
-          {offer.fr.levels.items.map((level) => (
-            <div class="framework-level">
-              <div class="framework-level-header">
-                <span class="level-prefix">{level.num}</span>
-                <span class="level-name">{level.name}</span>
-              </div>
-              <span class="level-desc">{level.who}</span>
-            </div>
-          ))}
-        </div>
-        <div class="framework-closing measure">
-          <p>La plupart des gens se situent entre deux niveaux. La session Découverte vous y place et nomme l'écart.</p>
-          <p><a href="/fr/framework/" class="more-link">Lire le framework complet →</a></p>
-        </div>
       </div>
     </section>
 

@@ -22,6 +22,8 @@ interface Props {
   pathKey: PathKey;
   /** og:type — 'website' for most pages, 'article' for the framework pages. */
   ogType?: 'website' | 'article';
+  /** Social preview image, a path under public/ (default: the homepage card). */
+  ogImage?: string;
   /** JSON-LD structured data object, emitted verbatim into a ld+json script. */
   jsonLd: Record<string, unknown>;
 }
@@ -32,6 +34,7 @@ const {
   locale,
   pathKey,
   ogType = 'website',
+  ogImage: ogImagePath = '/og-image.png',
   jsonLd,
 } = Astro.props;
 
@@ -40,7 +43,7 @@ const enUrl = pageUrl('en', pathKey);
 const frUrl = pageUrl('fr', pathKey);
 const ogLocale = ui[locale].ogLocale;
 const ogLocaleAlternate = ui[otherLocale(locale)].ogLocale;
-const ogImage = `${SITE}/og-image.png`;
+const ogImage = `${SITE}${ogImagePath}`;
 
 // LinkedIn Insight Tag — the base pixel for ad conversion tracking. Inlined only
 // when a partner ID is present at build time.

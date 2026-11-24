@@ -1,0 +1,117 @@
+---
+// The five levels on the homepage: what the framework is, then each level as a
+// card in the style of the old "three parts" section (brand shape, eyebrow,
+// headline, one concrete example). The full version lives on /framework/.
+import { offer } from '../i18n/offer';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = offer[locale];
+
+const copy = {
+  en: {
+    eyebrow: 'The framework',
+    title: 'Five levels of AI fluency.',
+    lead: 'A simple way to see where AI sits in your work today, and where it could go next. At each level, AI takes on a little more of the work.',
+    closing: 'Most people sit between two levels. The Discovery session places you and names the gap.',
+    link: 'Read the full framework →',
+    href: '/framework/',
+  },
+  fr: {
+    eyebrow: 'Le framework',
+    title: "Les 5 niveaux de maîtrise de l'IA.",
+    lead: "Une façon simple de voir où l'IA se situe dans votre travail aujourd'hui, et où elle peut aller. À chaque niveau, elle prend en charge un peu plus de travail.",
+    closing: 'La plupart des gens se situent entre deux niveaux. La session Découverte vous y place et nomme l\'écart.',
+    link: 'Lire le framework complet →',
+    href: '/fr/framework/',
+  },
+}[locale];
+
+// One brand shape per level, from the lightest touch to work that runs alone.
+const shapes = ['circle-sun', 'square', 'dots', 'arch-scarlet', 'circle-scarlet'];
+---
+
+<div class="eyebrow"><span class="marker marker--square" aria-hidden="true"></span>{copy.eyebrow}</div>
+<h2 class="h1 section-title">{copy.title}</h2>
+<p class="ft-lead">{copy.lead}</p>
+
+<div class="ft-levels">
+  {c.levels.items.map((level, i) => (
+    <div class="ft-level">
+      <span class:list={['ft-shape', `ft-shape--${shapes[i]}`]} aria-hidden="true"></span>
+      <div class="ft-meter" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map((n) => <span class:list={['ft-tick', { 'ft-tick--on': n <= i }]}></span>)}
+      </div>
+      <div class="eyebrow ft-eyebrow">{level.num} / {level.name}</div>
+      <h3 class="ft-title">{level.who}</h3>
+      <p class="ft-example">{c.labels.example} {level.example}</p>
+    </div>
+  ))}
+</div>
+
+<div class="ft-closing">
+  <p>{copy.closing}</p>
+  <p><a href={copy.href} class="more-link">{copy.link}</a></p>
+</div>
+
+<style>
+  .ft-lead {
+    max-width: var(--measure);
+    font-size: clamp(18px, 1.6vw, 20px);
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin-top: calc(-1 * var(--space-4));
+    margin-bottom: var(--space-7);
+  }
+  .ft-levels {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+  }
+  @media (max-width: 1100px) {
+    .ft-levels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .ft-levels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 480px) {
+    .ft-levels { grid-template-columns: 1fr; }
+  }
+  .ft-level {
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+  }
+  .ft-shape {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+    margin-bottom: var(--space-4);
+  }
+  .ft-shape--circle-sun { background-image: url('/brand/circle-sun.svg'); }
+  .ft-shape--square { background-image: var(--marker-square); }
+  .ft-shape--dots { background-image: var(--marker-dots); }
+  .ft-shape--arch-scarlet { background-image: url('/brand/arch-scarlet.svg'); }
+  .ft-shape--circle-scarlet { background-image: url('/brand/circle-scarlet.svg'); }
+  .ft-meter { display: flex; gap: 4px; margin-bottom: var(--space-4); }
+  .ft-tick { width: 18px; height: 4px; background: var(--hairline); }
+  .ft-tick--on { background: var(--accent); }
+  .ft-eyebrow { margin-bottom: var(--space-2); }
+  .ft-title {
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: var(--space-3);
+  }
+  .ft-example { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .ft-closing { margin-top: var(--space-7); max-width: var(--measure); }
+  .ft-closing p { color: var(--ink-2); margin-bottom: var(--space-3); }
+</style>

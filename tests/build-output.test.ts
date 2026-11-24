@@ -216,6 +216,14 @@ describe('U4 — about, framework and offer pages (EN + FR)', () => {
     }
   });
 
+  it('home, framework and offer pages each carry their own social preview image', () => {
+    for (const { path, locale } of ROUTES.filter((r) => !r.path.includes('about'))) {
+      const img = dist(path).querySelector('meta[property="og:image"]')?.getAttribute('content') ?? '';
+      expect(img).toMatch(new RegExp(`^https://franksy\\.me/og/[a-z-]+-${locale}\\.png$`));
+      expect(existsSync(`dist${img.replace('https://franksy.me', '')}`)).toBe(true);
+    }
+  });
+
   it('homepages show the two doors', () => {
     for (const path of ['index.html', 'fr/index.html']) {
       expect(dist(path).querySelectorAll('.door').length).toBe(2);

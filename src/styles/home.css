@@ -254,3 +254,10 @@
   .about-body { grid-template-columns: 1fr; gap: var(--space-6); }
   .about-portrait { width: 180px; }
 }
+
+/* ===== WHAT THIS IS (home) ===== */
+
+#what .bar { margin-bottom: var(--space-6); }
+
+/* The line under the bio on the homepage. */
+.about-statement { margin-top: var(--space-8); }
